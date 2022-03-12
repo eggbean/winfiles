@@ -4,16 +4,22 @@
     "actions": 
     [
         {
+            "command": "unbound",
+            "keys": "ctrl+v"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+c"
+        },
+        {
             "command": 
             {
                 "action": "copy",
                 "singleLine": false
-            },
-            "keys": "ctrl+c"
+            }
         },
         {
-            "command": "paste",
-            "keys": "ctrl+v"
+            "command": "paste"
         },
         {
             "command": "find",
@@ -29,16 +35,28 @@
             "keys": "alt+shift+d"
         }
     ],
+    "alwaysShowTabs": false,
     "copyFormatting": "none",
-    "copyOnSelect": false,
-    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "copyOnSelect": true,
+    "defaultProfile": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
+    "initialCols": 100,
+    "initialRows": 40,
+    "launchMode": "default",
     "profiles": 
     {
-        "defaults": {},
+        "defaults": 
+        {
+            "scrollbarState": "hidden"
+        },
         "list": 
         [
             {
+                "colorScheme": "Campbell Powershell",
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "font": 
+                {
+                    "size": 14
+                },
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
@@ -50,15 +68,27 @@
                 "name": "Command Prompt"
             },
             {
+                "backgroundImageAlignment": "topRight",
+                "bellStyle": 
+                [
+                    "audible",
+                    "window",
+                    "taskbar"
+                ],
+                "colorScheme": "Argonaut",
+                "cursorShape": "filledBox",
+                "experimental.retroTerminalEffect": false,
+                "font": 
+                {
+                    "face": "Hack NF",
+                    "size": 14
+                },
                 "guid": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
                 "hidden": false,
-                "name": "WLinux",
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
-                "guid": "{46ca431a-3a87-5fb3-83cd-11ececc031d2}",
-                "hidden": false,
-                "name": "kali-linux",
+                "historySize": 500,
+                "intenseTextStyle": "all",
+                "name": "Pengwin",
+                "scrollbarState": "hidden",
                 "source": "Windows.Terminal.Wsl"
             },
             {
@@ -71,6 +101,29 @@
     },
     "schemes": 
     [
+        {
+            "background": "#2E3440",
+            "black": "#0D0D0D",
+            "blue": "#1BA6FA",
+            "brightBlack": "#6D7070",
+            "brightBlue": "#1BA6FA",
+            "brightCyan": "#73FBF1",
+            "brightGreen": "#B8E466",
+            "brightPurple": "#A578EA",
+            "brightRed": "#FF4352",
+            "brightWhite": "#FEFEF8",
+            "brightYellow": "#FFD750",
+            "cursorColor": "#FF261E",
+            "cyan": "#21DEEF",
+            "foreground": "#EBEBEB",
+            "green": "#A0E521",
+            "name": "Argonaut",
+            "purple": "#8763B8",
+            "red": "#FF301B",
+            "selectionBackground": "#FFFFFF",
+            "white": "#EBEBEB",
+            "yellow": "#FFC620"
+        },
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
@@ -301,5 +354,10 @@
             "white": "#C0C0C0",
             "yellow": "#808000"
         }
-    ]
+    ],
+    "showTabsInTitlebar": false,
+    "tabWidthMode": "equal",
+    "trimBlockSelection": true,
+    "useAcrylicInTabRow": false,
+    "windowingBehavior": "useNew"
 }
