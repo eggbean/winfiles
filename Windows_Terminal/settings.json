@@ -5,6 +5,10 @@
     [
         {
             "command": "unbound",
+            "keys": "f11"
+        },
+        {
+            "command": "unbound",
             "keys": "ctrl+v"
         },
         {
@@ -39,8 +43,8 @@
     "copyFormatting": "none",
     "copyOnSelect": true,
     "defaultProfile": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
-    "initialCols": 100,
-    "initialRows": 40,
+    "initialCols": 90,
+    "initialRows": 35,
     "launchMode": "default",
     "profiles": 
     {
@@ -68,7 +72,9 @@
                 "name": "Command Prompt"
             },
             {
+                "antialiasingMode": "cleartype",
                 "backgroundImageAlignment": "topRight",
+                "backgroundImageOpacity": 0.0,
                 "bellStyle": 
                 [
                     "audible",
@@ -81,15 +87,18 @@
                 "font": 
                 {
                     "face": "Hack NF",
-                    "size": 14
+                    "size": 13
                 },
                 "guid": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
                 "hidden": false,
                 "historySize": 500,
                 "intenseTextStyle": "all",
                 "name": "Pengwin",
+                "opacity": 100,
                 "scrollbarState": "hidden",
-                "source": "Windows.Terminal.Wsl"
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "~",
+                "useAcrylic": true
             },
             {
                 "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
