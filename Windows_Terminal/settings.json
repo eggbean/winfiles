@@ -5,6 +5,14 @@
     [
         {
             "command": "unbound",
+            "keys": "ctrl+shift+pageup"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+pagedown"
+        },
+        {
+            "command": "unbound",
             "keys": "f11"
         },
         {
