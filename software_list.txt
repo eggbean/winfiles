@@ -1,0 +1,276 @@
+-----------------------------------------------------------------------------------------------------------------------
+Google Earth                                    01c6b566b8e19c9a01eb0473141fa214                1.0             
+EyeTune                                         13183Mancoast.EyeTune_k7gtqf3v1rgjm             0.9.7.0         
+WiFi Analyzer                                   19965MATTHAFNER.WIFIANALYZER_gs5k5vmxr2ste      2.6.1.0         
+Glowing Bear                                    1df96df61b3033f30afdda068d239d04                1.0             
+Sony Remote Control                             28236eStyle.SonyRemoteControl_1s13q5f3pxkgc     1.4.7.0         
+Messenger                                       2a1176c987b7073723fc069b3ec42da4                1.0             
+TweetDeck                                       2aead1be4a661170709233301f6105c2                1.0             
+TV Guide                                        2ec08ec7518acc3acf8f7524965f7fbb                1.0             
+regex101                                        318ffd60215da099a5206706d1c81db2                1.0             
+Notion                                          353c04dde4bcbe37aef0bafe05e0b49a                1.0             
+Movie Maker : Free Video Editor                 39691Videopix.MovieMakerFreeVideoEditor_dxz7h1… 1.1.112.0       
+3uTools                                         3uTools                                         2.39.032        
+Tweeten                                         MehediHassan.Tweeten                            5.5.0           winget
+One Photo Viewer                                48914EllipticPhenomena.OnePhotoViewer_8w313s78… 1.17.0.0        
+Imgur4Windows                                   48970Maxence.Imgur4Windows_gbabhqkb135sy        1.9.0.0         
+Video Crop - Cut & Trim Videos                  49659SandpiperStudio.VideoCrop-CutTrimVideos_1… 1.0.5.0         
+YouTube Music                                   4b484ba26d1d8b7a9323794cb67e3051                1.0             
+Timeline                                        4ce6508596397551dfbf38d7bf9455dd                1.0             
+Kindle Cloud Reader                             4f51c351211042037550713e5f01a30e                1.0             
+mpv (Unofficial)                                519Ezhik.mpvUnofficial_xfkyq1j2kc7zp            0.33.1002.0     
+WhatsApp Beta                                   5319275A.51895FA4EA97F_cv1g1gvanyjgm            2.2234.11.0     
+Photo Forensics Free                            53354DuckheadSoftware.PhotoForensicsFree_2gc4m… 16.0.1.0        
+Adobe Document Cloud                            53442c82b5dbfbf73202c438ca56abb3                1.0             
+BBC iPlayer                                     56aeeef23cceff7c6ca9c45a1b16e6f5                1.0             
+Amazon Alexa                                    57540AMZNMobileLLC.AmazonAlexa_22t9g3sebte08    3.24.1213.0     
+AWS Management Console                          5d93923ffafafffe56a784de44691146                1.0             
+Interval Timer by Jalex                         6523Jalex.JalexIntervalTimer_mda14g3t5n2mr      1.0.0.4         
+Cambridge English Dictionary: Meanings & Defin… 65b9932ee2481096b903a2f44c3ae3b8                1.0             
+@notes/ondcstickynotes                          6b784324fea1eb0ed9108446d443d0e1                1.0             
+7-Zip 22.01 (x64)                               7zip.7zip                                       22.01           winget
+Radio 4 - Listen Live - BBC Sounds              7c888c67cebe43fccd35e78e24eabaeb                1.0             
+Signal 5.57.0                                   OpenWhisperSystems.Signal                       5.57.0          winget
+Free Video Cutter Joiner                        808dvdvideomedia.FreeVideoCutterJoiner_yjscgq3… 1.0.0.0         
+Autodesk SketchBook                             89006A2E.AutodeskSketchBook_tf1gferkr813w       5.1.0.0         
+Feedly                                          8ebf8f5945608fc43eb0ef7c1566d6fd                1.0             
+Monkeytype                                      90b4e041734ff4f4033024c03a2fc878                1.0             
+Adobe Creative Cloud                            Adobe Creative Cloud                            5.6.5.58        
+Adobe Digital Editions 4.5                      Adobe Digital Editions 4.5                      4.5.11          
+Adobe XD                                        Adobe.CC.XD_adky2gkssdxte                       25.1.12.7       
+Adobe Genuine Service                           AdobeGenuineService                             8.0.0.11        
+Adobe Notification Client                       AdobeNotificationClient_enpm4xejd91yc           2.0.1.8         
+Adobe Lightroom                                 AdobeSystemsIncorporated.AdobeLightroom_ynb6jy… 5.5.22710.0     
+Adobe Photoshop Express                         AdobeSystemsIncorporated.AdobePhotoshopExpress… 3.7.403.0       
+AirDroid 3.7.1.0                                AirDroid.AirDroid                               3.7.1.0         winget
+iCloud                                          AppleInc.iCloud_nzyj5cx40ttqa                   13.4.101.0      
+iTunes                                          AppleInc.iTunes_nzyj5cx40ttqa                   12124.1.57017.0 
+Audacity 3.1.3                                  Audacity.Audacity                               3.1.3           winget
+AutoHotkey 1.1.34.04                            Lexikos.AutoHotkey                              1.1.34.04       winget
+BT Wi-fi                                        BRITISHTELECOMMUNICATIONS.BTWifi_p4cqfe0ssz2sj  1.3.0.0         
+TikTok                                          BytedancePte.Ltd.TikTok_6yccndn6064se           1.0.5.0         
+Plex                                            CAF9E577.Plex_aam28m9va5cke                     3.2.20.0        
+CPUID CPU-Z 2.01                                CPUID.CPU-Z                                     2.01            winget
+Canon IJ Network Scanner Selector EX            Canon_IJ_Network_Scanner_Selector_EX            1.5.2.3         
+Canon IJ Network Tool                           Canon_IJ_Network_UTILITY                        3.5.0           
+Canon IJ Scan Utility                           Canon_IJ_Scan_Utility                           1.1.10.15       
+Cd Deluxe                                       CdDeluxe                                        1.4.48          
+X410                                            ChoungNetworksUS.X410_vvzc8y2tzcnsr             3.2.2.0         
+Clipchamp                                       Clipchamp.Clipchamp_yxz26nhyzhsrt               2.4.9.0         
+CloudBerry Drive 3.2                            CloudBerry Drive                                3.2             
+Codecademy                                      Codecademy.Codecademy-alpha_xbzmgvj0jrfba       1.0.0.0         
+Colasoft MAC Scanner 2.3                        Colasoft MAC Scanner 2.3_is1                    2.3             
+ColorPic                                        ColorPic                                        4.1             
+Drawboard PDF                                   DRAWBOARD.DRAWBOARDPDF_gqbn7fs4pywxm            6.23.2.0        
+Discord                                         Discord.Discord                                 1.0.9006        winget
+Docker Desktop                                  Docker.DockerDesktop                            4.11.1          winget
+Dropbox                                         Dropbox.Dropbox                                 156.3.4860      winget
+Dropbox                                         DropboxInc.Dropbox_wkt425jdc3sga                156.3.4860.0    
+The Dude                                        Mikrotik.TheDude                                Unknown         winget
+Dynu IP Update Client 5.4.0.0 - IP address upd… Dynu Systems Dynu IP Update Client              "5.4.0"         
+Lenovo Vantage                                  E046963F.LenovoCompanion_k1h2ywk1493x8          10.2208.7.0     
+EdgeDeflector                                   EdgeDeflector                                   Unknown         
+Everything 1.4.1.1017 (x64)                     Everything                                      1.4.1.1017      
+Messenger                                       FACEBOOK.317180B0BB486_8xx8rvfyw5nnt            1580.24.216.0   
+Facebook                                        FACEBOOK.FACEBOOK_8xx8rvfyw5nnt                 2021.927.1.0    
+FastGlacier version 4.1.5                       FastGlacier_is1                                 4.1.5.0         
+Folder Marker Pro                               Folder Marker Pro_is1                           4.6             
+GitHub Desktop                                  GitHub.GitHubDesktop                            3.0.4           winget
+Git                                             Git.Git                                         2.37.3          winget
+Google Chrome Canary                            Google.Chrome.Canary                            107.0.5284.0    winget
+HWiNFO64 Version 7.26                           REALiX.HWiNFO                                   7.26            winget
+Hack Fonts version 1.6.0                        SourceFoundry.HackFonts                         1.6.0           winget
+HandBrake 1.5.1                                 HandBrake.HandBrake                             1.5.1           winget
+Icaros 3.2.1                                    Icaros_is1                                      3.2.1.0         
+Axialis IconGenerator                           IconGenerator                                   1.6             
+Axialis IconWorkshop 6.91                       IconWorkshop                                    6.91            
+KeyTweak - Keyboard Remapper (remove only)      KeyTweak                                        Unknown         
+Lenovo Account Portal                           LenovoCorporation.LenovoID_4642shxvsv8s2        2.0.37.0        
+Logitech Options                                Logitech.Options                                9.70.68         winget
+Microsoft Edge                                  Microsoft.Edge                                  104.0.1293.54   winget
+Microsoft Edge Update                           Microsoft Edge Update                           1.3.165.21      
+Microsoft Edge WebView2 Runtime                 Microsoft.EdgeWebView2Runtime                   105.0.1343.27   winget
+3D Builder                                      Microsoft.3DBuilder_8wekyb3d8bbwe               18.0.10793.0    
+Cortana                                         Microsoft.549981C3F5F10_8wekyb3d8bbwe           4.2204.13303.0  
+News                                            Microsoft.BingNews_8wekyb3d8bbwe                4.55.40792.0    
+MSN Weather                                     Microsoft.BingWeather_8wekyb3d8bbwe             4.53.42432.0    
+App Installer                                   Microsoft.DesktopAppInstaller_8wekyb3d8bbwe     1.19.2161.0     
+Get Help                                        Microsoft.GetHelp_8wekyb3d8bbwe                 10.2206.2011.0  
+Microsoft Tips                                  Microsoft.Getstarted_8wekyb3d8bbwe              10.2206.2.0     
+HEIF Image Extensions                           Microsoft.HEIFImageExtension_8wekyb3d8bbwe      1.0.50272.0     
+English (United Kingdom) Local Experience Pack  Microsoft.LanguageExperiencePacken-GB_8wekyb3d… 22621.3.16.0    
+MPEG-2 Video Extension                          Microsoft.MPEG2VideoExtension_8wekyb3d8bbwe     1.0.50901.0     
+Paint 3D                                        Microsoft.MSPaint_8wekyb3d8bbwe                 6.2203.1037.0   
+Microsoft Edge                                  Microsoft.MicrosoftEdge.Stable_8wekyb3d8bbwe    104.0.1293.54   
+Office                                          Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe      18.2205.1091.0  
+Microsoft Solitaire Collection                  Microsoft.MicrosoftSolitaireCollection_8wekyb3… 4.14.9020.0     
+Microsoft Sticky Notes                          Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe    4.5.6.0         
+Mixed Reality Portal                            Microsoft.MixedReality.Portal_8wekyb3d8bbwe     2000.21051.128… 
+OneNote for Windows 10                          Microsoft.Office.OneNote_8wekyb3d8bbwe          16001.14326.21… 
+OneDrive                                        Microsoft.OneDriveSync_8wekyb3d8bbwe            22166.807.2.0   
+Page Analyzer                                   Microsoft.PageAnalyzer_8wekyb3d8bbwe            1.5.0.0         
+Paint                                           Microsoft.Paint_8wekyb3d8bbwe                   11.2206.6.0     
+Microsoft People                                Microsoft.People_8wekyb3d8bbwe                  10.2105.4.0     
+Microsoft.PowerToys.ImageResizerContextMenu     Microsoft.PowerToys.ImageResizerContextMenu_8w… 1.0.0.0         
+Print 3D                                        Microsoft.Print3D_8wekyb3d8bbwe                 3.3.791.0       
+Raw Image Extension                             Microsoft.RawImageExtension_8wekyb3d8bbwe       2.1.32061.0     
+Snipping Tool                                   Microsoft.ScreenSketch_8wekyb3d8bbwe            11.2206.13.0    
+Windows Security                                Microsoft.SecHealthUI_8wekyb3d8bbwe             1000.22621.1.0  
+Skype                                           Microsoft.SkypeApp_kzf8qxf38zg5c                15.87.3406.0    
+Store Experience Host                           Microsoft.StorePurchaseApp_8wekyb3d8bbwe        12205.44.1.0    
+Microsoft To Do                                 Microsoft.Todos_8wekyb3d8bbwe                   2.78.52391.0    
+VP9 Video Extensions                            Microsoft.VP9VideoExtensions_8wekyb3d8bbwe      1.0.51171.0     
+Web Media Extensions                            Microsoft.WebMediaExtensions_8wekyb3d8bbwe      1.0.42192.0     
+Webp Image Extensions                           Microsoft.WebpImageExtension_8wekyb3d8bbwe      1.0.52351.0     
+Windows App Runtime DDLM 3.469.1654.0-x6        Microsoft.WinAppRuntime.DDLM.3.469.1654.0-x6_8… 3.469.1654.0    
+Windows App Runtime DDLM 3.469.1654.0-x8        Microsoft.WinAppRuntime.DDLM.3.469.1654.0-x8_8… 3.469.1654.0    
+Microsoft Photos                                Microsoft.Windows.Photos_8wekyb3d8bbwe          2022.31070.260… 
+Windows Clock                                   Microsoft.WindowsAlarms_8wekyb3d8bbwe           11.2206.27.0    
+WindowsAppRuntime.Singleton                     Microsoft.WindowsAppRuntime.Singleton_8wekyb3d… 3.469.1654.0    
+Windows Calculator                              Microsoft.WindowsCalculator_8wekyb3d8bbwe       11.2207.11.0    
+Windows Camera                                  Microsoft.WindowsCamera_8wekyb3d8bbwe           2022.2207.29.0  
+Feedback Hub                                    Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe      1.2203.761.0    
+Windows Maps                                    Microsoft.WindowsMaps_8wekyb3d8bbwe             11.2207.4.0     
+Windows Notepad                                 Microsoft.WindowsNotepad_8wekyb3d8bbwe          11.2207.11.0    
+Windows Sound Recorder                          Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe    11.2207.43.0    
+Microsoft Store                                 Microsoft.WindowsStore_8wekyb3d8bbwe            22207.1401.1.0  
+Windows Terminal                                Microsoft.WindowsTerminal                       1.15.2284.0     winget
+Windows Package Manager Source (winget)         Microsoft.Winget.Source_8wekyb3d8bbwe           2022.906.1638.… 
+Xbox TCUI                                       Microsoft.Xbox.TCUI_8wekyb3d8bbwe               1.24.10001.0    
+Xbox Game Bar                                   Microsoft.XboxGamingOverlay_8wekyb3d8bbwe       5.822.8241.0    
+Phone Link                                      Microsoft.YourPhone_8wekyb3d8bbwe               1.22062.543.0   
+Windows Media Player                            Microsoft.ZuneMusic_8wekyb3d8bbwe               11.2207.26.0    
+Films & TV                                      Microsoft.ZuneVideo_8wekyb3d8bbwe               10.22061.10241… 
+Quick Assist                                    MicrosoftCorporationII.QuickAssist_8wekyb3d8bb… 2.0.9.0         
+WindowsAppRuntime.Main.1.0                      MicrosoftCorporationII.WindowsAppRuntime.Main.… 4.528.1755.0    
+Windows Subsystem for Linux Preview             MicrosoftCorporationII.WindowsSubsystemForLinu… 0.66.2.0        
+Windows Web Experience Pack                     MicrosoftWindows.Client.WebExperience_cw5n1h2t… 521.20060.135.0 
+Speech Pack - English (United States)           MicrosoftWindows.Speech.en-US.1_cw5n1h2txyewy   1.0.8.0         
+Mozilla Firefox (x64 en-GB)                     Mozilla Firefox 103.0.2 (x64 en-GB)             103.0.2         
+Mozilla Maintenance Service                     MozillaMaintenanceService                       63.0.3          
+PremiumSoft Navicat Premium 16.1                PremiumSoft.NavicatPremium                      16.1.1          winget
+Nmap 7.70                                       Insecure.Nmap                                   7.70            winget
+Npcap 0.99-r2                                   NpcapInst                                       0.99-r2         
+Microsoft OneDrive                              Microsoft.OneDrive                              22.166.0807.00… winget
+Microsoft OneNote - en-us                       OneNoteFreeRetail - en-us                       16.0.15427.202… 
+Speedtest by Ookla                              Ookla.SpeedtestbyOokla_43tkc6nmykmb6            1.15.163.0      
+PowerRenameContextMenu                          PowerRenameContextMenu_8wekyb3d8bbwe            1.0.0.0         
+Process Hacker 2.39 (r124)                      Process_Hacker2_is1                             2.39.0.124      
+Klever PumpKIN 2.7.3                            PumpKIN                                         2.7.3           
+JetBrains PyCharm Edu 2019.2                    PyCharm Edu 2019.2                              192.5728.125    
+Raspberry Pi Imager                             RaspberryPiFoundation.RaspberryPiImager         1.7.2           winget
+S3 Browser version 10.3.1                       S3 Browser_is1                                  10.3.1.0        
+SABnzbd 3.6.1                                   SABnzbdTeam.SABnzbd                             3.6.1           winget
+Amazon Send to Kindle                           Amazon.SendToKindle                             1.1.1.250       winget
+Shift                                           Shift                                           7.2.17-stable   
+SourceTree                                      Atlassian.Sourcetree                            3.4.9           winget
+Spotify Music                                   SpotifyAB.SpotifyMusic_zpdnekdrzrea0            1.192.647.0     
+Sublime Text 3                                  SublimeHQ.SublimeText.3                         Unknown         winget
+TagScanner 6.1.13 (32bit)                       SergeySerkov.TagScanner                         6.1.13          winget
+Tera Term 4.106                                 TeraTermProject.teraterm                        4.106           winget
+The Guide                                       The Guide                                       2.0             
+TntDrive version 5.5.3                          TntDrive_is1                                    5.5.3.0         
+Total Commander 64-bit (Remove or Repair)       Ghisler.TotalCommander                          10.50           winget
+TurboTop 2.8                                    SavardSoftware.TurboTop                         2.8.0.21        winget
+Ubiquiti UniFi (remove only)                    Ubiquiti UniFi                                  Unknown         
+Undeluxe 3.01                                   Resplendence.Undeluxe                           3.01            winget
+VLC media player                                VLC media player                                3.0.6           
+VirusTotal Uploader 2.2                         VTUploader                                      Unknown         
+Lenovo Vantage Service                          VantageSRV_is1                                  3.13.14.0       
+Videostream                                     Videostream                                     0.3.5           
+Vim 9.0 (x64)                                   vim.vim                                         9.0.0392        winget
+Vulkan Run Time Libraries 1.0.33.0              VulkanRT1.0.33.0-2                              1.0.33.0        
+Pengwin                                         WhitewaterFoundryLtd.Co.16571368D6CFF_kd1vv0z0… 22.3.2.0        
+WinDirStat 1.1.2                                WinDirStat.WinDirStat                           Unknown         winget
+WinHTTrack Website Copier 3.49-2 (x64)          XavierRoche.HTTrack                             3.49.2          winget
+Winamp                                          Radionomy.Winamp                                5.66            winget
+WordWeb                                         WordWeb                                         9               
+Wox                                             Wox.Wox                                         1.4.1196        winget
+XXConsole: Super Console Generator  ver 0.96    XXConsole                                       0.96            
+Zoom                                            ZoomUMX                                         5.2.1 (44052.0… 
+Hyper 3.3.0                                     Zeit.Hyper                                      3.3.0           winget
+Authy Desktop                                   Twilio.Authy                                    2.2.1           winget
+Authy Desktop                                   Twilio.Authy                                    1.8.2           winget
+Dashlane                                        b2054621fbfc6a5dafd80ddf1edfc201                1.0             
+Facebook                                        b8c0161d4b201613fa66dda066880f41                1.0             
+Station                                         browserX                                        1.63.2          
+Raindrop.io                                     c6b68dd1a2b50be902e4118684d3d57a                1.0             
+Microsoft To Do                                 cb580b1b43b3d6690a27041a803b44a7                1.0             
+Calm                                            ccdd1ae538e12c6d7de2c01155b5d992                1.0             
+Clink v1.3.42                                   chrisant996.Clink                               1.3.42          winget
+Domain Search Results                           d9ac211d6922eb4df8afb31a697733ea                1.0             
+Google Maps                                     e21045da99c24069ded1950ea1a946fb                1.0             
+Twitter                                         e6eac647f364502ac3aeb1302cfb024b                1.0             
+Rain Alarm                                      e86ee6d13e91f66956e38b69f88a4408                1.0             
+Notion 2.0.29                                   Notion.Notion                                   2.0.29          winget
+foobar2000 v1.6.12                              PeterPawlowski.foobar2000                       1.6.12          winget
+GitKraken                                       Axosoft.GitKraken                               8.8.0           winget
+inSSIDer                                        MetaGeek.inSSIDer                               5.5.0           winget
+mIRC                                            mIRC.mIRC                                       7.69            winget
+OneDrive                                        microsoft.microsoftskydrive_8wekyb3d8bbwe       19.23.19.0      
+Mail and Calendar                               microsoft.windowscommunicationsapps_8wekyb3d8b… 16005.14326.20… 
+Python 3.7 pywin32-303                          pywin32-py3.7                                   Unknown         
+qutebrowser 2.5.2 (x64)                         qutebrowser.qutebrowser                         2.5.2           winget
+μTorrent                                        uTorrent                                        3.5.5.45798     
+WinSCP 5.21.2                                   WinSCP.WinSCP                                   5.21.2          winget
+iPhone Configuration Utility                    {02D51A6D-58C2-424C-8D38-3DE87332E463}          3.6.1.296       
+Microsoft Visual C++ 2013 Redistributable (x64… Microsoft.VC++2013Redist-x64                    12.0.40664.0    winget
+TouchPro                                        {111FFF7F-F4A6-4B0B-B8D6-574EA1C2F064}          6               
+Canon MG5600 series MP Drivers                  {1199FAD5-9546-44f3-81CF-FFDB8040B7BF}_Canon_M… 1.01            
+Web Companion                                   {1323ee1e-b381-47be-a199-5867ab5e7bd8}          4.7.1993.3887   
+Intel(R) Management Engine Components           {1CEAC85D-2590-4760-800F-8DE5E91F3700}          1932.12.0.1298  
+Microsoft Visual C++ 2010  x64 Redistributable… Microsoft.VC++2010Redist-x64                    10.0.40219      winget
+Python 3.7.3 (32-bit)                           {24ac8299-2abd-4ddd-8be3-031debb6093c}          3.7.3150.0      
+Java 8 Update 251                               {26A24AE4-039D-4CA4-87B4-2F32180251F0}          8.0.2510.8      
+Lenovo Service Bridge                           {2C74547D-EF88-47F4-85F5-BE46A31E26B7}_is1      4.0.6.7         
+WireGuard                                       WireGuard.WireGuard                             0.5.3           winget
+Microsoft Visual C++ 2012 Redistributable (x86… Microsoft.VC++2012Redist-x86                    11.0.61030.0    winget
+Microsoft Visual C++ 2015-2022 Redistributable… {3746f21b-c990-4045-bb33-1cf98cff7a68}          14.32.31332.0   
+gsudo v1.4.1                                    gerardog.gsudo                                  1.4.1           winget
+Windows Subsystem for Linux WSLg Preview        {3CBDE512-7510-4F90-B1C0-7C4EB9DD7C26}          1.0.27          
+Samsung DeX                                     Samsung.DeX                                     2.4.0.29        winget
+NewsLazer                                       {4151E05B-7818-4D1D-82D4-B5C0C266DF06}          2.8.10          
+Microsoft Update Health Tools                   {4812E2CC-BAA9-49AE-B310-DA845882322B}          4.66.0.0        
+OpenShot Video Editor version 2.6.1             OpenShot.OpenShot                               2.6.1           winget
+VanDyke Software SecureCRT 8.7                  {517E89EA-3A2D-4950-9D24-A314896BA42D}          8.7.2           
+Intel® PROSet/Wireless Software                 {55fdbad7-83d5-40e8-83cb-a53fbd378e01}          21.30.2         
+Bonjour                                         {56DDDFB8-7F79-4480-89D5-25E1F52AB28F}          3.1.0.1         
+Microsoft Visual C++ 2008 Redistributable - x6… Microsoft.VC++2008Redist-x64                    9.0.30729.6161  winget
+PowerToys (Preview) x64                         Microsoft.PowerToys                             0.61.1          winget
+Google Drive                                    Google.Drive                                    62.0.2.0        winget
+TPFanControl v0.62                              {717F5741-5C2E-4469-BDA0-B5EC2243646F}_is1      Unknown         
+DragonDisk 1.05                                 {7914B94-1234-44D2-0864-0348EBF012AC}_is1       Unknown         
+Microsoft Visual C++ 2008 Redistributable - x6… {8220EEFE-38CD-377E-8595-13398D740ACE}          9.0.30729       
+SoulseekQt version 2019.7.22                    Soulseek.SoulseekQt                             2019.7.22       winget
+Microsoft Visual C++ 2015-2019 Redistributable… Microsoft.VC++2015-2019Redist-x86               14.29.30139.0   winget
+Microsoft Visual C++ 2008 Redistributable - x8… {9A25302D-30C0-39D9-BD6F-21E6EC160475}          9.0.30729       
+Microsoft Visual C++ 2008 Redistributable - x8… Microsoft.VC++2008Redist-x86                    9.0.30729.6161  winget
+WebP Codec for Windows 0.19                     {9D2F4EB8-98AD-4C8B-A0C5-4C114B3F1287}          0.19.9          
+BandLab Assistant 5.1.1                         {9b08bea4-021c-5f9d-a74e-ac0ceb51fb28}          5.1.1           
+Microsoft Visual C++ 2013 Redistributable (x86… Microsoft.VC++2013Redist-x86                    12.0.40664.0    winget
+Python Launcher                                 {A28C27E4-A725-482A-9C65-61EDC0E4D583}          3.7.6657.0      
+Onetastic Addin                                 {A3C693A5-EDBA-4CBB-BCE5-8594B2C10F10}          4.2.1           
+Adobe Acrobat DC (64-bit)                       Adobe.Acrobat.Reader.64-bit                     22.002.20191    winget
+Miradore Online Client                          {AD40F56A-5735-45D5-8A57-C36CE8739ABC}          1.0.0.0         
+Meld                                            Meld.Meld                                       3.20.4          winget
+Apple Application Support (64-bit)              {B202C7F5-7DE3-4FBF-B259-E70E625F56FC}          7.5             
+Apple Application Support (32-bit)              {C1BCFECF-6EC2-4750-9072-5E2489423F8F}          7.5             
+Update for Windows 10 for x64-based Systems (K… {C5FDDED7-DEC7-48B4-AFD8-DFB8A0FD199A}          2.51.0.0        
+iCloud Outlook                                  {CD1AA9AE-DE07-443C-914B-6ABFF79A603E}          11.1.0.71       
+Samsung USB Driver for Mobile Phones            {D0795B21-0CDA-4a92-AB9E-6E92D8111E44}          1.7.46.0        
+Dolby Audio X2 Windows APP                      {D0D32569-4680-490A-905C-5117CEAAB3EF}          0.8.8.76        
+Alacritty                                       Alacritty.Alacritty                             0.10.1          winget
+GitHub Desktop Machine-Wide Installer           {D9F0B580-2AE2-421E-9159-D14971722671}          2.3.1           
+Google Earth Pro                                Google.EarthPro                                 7.3.4.8642      winget
+Microsoft Visual Studio Code                    Microsoft.VisualStudioCode                      1.71.0          winget
+Microsoft Visual C++ 2010  x86 Redistributable… Microsoft.VC++2010Redist-x86                    10.0.40219      winget
+Google Chrome                                   Google.Chrome                                   105.0.5195.102  winget
+Agent Ransack x64                               {F46C91EA-16DE-46D6-BE3B-C94BDF641567}          8.0.867.1       
+Windows Subsystem for Linux Update              {F8474A47-8B5D-4466-ACE3-78EAB3BF21A8}          5.10.102.1      
+Dolby Audio X2 Windows API SDK                  {FA0735B6-9E18-437A-A1CD-9152650FC52B}          0.8.8.90        
+Windows Resource Kit Tools                      {FA237125-51FF-408C-8BB8-30C2B3DFFF9C}          5.2.3790        
+Microsoft Windows Desktop Runtime - 6.0.8 (x64) Microsoft.DotNet.DesktopRuntime.6               6.0.8           winget
+Microsoft Visual C++ 2012 Redistributable (x64… Microsoft.VC++2012Redist-x64                    11.0.61030.0    winget
+Microsoft Windows Desktop Runtime - 3.1.23 (x6… Microsoft.DotNet.DesktopRuntime.6               < 6.0.5         winget
+Cryptographic Provider for Windows OS           {eda5f31b-27b4-4644-80b1-e7d0c03f935f}          1.3.1           
+Python 3.7.0 (64-bit)                           {f684de81-73c2-4924-ad43-e7ae400d47b5}          3.7.150.0       
