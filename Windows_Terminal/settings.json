@@ -4,12 +4,10 @@
     "actions": 
     [
         {
-            "command": "scrollDownPage",
-            "keys": "ctrl+shift+pgdn"
+            "command": "scrollDownPage"
         },
         {
-            "command": "scrollUpPage",
-            "keys": "ctrl+shift+pgup"
+            "command": "scrollUpPage"
         },
         {
             "command": "unbound",
@@ -57,7 +55,7 @@
     ],
     "alwaysShowTabs": false,
     "copyFormatting": "none",
-    "copyOnSelect": true,
+    "copyOnSelect": false,
     "defaultProfile": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
     "initialCols": 90,
     "initialRows": 35,
@@ -96,7 +94,7 @@
                 "opacity": 100,
                 "scrollbarState": "hidden",
                 "source": "Windows.Terminal.Wsl",
-                "startingDirectory": "~",
+                "startingDirectory": null,
                 "useAcrylic": true
             },
             {
