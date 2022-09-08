@@ -1,7 +1,7 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions":
+    "actions": 
     [
         {
             "command": "scrollDownPage",
@@ -13,11 +13,11 @@
         },
         {
             "command": "unbound",
-            "keys": "ctrl+shift+pageup"
+            "keys": "ctrl+shift+pgup"
         },
         {
             "command": "unbound",
-            "keys": "ctrl+shift+pagedown"
+            "keys": "ctrl+shift+pgdn"
         },
         {
             "command": "unbound",
@@ -32,7 +32,7 @@
             "keys": "ctrl+c"
         },
         {
-            "command":
+            "command": 
             {
                 "action": "copy",
                 "singleLine": false
@@ -46,7 +46,7 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "command":
+            "command": 
             {
                 "action": "splitPane",
                 "split": "auto",
@@ -62,19 +62,19 @@
     "initialCols": 90,
     "initialRows": 35,
     "launchMode": "default",
-    "profiles":
+    "profiles": 
     {
-        "defaults":
+        "defaults": 
         {
             "scrollbarState": "hidden"
         },
-        "list":
+        "list": 
         [
             {
                 "antialiasingMode": "cleartype",
                 "backgroundImageAlignment": "topRight",
                 "backgroundImageOpacity": 0.0,
-                "bellStyle":
+                "bellStyle": 
                 [
                     "audible",
                     "window",
@@ -83,7 +83,7 @@
                 "colorScheme": "Argonaut",
                 "cursorShape": "filledBox",
                 "experimental.retroTerminalEffect": false,
-                "font":
+                "font": 
                 {
                     "face": "Hack NF",
                     "size": 13
@@ -102,7 +102,7 @@
             {
                 "colorScheme": "Campbell Powershell",
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-                "font":
+                "font": 
                 {
                     "size": 14
                 },
@@ -112,6 +112,7 @@
             },
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "cursorShape": "filledBox",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt"
@@ -124,7 +125,7 @@
             }
         ]
     },
-    "schemes":
+    "schemes": 
     [
         {
             "background": "#2E3440",
