@@ -79,6 +79,7 @@
                     "taskbar"
                 ],
                 "colorScheme": "Argonaut",
+                "commandline": "wsl -d WLinux",
                 "cursorShape": "filledBox",
                 "experimental.retroTerminalEffect": false,
                 "font": 
@@ -94,7 +95,7 @@
                 "opacity": 100,
                 "scrollbarState": "hidden",
                 "source": "Windows.Terminal.Wsl",
-                "startingDirectory": null,
+                "startingDirectory": "~",
                 "useAcrylic": true
             },
             {
@@ -383,5 +384,5 @@
     "tabWidthMode": "equal",
     "trimBlockSelection": true,
     "useAcrylicInTabRow": false,
-    "windowingBehavior": "useNew"
+    "windowingBehavior": "useExisting"
 }
