@@ -51,6 +51,76 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "index": 0
+            },
+            "keys": "ctrl+alt+shift+1"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "index": 1
+            },
+            "keys": "ctrl+alt+shift+2"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "index": 2
+            },
+            "keys": "ctrl+alt+shift+3"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "index": 3
+            },
+            "keys": "ctrl+alt+shift+4"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "index": 4
+            },
+            "keys": "ctrl+alt+shift+5"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "index": 5
+            },
+            "keys": "ctrl+alt+shift+6"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "index": 6
+            },
+            "keys": "ctrl+alt+shift+7"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "index": 7
+            },
+            "keys": "ctrl+alt+shift+8"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "index": 8
+            },
+            "keys": "ctrl+alt+shift+9"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "index": 9
+            },
+            "keys": "ctrl+alt+shift+0"
         }
     ],
     "alwaysShowTabs": false,
