@@ -1,12 +1,14 @@
 @echo off
 
-doskey cd=cdd.cmd $*
 doskey hosts=gvim.exe C:\Windows\System32\drivers\etc\hosts
 doskey aliases=gvim.exe %LOCALAPPDATA%\clink\clink_start.cmd
+doskey cd=cdd.cmd $*
 doskey ls=ls --color=always $*
 doskey ll=ls -l --color=always $*
+doskey lla=ls -Al --color=always $*
 doskey sudo=gsudo $*
 doskey vi=vim $*
+doskey tree=tre.exe $*
 
 set PATH=C:\Program Files (x86)\Vim\vim90;%USERPROFILE%\winfiles\bin;%PATH%
 
