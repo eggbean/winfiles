@@ -1,0 +1,5 @@
+**/desktop.ini
+bin/*.cfg
+bin/*.ini
+bin/Settings/*
+Windows_Terminal/settings.json.bak
