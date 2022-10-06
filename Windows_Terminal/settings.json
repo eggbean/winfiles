@@ -73,15 +73,23 @@
             }
         },
         {
-            "command": "paste"
-        },
-        {
             "command": 
             {
                 "action": "splitPane",
                 "index": 0
             },
             "keys": "ctrl+alt+shift+1"
+        },
+        {
+            "command": 
+            {
+                "action": "openSettings",
+                "target": "settingsFile"
+            },
+            "keys": "ctrl+alt+shift+comma"
+        },
+        {
+            "command": "paste"
         },
         {
             "command": "find",
@@ -126,14 +134,6 @@
                 "index": 8
             },
             "keys": "ctrl+alt+shift+9"
-        },
-        {
-            "command": 
-            {
-                "action": "openSettings",
-                "target": "settingsFile"
-            },
-            "keys": "ctrl+alt+shift+comma"
         },
         {
             "command": 
@@ -209,6 +209,16 @@
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt"
+            },
+            {
+                "colorScheme": "One Half Dark",
+                "commandline": "python.exe",
+                "cursorShape": "filledBox",
+                "guid": "{c832d3dd-e75e-4a97-8eda-44ad026e8f4a}",
+                "hidden": false,
+                "icon": "%USERPROFILE%/winfiles/icons/my_icons/python.ico",
+                "name": "Python Shell",
+                "startingDirectory": "%USERPROFILE%"
             },
             {
                 "closeOnExit": "automatic",
