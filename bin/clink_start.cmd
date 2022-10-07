@@ -3,6 +3,7 @@
 doskey hosts=gvim.exe C:\Windows\System32\drivers\etc\hosts
 doskey aliases=gvim.exe %LOCALAPPDATA%\clink\clink_start.cmd
 doskey date=%USERPROFILE%\scoop\shims\date.exe $*
+doskey realpath=%USERPROFILE%\winfiles\bin\realpath.cmd $*
 doskey cd=cdd.cmd $*
 doskey ls=ls --color=always $*
 doskey ll=ls -l --color=always $*
