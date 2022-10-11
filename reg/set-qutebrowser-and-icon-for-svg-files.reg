@@ -1,0 +1,20 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\qutebrowserHTML]
+@="qutebrowser HTML Document"
+"FriendlyTypeName"="qutebrowser HTML Document"
+"EditFlags"=dword:00000002
+
+[HKEY_CLASSES_ROOT\qutebrowserHTML\DefaultIcon]
+@="%USERPROFILE%\\winfiles\\icons\\my_icons\\svg.ico,0"
+
+[HKEY_CLASSES_ROOT\qutebrowserHTML\shell]
+@="open"
+
+[HKEY_CLASSES_ROOT\qutebrowserHTML\shell\open]
+
+[HKEY_CLASSES_ROOT\qutebrowserHTML\shell\open\command]
+@="\"C:\\Program Files\\qutebrowser\\qutebrowser.exe\" --untrusted-args \"%1\""
+
+[HKEY_CLASSES_ROOT\qutebrowserHTML\shell\open\ddeexec]
+@=""
