@@ -1,0 +1,40 @@
+$include /etc/inputrc
+set bell-style                      none
+set bind-tty-special-chars          off
+set blink-matching-paren            on
+set colored-completion-prefix       on
+set colored-stats                   on
+set completion-ignore-case          off
+set completion-prefix-display-length 0
+set echo-control-characters         off
+set editing-mode                    emacs
+set enable-bracketed-paste          on
+set expand-tilde                    off
+set mark-directories                on
+set mark-modified-lines             off
+set mark-symlinked-directories      on
+set match-hidden-files              off
+set menu-complete-display-prefix    on
+set show-all-if-ambiguous           off
+set show-all-if-unmodified          on
+set skip-completed-text             off
+set visible-stats                   off
+
+# Use Up/Down for partial history search
+"\e[B": history-search-forward
+"\e[A": history-search-backward
+
+# M-Del to delete next word forward
+"\033[3;3~": shell-kill-word
+
+# M-F11 to null (nested tmux config)
+"\033[23;3~": ""
+
+# M-F12 to null (nested tmux config)
+"\033[24;3~": ""
+
+# C-M-PgUp to null (nested tmux config)
+"\033[5;7~": ""
+
+# C-M-PgDown to null (nested tmux config)
+"\033[6;7~": ""
