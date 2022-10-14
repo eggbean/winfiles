@@ -1,0 +1,3 @@
+#!/bin/bash
+
+find . -name 'desktop.ini' -exec attrib.exe +A +S +H {} \;

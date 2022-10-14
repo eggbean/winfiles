@@ -8,3 +8,8 @@
 *.ps1 eol=crlf
 *.txt eol=crlf
 *.json eol=crlf
+*.reg eol=crlf
+
+# These files are checked out using LF locally
+*.gitattributes eol=lf
+.githooks/* eol=lf
