@@ -4,6 +4,9 @@
     "actions": 
     [
         {
+            "command": "scrollDownPage"
+        },
+        {
             "command": 
             {
                 "action": "splitPane",
@@ -12,26 +15,15 @@
             "keys": "ctrl+alt+shift+6"
         },
         {
-            "command": "scrollDownPage"
-        },
-        {
             "command": "scrollUpPage"
         },
         {
             "command": 
             {
                 "action": "splitPane",
-                "index": 1
+                "index": 7
             },
-            "keys": "ctrl+alt+shift+2"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "index": 6
-            },
-            "keys": "ctrl+alt+shift+7"
+            "keys": "ctrl+alt+shift+8"
         },
         {
             "command": "unbound",
@@ -61,16 +53,17 @@
             "command": 
             {
                 "action": "splitPane",
-                "index": 7
+                "index": 6
             },
-            "keys": "ctrl+alt+shift+8"
+            "keys": "ctrl+alt+shift+7"
         },
         {
             "command": 
             {
-                "action": "copy",
-                "singleLine": false
-            }
+                "action": "splitPane",
+                "index": 1
+            },
+            "keys": "ctrl+alt+shift+2"
         },
         {
             "command": 
@@ -87,6 +80,13 @@
                 "target": "settingsFile"
             },
             "keys": "ctrl+alt+shift+comma"
+        },
+        {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            }
         },
         {
             "command": "paste"
@@ -115,17 +115,17 @@
             "command": 
             {
                 "action": "splitPane",
-                "index": 9
+                "index": 4
             },
-            "keys": "ctrl+alt+shift+0"
+            "keys": "ctrl+alt+shift+5"
         },
         {
             "command": 
             {
                 "action": "splitPane",
-                "index": 4
+                "index": 9
             },
-            "keys": "ctrl+alt+shift+5"
+            "keys": "ctrl+alt+shift+0"
         },
         {
             "command": 
@@ -203,12 +203,13 @@
             },
             {
                 "closeOnExit": "automatic",
-                "colorScheme": "One Half Dark",
+                "colorScheme": "Two Halves Dark",
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
                 "cursorShape": "filledBox",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
-                "name": "Command Prompt"
+                "name": "Command Prompt",
+                "startingDirectory": null
             },
             {
                 "colorScheme": "One Half Dark",
@@ -460,6 +461,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#D3D7CF",
             "yellow": "#C4A000"
+        },
+        {
+            "background": "#282C34",
+            "black": "#282C34",
+            "blue": "#61AFEF",
+            "brightBlack": "#5A6374",
+            "brightBlue": "#8FC6F4",
+            "brightCyan": "#7BC6D0",
+            "brightGreen": "#B3D39C",
+            "brightPurple": "#D7A1E7",
+            "brightRed": "#E9969D",
+            "brightWhite": "#F9F9FA",
+            "brightYellow": "#EDD4A6",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#56B6C2",
+            "foreground": "#DCDFE4",
+            "green": "#98C379",
+            "name": "Two Halves Dark",
+            "purple": "#C678DD",
+            "red": "#E06C75",
+            "selectionBackground": "#FFFFFF",
+            "white": "#DCDFE4",
+            "yellow": "#E5C07B"
         },
         {
             "background": "#300A24",
