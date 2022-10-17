@@ -12,7 +12,7 @@ popd
 pushd %USERPROFILE%\winfiles
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\Folder11-Ico\ico\microsoft_windows_11.ico,0 >> desktop.ini
+echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\microsoft_windows_11.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
 popd
 
@@ -20,6 +20,6 @@ popd
 pushd %USERPROFILE%\vimfiles
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\Folder11-Ico\ico\vimfiles.ico,0 >> desktop.ini
+echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\vimfiles.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
 popd
