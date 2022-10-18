@@ -1,0 +1,25 @@
+[user]
+	name = eggbean
+	email = 815311+eggbean@users.noreply.github.com
+[core]
+	editor = gvim
+	pager = less
+	hooksPath = .githooks
+[init]
+	defaultBranch = master
+[branch]
+	autosetuprebase = always
+[pull]
+	ff = only
+	rebase = true
+[color]
+	ui = true
+[color "status"]
+	untracked = blue
+[pager]
+	log = LESS= less -Rq+g
+	whatchanged = LESS= less -Rq+g
+	diff = LESS= less -RSqx4+g
+	stash = false
+[credential]
+	helper = manager-core
