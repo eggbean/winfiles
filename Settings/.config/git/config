@@ -2,24 +2,43 @@
 	name = eggbean
 	email = 815311+eggbean@users.noreply.github.com
 [core]
-	editor = gvim
+	editor = \"C:\\Program Files (x86)\\vim\\vim90\\vim.exe\"
 	pager = less
 	hooksPath = .githooks
 [init]
 	defaultBranch = master
 [branch]
+	autosetupmerge = always
 	autosetuprebase = always
+[commit]
+		cleanup = scissors
 [pull]
 	ff = only
 	rebase = true
-[color]
-	ui = true
-[color "status"]
-	untracked = blue
+[merge]
+	conflictstyle = diff3
+	renamelimit = 9999
+[apply]
+	whitespace = fix
+[rerere]
+	enabled = true
+[diff]
+	algorithm = histogram
+	submodule = log
 [pager]
 	log = LESS= less -Rq+g
 	whatchanged = LESS= less -Rq+g
 	diff = LESS= less -RSqx4+g
 	stash = false
+[color]
+	ui = true
+[color "status"]
+	untracked = blue
+[alias]
+	alias = ! git config -l | grep ^alias | cut -c 7- | sort
+	append = commit --amend --no-edit
+	please = push --force-with-lease
+	staged = diff --cached
+	localhist = "reflog --abbrev-commit --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'"
 [credential]
 	helper = manager-core
