@@ -31,5 +31,11 @@ if exist %USERPROFILE%\.profile (
 mklink %USERPROFILE%\.profile %USERPROFILE%\winfiles\Settings\.profile
 attrib /l +h %USERPROFILE%\.profile
 
+if exist %USERPROFILE%\.envrc (
+    del /a %USERPROFILE%\.envrc
+)
+mklink %USERPROFILE%\.envrc %USERPROFILE%\winfiles\Settings\.envrc
+attrib /l +h %USERPROFILE%\.envrc
+
 for /f %%D in ('dir /b /a:-h %USERPROFILE%\.*') do attrib +h %USERPROFILE%\%%D
 for /f %%E in ('dir /b /a:-h %USERPROFILE%\winfiles\.*') do attrib +h %USERPROFILE%\winfiles\%%E
