@@ -12,7 +12,6 @@ doskey hosts=%EDITOR% C:\Windows\System32\drivers\etc\hosts
 doskey aliases=%EDITOR% %LOCALAPPDATA%\clink\clink_start.cmd
 doskey date=%USERPROFILE%\scoop\shims\date.exe $*
 doskey find=%USERPROFILE%\scoop\shims\find.exe $*
-doskey realpath=%USERPROFILE%\winfiles\scripts\realpath.cmd $*
 doskey home=pushd %USERPROFILE%
 doskey sudo=gsudo $*
 doskey cd=cdd.cmd $*
