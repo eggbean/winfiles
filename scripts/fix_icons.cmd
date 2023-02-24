@@ -61,6 +61,14 @@ echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\Apps Folder.ico,0 >> des
 attrib +a +s +h desktop.ini
 popd
 
+:: Set fonts folder icon
+pushd %USERPROFILE%\winfiles\fonts
+del /a ash desktop.ini
+echo [.ShellClassInfo] > desktop.ini
+echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\font.ico,0 >> desktop.ini
+attrib +a +s +h desktop.ini
+popd
+
 :: Set my_icons folder icon
 pushd %USERPROFILE%\winfiles\icons\my_icons
 del /a ash desktop.ini

@@ -1,7 +1,8 @@
 @echo off
 
 :: Sets symlinks in AppData for clink settings and dotfiles in repository
-:: and hides dotfiles and dotdirectories in %USERPROFILE% and winfiles
+:: Hides dotfiles and dotdirectories in %USERPROFILE% and winfiles
+:: Installs and registers fonts in font directory
 
 if not exist %USERPROFILE%\AppData\Local\clink (
     mkdir %USERPROFILE%\AppData\Local\clink
@@ -39,3 +40,7 @@ attrib /l +h %USERPROFILE%\.envrc
 
 for /f %%D in ('dir /b /a:-h %USERPROFILE%\.*') do attrib +h %USERPROFILE%\%%D
 for /f %%E in ('dir /b /a:-h %USERPROFILE%\winfiles\.*') do attrib +h %USERPROFILE%\winfiles\%%E
+
+pushd %USERPROFILE%\winfiles\fonts
+for /d %%F IN (*) do pushd %%F & fontreg /copy & popd
+popd
