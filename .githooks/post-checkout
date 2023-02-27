@@ -1,3 +1,4 @@
 #!/bin/bash
 
 find . -name 'desktop.ini' -exec attrib.exe +A +S +H {} \;
+find . -name '.*?' -not -path './Settings/*' -exec attrib.exe +H {} \;

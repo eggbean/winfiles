@@ -1,2 +1,4 @@
+**/desktop.ini
 bin/Settings/*
 Windows_Terminal/settings.json.bak
+bin/RegConvert.ini

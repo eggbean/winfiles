@@ -9,6 +9,8 @@
 *.txt eol=crlf
 *.json eol=crlf
 *.reg eol=crlf
+*.ini eol=crlf
+*.cfg eol=crlf
 
 # These files are checked out using LF locally
 *.gitattributes eol=lf
