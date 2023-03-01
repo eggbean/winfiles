@@ -42,5 +42,5 @@ for /f %%D in ('dir /b /a:-h %USERPROFILE%\.*') do attrib +h %USERPROFILE%\%%D
 for /f %%E in ('dir /b /a:-h %USERPROFILE%\winfiles\.*') do attrib +h %USERPROFILE%\winfiles\%%E
 
 pushd %USERPROFILE%\winfiles\fonts
-for /d %%F IN (*) do pushd %%F & fontreg /copy & popd
+for /d %%F in (*) do pushd %%F & fontreg /copy & popd
 popd

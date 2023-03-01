@@ -3,12 +3,14 @@
 :: Sets icons for various folders
 
 :: Fix icons for Creative Cloud sync
-pushd "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync"
-copy "%USERPROFILE%\winfiles\icons\my_icons\cloud_fld_w10.ico" .
-copy "%USERPROFILE%\winfiles\icons\my_icons\cloud_fld_w10_offline.ico" .
-copy "%USERPROFILE%\winfiles\icons\my_icons\shared_fld_w10.ico" .
-copy "%USERPROFILE%\winfiles\icons\my_icons\RO_shared_fld_w10.ico" .
-popd
+if exist "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync" (
+    pushd "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync"
+    copy "%USERPROFILE%\winfiles\icons\my_icons\cloud_fld_w10.ico" .
+    copy "%USERPROFILE%\winfiles\icons\my_icons\cloud_fld_w10_offline.ico" .
+    copy "%USERPROFILE%\winfiles\icons\my_icons\shared_fld_w10.ico" .
+    copy "%USERPROFILE%\winfiles\icons\my_icons\RO_shared_fld_w10.ico" .
+    popd
+)
 
 :: Set winfiles folder icon
 pushd %USERPROFILE%\winfiles
@@ -74,14 +76,6 @@ pushd %USERPROFILE%\winfiles\icons\my_icons
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
 echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\Apps Folder.ico,0 >> desktop.ini
-attrib +a +s +h desktop.ini
-popd
-
-:: Set installers folder icon
-pushd %USERPROFILE%\winfiles\Installers
-del /a ash desktop.ini
-echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\Software Folder Icon.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
 popd
 
