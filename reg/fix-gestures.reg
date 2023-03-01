@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Synaptics\SynTP\Win10\3FingerGestures]
+"ActionID3"=dword:00000018
+"ActionID7"=dword:00000017
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Synaptics\SynTPPlugIns\SynTP\23]
+"KeySequence"=dword:000000a6
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Synaptics\SynTPPlugIns\SynTP\24]
+"KeySequence"=dword:000000a7
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Synaptics\SynTPEnh\ZoneConfig\Win10\4FHorizontal Scrolling]
+"NegativeCustomZoneID"=dword:00000087
+"PositiveCustomZoneID"=dword:00000088

@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+; Created with Default Programs Editor
+; http://defaultprogramseditor.com/
+
+; Set Default Program
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.webp\UserChoice]
+"Progid"="ChromeHTML"
