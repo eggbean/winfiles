@@ -1,40 +1,49 @@
-$include /etc/inputrc
 set bell-style                      none
-set bind-tty-special-chars          off
 set blink-matching-paren            on
 set colored-completion-prefix       on
 set colored-stats                   on
-set completion-ignore-case          off
+set completion-ignore-case          on
 set completion-prefix-display-length 0
 set echo-control-characters         off
 set editing-mode                    emacs
 set enable-bracketed-paste          on
 set expand-tilde                    off
-set mark-directories                on
+set mark-directories                off
 set mark-modified-lines             off
 set mark-symlinked-directories      on
-set match-hidden-files              off
+set match-hidden-files              on
 set menu-complete-display-prefix    on
 set show-all-if-ambiguous           off
 set show-all-if-unmodified          on
 set skip-completed-text             off
 set visible-stats                   off
 
-# Use Up/Down for partial history search
-"\e[B": history-search-forward
-"\e[A": history-search-backward
+# Only for clink
+set search-ignore-case                       on
+set completion-auto-query-items              on
+set history-point-at-end-of-anchored-search  on
 
-# M-Del to delete next word forward
-"\033[3;3~": shell-kill-word
+# The following key bindings are for emacs mode.
+set keymap emacs
 
-# M-F11 to null (nested tmux config)
-"\033[23;3~": ""
+"\e[27;8;72~":      clink-popup-show-help           # Alt-Ctrl-Shift-H
 
-# M-F12 to null (nested tmux config)
-"\033[24;3~": ""
+# Completion key bindings.
+"\t":               old-menu-complete               # Tab
+"\e[Z":             old-menu-complete-backward      # Shift-Tab
+"\e[27;5;32~":      clink-select-complete           # Ctrl-Space
 
-# C-M-PgUp to null (nested tmux config)
-"\033[5;7~": ""
+# History search
+"\e[A":             history-search-backward         # Up (replaces `previous-history`)
+"\e[B":             history-search-forward          # Down (replaces `next-history`)
+"\e[5~":            clink-popup-history             # PgUp (replaces `history-search-backward`)
+"\e[6~":                                            # PgDn (cleared because I redefined PgUp)
 
-# C-M-PgDown to null (nested tmux config)
-"\033[6;7~": ""
+# Some key bindings for interrogating the Readline configuration.
+"\C-x\C-f":         dump-functions                  # Ctrl-X, Ctrl-F
+"\C-x\C-m":         dump-macros                     # Ctrl-X, Ctrl-M
+"\C-x\C-v":         dump-variables                  # Ctrl-X, Ctrl-V
+
+# Misc other key bindings.
+"\e[27;2;32~":      clink-magic-suggest-space       # Shift-Space
+"\e[5;6~":          clink-popup-directories         # Ctrl-Shift-PgUp
