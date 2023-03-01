@@ -3,15 +3,17 @@
 	email = 815311+eggbean@users.noreply.github.com
 [core]
 	editor = \"C:\\Program Files\\vim\\vim90\\vim.exe\"
-	pager = less
+	pager = delta
 	hooksPath = .githooks
 [init]
 	defaultBranch = master
 [branch]
-	autosetupmerge = always
+	; autosetupmerge = always
 	autosetuprebase = always
 [commit]
-		cleanup = scissors
+	cleanup = scissors
+[push]
+	default = tracking
 [pull]
 	ff = only
 	rebase = true
@@ -22,18 +24,49 @@
 	whitespace = fix
 [rerere]
 	enabled = true
+[status]
+	showStash = true
 [diff]
 	algorithm = histogram
 	submodule = log
+[interactive]
+	diffFilter = delta --color-only --features=interactive
 [pager]
-	log = LESS= less -Rq+g
-	whatchanged = LESS= less -Rq+g
-	diff = LESS= less -RSqx4+g
+; 	log = LESS= less -Rq+g
+; 	whatchanged = LESS= less -Rq+g
+; 	diff = LESS= less -RSqx4+g
 	stash = false
+	branch = false
 [color]
 	ui = true
 [color "status"]
 	untracked = blue
+[delta]
+	features = decorations
+	line-numbers = true
+	syntax-theme = TwoDark
+	width = 1
+	minus-style = syntax "#450a15"
+	minus-emph-style = syntax "#600818"
+	plus-style = syntax "#0b4820"
+	plus-emph-style = syntax "#175c2e"
+	hunk-header-style = syntax bold
+	hunk-header-decoration-style = omit
+	file-style = magenta italic
+	file-decoration-style = magenta ul
+	line-numbers-zero-style = "#4b5263"
+	line-numbers-left-format = "{nm:^4} "
+	line-numbers-right-format = "{np:^4} "
+[delta "interactive"]
+	keep-plus-minus-markers = false
+[delta "decorations"]
+	commit-decoration-style = blue ol
+	commit-style = raw
+	file-style = omit
+	hunk-header-decoration-style = blue box
+	hunk-header-file-style = red
+	hunk-header-line-number-style = "#067a00"
+	hunk-header-style = file line-number syntax
 [alias]
 	alias = ! git config -l | grep ^alias | cut -c 7- | sort
 	append = commit --amend --no-edit
