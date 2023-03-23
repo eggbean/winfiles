@@ -17,9 +17,9 @@ doskey startmenu=pushd %APPDATA%\Microsoft\Windows\Start Menu\Programs
 doskey home=pushd %USERPROFILE%
 doskey sudo=gsudo $*
 doskey cd=cdd.cmd $*
-doskey ls=ls -h -N --color=auto $*
-doskey ll=ls -h -l -N --color=auto $*
-doskey lla=ls -h -Al -N --color=auto $*
+doskey ls=exa $*
+doskey ll=exa -l --git $*
+doskey lla=exa -al --git $*
 doskey cp=cp -i $*
 doskey mv=mv -i $*
 doskey rm=rm -i $*
