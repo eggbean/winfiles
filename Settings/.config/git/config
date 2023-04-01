@@ -74,4 +74,4 @@
 	staged = diff --cached
 	localhist = "reflog --abbrev-commit --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'"
 [credential]
-	helper = manager-core
+	helper = git-credential-manager
