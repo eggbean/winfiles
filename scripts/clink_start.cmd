@@ -27,4 +27,8 @@ doskey vi=vim $*
 doskey tree=tre.exe $*
 doskey br=broot $*
 
+if %CD%==C:\Windows\System32 (
+    cd %USERPROFILE%
+)
+
 pushd .
