@@ -44,3 +44,8 @@ for /f %%E in ('dir /b /a:-h %USERPROFILE%\winfiles\.*') do attrib +h %USERPROFI
 pushd %USERPROFILE%\winfiles\fonts
 for /d %%F in (*) do pushd %%F & fontreg /copy & popd
 popd
+
+if exist %USERPROFILE%\AppData\Roaming\copyq (
+    rd /s /q %USERPROFILE%\AppData\Roaming\copyq
+)
+mklink /d %USERPROFILE%\AppData\Roaming\copyq %USERPROFILE%\winfiles\Settings\copyq
