@@ -1,0 +1,14 @@
+" FakeVim Options
+set autoindent
+set shiftwidth=4
+set tabstop=4
+set smartcase
+set smarttab
+set nowrapscan
+
+" Clear highlighted search term on space
+noremap <silent> <Space> :nohls<CR>
+
+" Reselect visual block after indent
+vnoremap < <gv
+vnoremap > >gv
