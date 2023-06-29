@@ -20,6 +20,7 @@ doskey cd=cdd.cmd $*
 doskey ls=exa $*
 doskey ll=exa -l --git $*
 doskey lla=exa -al --git $*
+doskey llt=exa -l -s modified --git $*
 doskey cp=cp -i $*
 doskey mv=mv -i $*
 doskey rm=rm -i $*
