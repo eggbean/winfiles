@@ -21,31 +21,37 @@ attrib +a +s +h desktop.ini
 popd
 
 :: Set vimfiles folder icon
-pushd %USERPROFILE%\vimfiles
-del /a ash desktop.ini
-echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\vimfiles.ico,0 >> desktop.ini
-attrib +a +s +h desktop.ini
-popd
+if exist %USERPROFILE%\vimfiles (
+    pushd %USERPROFILE%\vimfiles
+    del /a ash desktop.ini
+    echo [.ShellClassInfo] > desktop.ini
+    echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\vimfiles.ico,0 >> desktop.ini
+    attrib +a +s +h desktop.ini
+    popd
+)
 
 :: Set google drive folder icon
-pushd %USERPROFILE%\"Google Drive"
-del /a ash desktop.ini
-echo [.ShellClassInfo] > desktop.ini
-echo InfoTip=Your Google Drive folder contains files that you're syncing with Google. >> desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\google_drive.ico,0 >> desktop.ini
-attrib +a +s +h desktop.ini
-popd
+if exist %USERPROFILE%\"Google Drive" (
+    pushd %USERPROFILE%\"Google Drive"
+    del /a ash desktop.ini
+    echo [.ShellClassInfo] > desktop.ini
+    echo InfoTip=Your Google Drive folder contains files that you're syncing with Google. >> desktop.ini
+    echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\google_drive.ico,0 >> desktop.ini
+    attrib +a +s +h desktop.ini
+    popd
+)
 
 :: Set icloud drive folder icon
-pushd %USERPROFILE%\iCloudDrive
-del /a ash desktop.ini
-echo [.ShellClassInfo] > desktop.ini
-echo LocalizedResourceName=iCloud Drive >> desktop.ini
-echo InfoTip=iCloud Drive >> desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\iCloud Folder.ico,0 >> desktop.ini
-attrib +a +s +h desktop.ini
-popd
+if exist %USERPROFILE%\iCloudDrive (
+    pushd %USERPROFILE%\iCloudDrive
+    del /a ash desktop.ini
+    echo [.ShellClassInfo] > desktop.ini
+    echo LocalizedResourceName=iCloud Drive >> desktop.ini
+    echo InfoTip=iCloud Drive >> desktop.ini
+    echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\iCloud Folder.ico,0 >> desktop.ini
+    attrib +a +s +h desktop.ini
+    popd
+)
 
 :: Set bin folder icon
 pushd %USERPROFILE%\winfiles\bin
