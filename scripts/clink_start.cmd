@@ -29,7 +29,8 @@ doskey tree=tre.exe $*
 doskey br=broot $*
 
 if %CD%==C:\Windows\System32 (
-    cd %USERPROFILE%
+    cdd %USERPROFILE%
+    cdd --reset >nul 2>&1
 )
 
 pushd .
