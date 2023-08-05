@@ -31,8 +31,8 @@ if exist %USERPROFILE%\vimfiles (
 )
 
 :: Set google drive folder icon
-if exist %USERPROFILE%\"Google Drive" (
-    pushd %USERPROFILE%\"Google Drive"
+if exist %USERPROFILE%\"My Drive" (
+    pushd %USERPROFILE%\"My Drive"
     del /a ash desktop.ini
     echo [.ShellClassInfo] > desktop.ini
     echo InfoTip=Your Google Drive folder contains files that you're syncing with Google. >> desktop.ini
