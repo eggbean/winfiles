@@ -7,6 +7,11 @@ autosuggest.enable = True
 # options: bash,windows
 clink.default_bindings = bash
 
+# name: Controls what startup logo to show
+# type: enum
+# options: none,full,short
+clink.logo = none
+
 # name: Pressing Ctrl-D exits session
 # type: boolean
 cmd.ctrld_exits = True
