@@ -10,7 +10,7 @@ clink.default_bindings = bash
 # name: Controls what startup logo to show
 # type: enum
 # options: none,full,short
-clink.logo = none
+clink.logo = full
 
 # name: Pressing Ctrl-D exits session
 # type: boolean

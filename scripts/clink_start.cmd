@@ -31,7 +31,8 @@ if %CD%==C:\Windows\System32 (
     cdd --reset >nul 2>&1
 )
 if %CD%==F:\Users\jason\AppData\Local\PowerToys (
-    neofetch
+    clear
+    fastfetch -l Windows
     cdd %USERPROFILE%
     cdd --reset >nul 2>&1
 )
