@@ -16,8 +16,9 @@ if exist "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync" (
 pushd %USERPROFILE%\winfiles
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\microsoft_windows_11.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\microsoft_windows_11.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
+attrib +r %CD%
 popd
 
 :: Set vimfiles folder icon
@@ -25,8 +26,9 @@ if exist %USERPROFILE%\vimfiles (
     pushd %USERPROFILE%\vimfiles
     del /a ash desktop.ini
     echo [.ShellClassInfo] > desktop.ini
-    echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\vimfiles.ico,0 >> desktop.ini
+    echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\vimfiles.ico,0 >> desktop.ini
     attrib +a +s +h desktop.ini
+    attrib +r %CD%
     popd
 )
 
@@ -36,8 +38,9 @@ if exist %USERPROFILE%\"My Drive" (
     del /a ash desktop.ini
     echo [.ShellClassInfo] > desktop.ini
     echo InfoTip=Your Google Drive folder contains files that you're syncing with Google. >> desktop.ini
-    echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\google_drive.ico,0 >> desktop.ini
+    echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\google_drive.ico,0 >> desktop.ini
     attrib +a +s +h desktop.ini
+    attrib +r %CD%
     popd
 )
 
@@ -48,8 +51,9 @@ if exist %USERPROFILE%\iCloudDrive (
     echo [.ShellClassInfo] > desktop.ini
     echo LocalizedResourceName=iCloud Drive >> desktop.ini
     echo InfoTip=iCloud Drive >> desktop.ini
-    echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\iCloud Folder.ico,0 >> desktop.ini
+    echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\iCloud Folder.ico,0 >> desktop.ini
     attrib +a +s +h desktop.ini
+    attrib +r %CD%
     popd
 )
 
@@ -57,62 +61,70 @@ if exist %USERPROFILE%\iCloudDrive (
 pushd %USERPROFILE%\winfiles\bin
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\bat.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\bat.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
+attrib +r %CD%
 popd
 
 :: Set icons folder icon
 pushd %USERPROFILE%\winfiles\icons
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\Apps Folder.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\Apps Folder.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
+attrib +r %CD%
 popd
 
 :: Set fonts folder icon
 pushd %USERPROFILE%\winfiles\fonts
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\font.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\font.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
+attrib +r %CD%
 popd
 
 :: Set my_icons folder icon
 pushd %USERPROFILE%\winfiles\icons\my_icons
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\Apps Folder.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\Apps Folder.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
+attrib +r %CD%
 popd
 
 :: Set reg files folder icon
 pushd %USERPROFILE%\winfiles\reg
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\Registry Folder Icon.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\Registry Folder Icon.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
+attrib +r %CD%
 popd
 
 :: Set scripts folder icon
 pushd %USERPROFILE%\winfiles\scripts
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\VBS Folder.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\VBS Folder.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
+attrib +r %CD%
 popd
 
 :: Set settings folder icon
 pushd %USERPROFILE%\winfiles\Settings
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\Batch Folder Icon.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\Batch Folder Icon.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
+attrib +r %CD%
 popd
 
 :: Set windows terminal settings folder icon
 pushd %USERPROFILE%\winfiles\Windows_Terminal
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%USERPROFILE%\winfiles\icons\my_icons\Batch Folder Icon.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\Batch Folder Icon.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
+attrib +r %CD%
 popd
