@@ -23,6 +23,9 @@
             "keys": "ctrl+alt+shift+6"
         },
         {
+            "command": "scrollUpPage"
+        },
+        {
             "command": "find",
             "keys": "ctrl+shift+f"
         },
@@ -33,9 +36,6 @@
                 "index": 6
             },
             "keys": "ctrl+alt+shift+7"
-        },
-        {
-            "command": "scrollUpPage"
         },
         {
             "command": 
@@ -78,12 +78,8 @@
             "keys": "ctrl+comma"
         },
         {
-            "command": 
-            {
-                "action": "splitPane",
-                "index": 4
-            },
-            "keys": "ctrl+alt+shift+5"
+            "command": "toggleFocusMode",
+            "keys": "ctrl+shift+f9"
         },
         {
             "command": 
@@ -92,6 +88,14 @@
                 "index": 1
             },
             "keys": "ctrl+alt+shift+2"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "index": 4
+            },
+            "keys": "ctrl+alt+shift+5"
         },
         {
             "command": 
