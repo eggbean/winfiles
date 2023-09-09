@@ -3,7 +3,7 @@
 set GIT_SSH=%USERPROFILE%\winfiles\bin\plink.exe
 set GH_BROWSER="C:\\Program\ Files\\qutebrowser\\qutebrowser.exe"
 set LESSHISTFILE=%APPDATA%\_lesshst
-set PATH=C:\Program Files\Vim\vim90;C:\Program Files (x86)\GnuPG\bin;%USERPROFILE%\scoop\shims;%USERPROFILE%\winfiles\bin;%USERPROFILE%\winfiles\scripts;C:\Program Files\GitHub CLI;%PATH%
+set PATH=C:\Program Files\Vim\vim90;C:\Program Files (x86)\GnuPG\bin;%USERPROFILE%\scoop\shims;%USERPROFILE%\winfiles\bin;%USERPROFILE%\winfiles\scripts;%PATH%
 set EDITOR=vim
 set CLINK_PATH=%USERPROFILE%\winfiles\Settings\clink-path
 set CLINK_COMPLETIONS_DIR=%USERPROFILE%\winfiles\Settings\clink-completions
@@ -26,6 +26,7 @@ doskey vi=vim $*
 doskey tree=tre.exe $*
 doskey br=broot $*
 doskey wol=WakeMeOnLan.exe $*
+doskey vihosts=sudo gvim C:\Windows\System32\Drivers\etc\hosts
 
 if %CD%==C:\Windows\System32 (
     cdd %USERPROFILE%
