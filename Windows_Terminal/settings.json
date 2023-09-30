@@ -10,6 +10,14 @@
             "command": 
             {
                 "action": "splitPane",
+                "index": 5
+            },
+            "keys": "ctrl+alt+shift+6"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
                 "index": 9
             },
             "keys": "ctrl+alt+shift+0"
@@ -18,24 +26,16 @@
             "command": 
             {
                 "action": "splitPane",
-                "index": 5
+                "index": 6
             },
-            "keys": "ctrl+alt+shift+6"
-        },
-        {
-            "command": "scrollUpPage"
+            "keys": "ctrl+alt+shift+7"
         },
         {
             "command": "find",
             "keys": "ctrl+shift+f"
         },
         {
-            "command": 
-            {
-                "action": "splitPane",
-                "index": 6
-            },
-            "keys": "ctrl+alt+shift+7"
+            "command": "scrollUpPage"
         },
         {
             "command": 
@@ -78,6 +78,14 @@
             "keys": "ctrl+comma"
         },
         {
+            "command": 
+            {
+                "action": "splitPane",
+                "index": 4
+            },
+            "keys": "ctrl+alt+shift+5"
+        },
+        {
             "command": "toggleFocusMode",
             "keys": "ctrl+shift+f9"
         },
@@ -93,9 +101,9 @@
             "command": 
             {
                 "action": "splitPane",
-                "index": 4
+                "index": 3
             },
-            "keys": "ctrl+alt+shift+5"
+            "keys": "ctrl+alt+shift+4"
         },
         {
             "command": 
@@ -104,14 +112,6 @@
                 "target": "settingsFile"
             },
             "keys": "ctrl+alt+shift+comma"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "index": 3
-            },
-            "keys": "ctrl+alt+shift+4"
         },
         {
             "command": 
@@ -237,6 +237,70 @@
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
+            },
+            {
+                "antialiasingMode": "cleartype",
+                "backgroundImage": "%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_23.7.1.0_x64__kd1vv0z0vy70w\\Assets\\background1.png",
+                "backgroundImageAlignment": "topRight",
+                "backgroundImageOpacity": 0.0,
+                "backgroundImageStretchMode": "none",
+                "bellStyle": 
+                [
+                    "audible",
+                    "window",
+                    "taskbar"
+                ],
+                "closeOnExit": "automatic",
+                "colorScheme": "Argonaut",
+                "commandline": "wsl -d fedoraremix",
+                "cursorShape": "filledBox",
+                "experimental.retroTerminalEffect": false,
+                "font": 
+                {
+                    "face": "Hack NF",
+                    "size": 11.0
+                },
+                "guid": "{4f3641ed-0500-48bd-9432-86beaa47917b}",
+                "hidden": false,
+                "icon": "%USERPROFILE%\\WSL\\Assets\\fedoraremix.png",
+                "intenseTextStyle": "all",
+                "name": "Fedora",
+                "opacity": 100,
+                "scrollbarState": "hidden",
+                "startingDirectory": "~",
+                "useAcrylic": true
+            },
+            {
+                "antialiasingMode": "cleartype",
+                "backgroundImage": "%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_23.7.1.0_x64__kd1vv0z0vy70w\\Assets\\background1.png",
+                "backgroundImageAlignment": "topRight",
+                "backgroundImageOpacity": 0.0,
+                "backgroundImageStretchMode": "none",
+                "bellStyle": 
+                [
+                    "audible",
+                    "window",
+                    "taskbar"
+                ],
+                "closeOnExit": "automatic",
+                "colorScheme": "Argonaut",
+                "commandline": "wsl -d Ubuntu",
+                "cursorShape": "filledBox",
+                "experimental.retroTerminalEffect": false,
+                "font": 
+                {
+                    "face": "Hack NF",
+                    "size": 11.0
+                },
+                "guid": "{9f6cb867-1399-4ec0-92c9-04be72deb6dc}",
+                "hidden": false,
+                "icon": "%USERPROFILE%\\WSL\\Assets\\ubuntu.png",
+                "intenseTextStyle": "all",
+                "name": "Ubuntu",
+                "opacity": 100,
+                "scrollbarState": "hidden",
+                "startingDirectory": "~",
+                "useAcrylic": true
             }
         ]
     },
