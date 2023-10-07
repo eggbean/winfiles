@@ -48,10 +48,15 @@ pushd %USERPROFILE%\winfiles\fonts
 for /d %%F in (*) do pushd %%F & fontreg /copy & popd
 popd
 
-if exist %USERPROFILE%\AppData\Roaming\copyq (
-    rd /s /q %USERPROFILE%\AppData\Roaming\copyq
+if exist %APPDATA%\copyq (
+    rd /s /q %APPDATA%\copyq
 )
-mklink /d %USERPROFILE%\AppData\Roaming\copyq %USERPROFILE%\winfiles\Settings\copyq
+mklink /d %APPDATA%\copyq %USERPROFILE%\winfiles\Settings\copyq
+
+if not exist %USERPROFILE%\AppData\Local\SumatraPDF (
+    mkdir %USERPROFILE%\AppData\Local\SumatraPDF
+    copy %USERPROFILE%\winfiles\Settings\SumatraPDF-settings.txt %USERPROFILE%\AppData\Local\SumatraPDF
+)
 
 if not exist %USERPROFILE%\AppData\Local\Packages\Microsoft\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState (
     mkdir %USERPROFILE%\AppData\Local\Packages\Microsoft\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState
