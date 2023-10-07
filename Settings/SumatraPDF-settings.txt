@@ -5,7 +5,7 @@ FixedPageUI [
 	SelectionColor = #f5fc0c
 	WindowMargin = 2 4 2 4
 	PageSpacing = 4 4
-	HideScrollbars = false
+	HideScrollbars = true
 ]
 ComicBookUI [
 	WindowMargin = 0 0 0 0
@@ -47,8 +47,16 @@ RestoreSession = true
 UiLanguage = en
 EnableTeXEnhancements = false
 DefaultDisplayMode = automatic
-DefaultZoom = fit page
+DefaultZoom = fit width
 Shortcuts [
+	[
+		Cmd = CmdScrollUpPage
+		Key = u
+	]
+	[
+		Cmd = CmdScrollDownPage
+		Key = d
+	]
 ]
 EscToExit = false
 ReuseInstance = false
@@ -57,7 +65,7 @@ ReloadModifiedDocuments = true
 MainWindowBackground = #80fff200
 FullPathInTitle = false
 ShowMenubar = true
-ShowToolbar = true
+ShowToolbar = false
 ShowFavorites = false
 ShowToc = true
 TocDy = 0
@@ -65,9 +73,9 @@ SidebarDx = 0
 ToolbarSize = 18
 TabWidth = 300
 TreeFontSize = 0
-SmoothScroll = false
+SmoothScroll = true
 ShowStartPage = true
-CheckForUpdates = true
+CheckForUpdates = false
 WindowState = 1
 WindowPos = 0 0 0 0
 UseTabs = true
