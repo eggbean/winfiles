@@ -68,6 +68,10 @@ color.flag = sgr 38;5;117
 # type: color
 color.hidden = sgr 38;5;160
 
+# name: History expansion color
+# type: color
+color.histexpand = sgr 97;48;5;55
+
 # name: Horizontal scroll marker color
 # type: color
 color.horizscroll = sgr 38;5;16;48;5;30
