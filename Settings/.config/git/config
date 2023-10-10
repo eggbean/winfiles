@@ -13,13 +13,16 @@
 [commit]
 	cleanup = scissors
 [push]
-	default = tracking
+	default = upstream
+	useForceIfIncludes = true
 [pull]
 	ff = only
 	rebase = true
 [merge]
 	conflictstyle = diff3
 	renamelimit = 9999
+[rebase]
+	autoSquash = true
 [apply]
 	whitespace = fix
 [rerere]
@@ -29,6 +32,9 @@
 [diff]
 	algorithm = histogram
 	submodule = log
+[column]
+	status = auto
+	ui = column
 [interactive]
 	diffFilter = delta --color-only --features=interactive
 [pager]
@@ -69,9 +75,13 @@
 	hunk-header-style = file line-number syntax
 [alias]
 	alias = ! git config -l | grep ^alias | cut -c 7- | sort
+	ignore = update-index --assume-unchanged
+	dontignore = update-index --no-assume-unchanged
+	ignored = !git ls-files -v | grep "^[[:lower:]]"
 	append = commit --amend --no-edit
 	please = push --force-with-lease
 	staged = diff --cached
+	divergence = diff master origin/master
 	localhist = "reflog --abbrev-commit --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'"
 [credential]
-	helper = git-credential-manager
+	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
