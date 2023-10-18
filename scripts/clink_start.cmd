@@ -1,5 +1,9 @@
 @echo off
 
+if exist %USERPROFILE%\winfiles\Settings\clink-completions (
+    git -C %USERPROFILE%\winfiles\Settings\clink-completions pull --ff --quiet
+)
+
 set GIT_SSH=%USERPROFILE%\winfiles\bin\plink.exe
 set GH_BROWSER="C:\\Program\ Files\\qutebrowser\\qutebrowser.exe"
 set LESSHISTFILE=%APPDATA%\_lesshst

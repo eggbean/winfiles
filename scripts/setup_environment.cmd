@@ -21,6 +21,10 @@ if exist %USERPROFILE%\AppData\Local\clink\_inputrc (
 )
 mklink %USERPROFILE%\AppData\Local\clink\_inputrc %USERPROFILE%\winfiles\Settings\_inputrc
 
+if not exist %USERPROFILE%\winfiles\Settings\clink-completions (
+    git clone https://github.com/vladimir-kotikov/clink-completions.git %USERPROFILE%\winfiles\Settings\clink-completions
+)
+
 if exist %USERPROFILE%\.config (
     for /f "tokens=*" %%a in ('dir /s /b /ad "%USERPROFILE%\.config\*"') do move /y "%%~a" "%USERPROFILE%\winfiles\Settings\.config\"
     rmdir %USERPROFILE%\.config
