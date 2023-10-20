@@ -10,6 +10,14 @@
             "command": 
             {
                 "action": "splitPane",
+                "index": 0
+            },
+            "keys": "ctrl+alt+shift+1"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
                 "index": 5
             },
             "keys": "ctrl+alt+shift+6"
@@ -26,21 +34,6 @@
             "command": 
             {
                 "action": "splitPane",
-                "index": 6
-            },
-            "keys": "ctrl+alt+shift+7"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "command": "scrollUpPage"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
                 "index": 7
             },
             "keys": "ctrl+alt+shift+8"
@@ -49,9 +42,16 @@
             "command": 
             {
                 "action": "splitPane",
-                "index": 0
+                "index": 6
             },
-            "keys": "ctrl+alt+shift+1"
+            "keys": "ctrl+alt+shift+7"
+        },
+        {
+            "command": "scrollUpPage"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": "unbound",
@@ -108,6 +108,14 @@
         {
             "command": 
             {
+                "action": "splitPane",
+                "index": 2
+            },
+            "keys": "ctrl+alt+shift+3"
+        },
+        {
+            "command": 
+            {
                 "action": "openSettings",
                 "target": "settingsFile"
             },
@@ -122,14 +130,6 @@
         },
         {
             "command": "paste"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "index": 2
-            },
-            "keys": "ctrl+alt+shift+3"
         },
         {
             "command": 
@@ -216,6 +216,10 @@
                 "colorScheme": "Two Halves Dark",
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
                 "cursorShape": "filledBox",
+                "font": 
+                {
+                    "face": "CaskaydiaCove Nerd Font Mono"
+                },
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt",
@@ -653,51 +657,7 @@
         }
     ],
     "showTabsInTitlebar": false,
-    "themes": 
-    [
-        {
-            "name": "legacyDark",
-            "tab": 
-            {
-                "background": null,
-                "showCloseButton": "always",
-                "unfocusedBackground": null
-            },
-            "window": 
-            {
-                "applicationTheme": "dark",
-                "useMica": false
-            }
-        },
-        {
-            "name": "legacyLight",
-            "tab": 
-            {
-                "background": null,
-                "showCloseButton": "always",
-                "unfocusedBackground": null
-            },
-            "window": 
-            {
-                "applicationTheme": "light",
-                "useMica": false
-            }
-        },
-        {
-            "name": "legacySystem",
-            "tab": 
-            {
-                "background": null,
-                "showCloseButton": "always",
-                "unfocusedBackground": null
-            },
-            "window": 
-            {
-                "applicationTheme": "system",
-                "useMica": false
-            }
-        }
-    ],
+    "themes": [],
     "useAcrylicInTabRow": false,
     "windowingBehavior": "useExisting"
 }
