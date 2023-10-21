@@ -4,6 +4,12 @@
 :: Hides dotfiles and dotdirectories in %USERPROFILE% and winfiles
 :: Installs and registers fonts in font directory
 
+net session >nul 2>&1
+if not %ERRORLEVEL% == 0 (
+    echo Not admin/elevated
+    exit /b 1
+)
+
 if not exist %USERPROFILE%\AppData\Local\clink (
     mkdir %USERPROFILE%\AppData\Local\clink
 )
@@ -26,7 +32,7 @@ if not exist %USERPROFILE%\winfiles\Settings\clink-completions (
 )
 
 if exist %USERPROFILE%\.config (
-    for /f "tokens=*" %%a in ('dir /s /b /ad "%USERPROFILE%\.config\*"') do move /y "%%~a" "%USERPROFILE%\winfiles\Settings\.config\"
+    robocopy %USERPROFILE%\.config\ %USERPROFILE%\winfiles\Settings\.config\ /move /e /it /im >NUL
     rmdir %USERPROFILE%\.config
 )
 mklink /d %USERPROFILE%\.config %USERPROFILE%\winfiles\Settings\.config
