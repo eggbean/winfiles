@@ -16,3 +16,9 @@
 *.gitattributes eol=lf
 .githooks/* eol=lf
 .envrc eol=lf
+
+# Git-Crypt
+.gitattributes !filter !diff
+*.env filter=git-crypt diff=git-crypt
+*.key filter=git-crypt diff=git-crypt
+bin/XXCOPY.LIC filter=git-crypt diff=git-crypt
