@@ -7,7 +7,7 @@ if exist %USERPROFILE%\winfiles\Settings\clink-completions (
 set GIT_SSH=%USERPROFILE%\winfiles\bin\plink.exe
 set GH_BROWSER="C:\\Program\ Files\\qutebrowser\\qutebrowser.exe"
 set LESSHISTFILE=%APPDATA%\_lesshst
-set PATH=C:\Program Files (x86)\GnuPG\bin;%USERPROFILE%\scoop\shims;%USERPROFILE%\winfiles\bin;%USERPROFILE%\winfiles\scripts;%PATH%
+set PATH=%USERPROFILE%\scoop\shims;%USERPROFILE%\winfiles\bin;%USERPROFILE%\winfiles\scripts;%PATH%
 set EDITOR=vim
 set CLINK_PATH=%USERPROFILE%\winfiles\Settings\clink-path
 set CLINK_COMPLETIONS_DIR=%USERPROFILE%\winfiles\Settings\clink-completions
