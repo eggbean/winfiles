@@ -2,6 +2,12 @@
 
 :: Sets icons for various folders
 
+net session >nul 2>&1
+if not %ERRORLEVEL% == 0 (
+    echo Not admin/elevated
+    exit /b 1
+)
+
 :: Fix icons for Creative Cloud sync
 if exist "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync" (
     pushd "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync"

@@ -2,6 +2,12 @@
 set iconcache=%localappdata%\IconCache.db
 set iconcache_x=%localappdata%\Microsoft\Windows\Explorer\iconcache*
 
+net session >nul 2>&1
+if not %ERRORLEVEL% == 0 (
+    echo Not admin/elevated
+    exit /b 1
+)
+
 echo.
 echo The explorer process must be temporarily killed before deleting the IconCache.db file.
 echo.
