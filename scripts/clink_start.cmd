@@ -32,6 +32,7 @@ doskey br=broot $*
 doskey wol=WakeMeOnLan.exe $*
 doskey vihosts=sudo gvim C:\Windows\System32\Drivers\etc\hosts
 doskey props=GDProps.exe $*
+doskey za=zoxide add $*
 
 if %CD%==C:\Windows\System32 (
     cdd %USERPROFILE%
