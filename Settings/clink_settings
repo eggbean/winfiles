@@ -2,6 +2,10 @@
 # type: boolean
 autosuggest.enable = True
 
+# name: Show usage hint for automatic suggestions
+# type: boolean
+autosuggest.hint = False
+
 # name: Selects default key bindings
 # type: enum
 # options: bash,windows
@@ -64,6 +68,10 @@ color.filtered = sgr 38;5;231
 # type: color
 color.flag = sgr 38;5;117
 
+# name: Color for preferred branch completions
+# type: color
+color.git.star = bright green
+
 # name: Hidden file completions
 # type: color
 color.hidden = sgr 38;5;160
@@ -111,6 +119,14 @@ color.unexpected = default
 # name: Color for unrecognized command word
 # type: color
 color.unrecognized = sgr 38;5;203
+
+# name: Color for yarn run local module
+# type: color
+color.yarn.module = bright green
+
+# name: Color for yarn run project.json script
+# type: color
+color.yarn.script = bright blue
 
 # name: The number of history lines to save
 # type: integer
