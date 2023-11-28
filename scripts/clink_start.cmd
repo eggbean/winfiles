@@ -18,12 +18,10 @@ set LS_COLORS=no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;
 doskey startmenu=pushd %APPDATA%\Microsoft\Windows\Start Menu\Programs
 doskey date=%USERPROFILE%\scoop\shims\date.exe $*
 doskey find=%USERPROFILE%\scoop\shims\find.exe $*
+doskey ls=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd $*
+doskey ll=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd -l $*
 doskey sudo=gsudo $*
 doskey cd=cdd.cmd $*
-doskey ls=eza --no-quotes $*
-doskey ll=eza -l --no-quotes --git $*
-doskey lla=eza -al --no-quotes --git $*
-doskey llt=eza -l -s modified --no-quotes --git $*
 doskey cp=cp -i $*
 doskey mv=mv -i $*
 doskey rm=rm -i $*
