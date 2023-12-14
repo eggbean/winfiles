@@ -32,6 +32,7 @@ doskey wol=WakeMeOnLan.exe $*
 doskey vihosts=sudo gvim C:\Windows\System32\Drivers\etc\hosts
 doskey props=GDProps.exe $*
 doskey za=zoxide add $*
+doskey take=mkdir $1 $T cd $1
 
 if %CD%==C:\Windows\System32 (
     cdd %USERPROFILE%
