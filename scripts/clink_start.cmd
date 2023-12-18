@@ -20,13 +20,18 @@ doskey date=%USERPROFILE%\scoop\shims\date.exe $*
 doskey find=%USERPROFILE%\scoop\shims\find.exe $*
 doskey ls=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd $*
 doskey ll=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd -l $*
+where /q tre
+if %ERRORLEVEL% == 0 (
+    doskey tree=tre.exe $*
+) else (
+    doskey tree=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd -Tl $*
+)
 doskey sudo=gsudo $*
 doskey cd=cdd.cmd $*
 doskey cp=cp -i $*
 doskey mv=mv -i $*
 doskey rm=rm -i $*
 doskey vi=vim $*
-doskey tree=tre.exe $*
 doskey br=broot $*
 doskey wol=WakeMeOnLan.exe $*
 doskey vihosts=sudo gvim C:\Windows\System32\Drivers\etc\hosts
