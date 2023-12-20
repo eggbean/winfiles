@@ -83,5 +83,5 @@
 	staged = diff --cached
 	divergence = diff master origin/master
 	localhist = "reflog --abbrev-commit --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'"
-[credential]
-	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+[gpg]
+	program = c:/Program Files (x86)/GnuPG/bin/gpg.exe
