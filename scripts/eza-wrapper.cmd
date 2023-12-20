@@ -56,6 +56,6 @@ if %col% equ 1 set "eza_opts=!eza_opts! --color=always"
 if %col% equ 0 set "eza_opts=!eza_opts! --color=never"
 
 :: Run eza command
-eza.exe %eza_opts% %*
+eza.exe --no-quotes %eza_opts% %*
 
 :end
