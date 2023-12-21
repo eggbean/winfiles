@@ -141,4 +141,7 @@ if not exist %LOCALAPPDATA%\SumatraPDF (
 if not exist %LOCALAPPDATA%\Packages\Microsoft\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState (
     mkdir %LOCALAPPDATA%\Packages\Microsoft\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState
 )
-copy %USERPROFILE%\winfiles\Windows_Terminal\settings.json %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState
+if exist %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json (
+    del %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
+)
+mklink %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json %USERPROFILE%\winfiles\Windows_Terminal\settings.json
