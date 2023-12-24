@@ -76,6 +76,10 @@ mklink /d %APPDATA%\qutebrowser\config %USERPROFILE%\.dotfiles\config\.config\qu
 :: Symlink vim configuration
 if not exist %USERPROFILE%\vimfiles (
     mklink /d %USERPROFILE%\vimfiles %USERPROFILE%\.dotfiles\config\.config\vim
+    attrib /l +h %USERPROFILE%\vimfiles
+)
+if not exist %USERPROFILE%\vimfiles.lnk (
+    nircmd shortcut "%USERPROFILE%\.dotfiles\config\.config\vim" "%USERPROFILE%" vimfiles "%USERPROFILE%\winfiles\icons\my_icons\vimfiles.ico"
 )
 
 :: Copy any existing config files to repository

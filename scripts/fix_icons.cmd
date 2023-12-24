@@ -27,17 +27,6 @@ attrib +a +s +h desktop.ini
 attrib +r %CD%
 popd
 
-:: Set vimfiles folder icon
-if exist %USERPROFILE%\vimfiles (
-    pushd %USERPROFILE%\vimfiles
-    del /a ash desktop.ini
-    echo [.ShellClassInfo] > desktop.ini
-    echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\vimfiles.ico,0 >> desktop.ini
-    attrib +a +s +h desktop.ini
-    attrib +r %CD%
-    popd
-)
-
 :: Set google drive folder icon
 if exist %USERPROFILE%\"My Drive" (
     pushd %USERPROFILE%\"My Drive"
