@@ -78,6 +78,23 @@ if not exist %USERPROFILE%\vimfiles (
     mklink /d %USERPROFILE%\vimfiles %USERPROFILE%\.dotfiles\config\.config\vim
 )
 
+:: Copy any existing config files to repository
+if exist %USERPROFILE%\.config (
+    robocopy %USERPROFILE%\.config\ %USERPROFILE%\winfiles\Settings\.config\ /move /e /it /im >NUL
+    rmdir %USERPROFILE%\.config >nul 2>&1
+)
+mklink /d %USERPROFILE%\.config %USERPROFILE%\winfiles\Settings\.config
+attrib /l +h %USERPROFILE%\.config
+
+:: Symlink dotfiles
+for %%S in (.digrc .envrc .profile) do (
+    if exist %USERPROFILE%\%%S (
+        del /a %USERPROFILE%\%%S
+    )
+    mklink %USERPROFILE%\%%S %USERPROFILE%\winfiles\Settings\%%S
+    attrib /l +h %USERPROFILE%\%%S
+)
+
 :: Setup Clink
 if not exist %LOCALAPPDATA%\clink (
     mkdir %LOCALAPPDATA%\clink
@@ -100,37 +117,6 @@ if not exist %CLINK_COMPLETIONS_DIR% (
     git clone https://github.com/vladimir-kotikov/clink-completions.git %USERPROFILE%\winfiles\Settings\clink-completions
 )
 
-:: Copy any existing config files to repository
-if exist %USERPROFILE%\.config (
-    robocopy %USERPROFILE%\.config\ %USERPROFILE%\winfiles\Settings\.config\ /move /e /it /im >NUL
-    rmdir %USERPROFILE%\.config >nul 2>&1
-)
-mklink /d %USERPROFILE%\.config %USERPROFILE%\winfiles\Settings\.config
-attrib /l +h %USERPROFILE%\.config
-
-:: Symlink ~/.profile
-if exist %USERPROFILE%\.profile (
-    del /a %USERPROFILE%\.profile
-)
-mklink %USERPROFILE%\.profile %USERPROFILE%\winfiles\Settings\.profile
-attrib /l +h %USERPROFILE%\.profile
-
-:: Symlink ~/.envrc
-if exist %USERPROFILE%\.envrc (
-    del /a %USERPROFILE%\.envrc
-)
-mklink %USERPROFILE%\.envrc %USERPROFILE%\winfiles\Settings\.envrc
-attrib /l +h %USERPROFILE%\.envrc
-
-:: Hide dotfiles and dotdirectories in %USERPROFILE% and winfiles
-for /f %%D in ('dir /b /a:-h %USERPROFILE%\.*') do attrib +h %USERPROFILE%\%%D
-for /f %%E in ('dir /b /a:-h %USERPROFILE%\winfiles\.*') do attrib +h %USERPROFILE%\winfiles\%%E
-
-:: Install fonts
-pushd %USERPROFILE%\winfiles\fonts
-for /d %%F in (*) do pushd %%F & %USERPROFILE%\winfiles\bin\fontreg /copy & popd
-popd
-
 :: Symlink SumatraPDF config
 if not exist %LOCALAPPDATA%\SumatraPDF (
     mkdir %LOCALAPPDATA%\SumatraPDF
@@ -145,3 +131,12 @@ if exist %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalSt
     del %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
 )
 mklink %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json %USERPROFILE%\winfiles\Windows_Terminal\settings.json
+
+:: Install fonts
+pushd %USERPROFILE%\winfiles\fonts
+for /d %%F in (*) do pushd %%F & %USERPROFILE%\winfiles\bin\fontreg /copy & popd
+popd
+
+:: Hide dotfiles and dotdirectories in %USERPROFILE% and winfiles
+for /f %%D in ('dir /b /a:-h %USERPROFILE%\.*') do attrib +h %USERPROFILE%\%%D
+for /f %%E in ('dir /b /a:-h %USERPROFILE%\winfiles\.*') do attrib +h %USERPROFILE%\winfiles\%%E

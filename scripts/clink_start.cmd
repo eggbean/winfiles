@@ -1,5 +1,6 @@
 @echo off
 
+set HOME=%USERPROFILE%
 set GIT_SSH=%USERPROFILE%\winfiles\bin\plink.exe
 set SCOOP=C:\ProgramData\scoop
 set GNUPGHOME=%APPDATA%\gnupg
