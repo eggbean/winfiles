@@ -46,7 +46,7 @@ if %CD%==C:\Windows\System32 (
     cdd %USERPROFILE%
     cdd --reset >nul 2>&1
 )
-if %CD%==F:\Users\jason\AppData\Local\PowerToys (
+if %CD%==%LOCALAPPDATA%\PowerToys (
     clear
     fastfetch -l Windows
     cdd %USERPROFILE%
