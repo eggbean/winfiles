@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfKeyValueOfstringanyType xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.AlwaysShowDesktopNotification</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">false</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.Culture</Key>
+    <Value i:nil="true" />
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.DesktopBackgroundImagePaths#Count</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:int">3</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.DesktopBackgroundImagePaths[0]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">C:\Users\jason\AppData\Local\Microsoft\Windows\Themes\Forest fo\DesktopBackground\01_gettyimages-485245833_super_resized.jpg</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.DesktopBackgroundImagePaths[1]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">C:\Users\jason\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets\628966faa8ce6a3fdf32c2867e2e2bae134279a7a12ea58d92f8a491c10ea7e4</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.DesktopBackgroundImagePaths[2]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">C:\Users\jason\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets\628966faa8ce6a3fdf32c2867e2e2bae134279a7a12ea58d92f8a491c10ea7e4</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.DesktopBackgroundPositions#Count</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:int">3</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.DesktopNames#Count</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:int">3</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.DesktopNames[0]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string"></Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.DesktopNames[1]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string"></Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.DesktopNames[2]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string"></Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.FirstTime</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">false</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.NotificationWhenSwitchedDesktop</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">false</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.NotificationWindowStyle</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:unsignedInt">4</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.Placement</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:unsignedInt">8</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.SimpleNotification</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">true</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.TrayShowDesktop</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">false</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.TrayShowOnlyCurrentNumber</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">true</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.UseDesktopName</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">false</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>MouseShortcutSettings.MoveToIndices#Count</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:int">3</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>MouseShortcutSettings.MoveToIndicesAndSwitch#Count</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:int">3</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>MouseShortcutSettings.SwapDesktopIndices#Count</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:int">3</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>MouseShortcutSettings.SwitchToIndices#Count</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:int">3</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.MoveLeftAndSwitch</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">33,164,91,162</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.MoveRightAndSwitch</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">34,164,91,162</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.MoveToIndices#Count</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:int">3</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.MoveToIndices[0]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">(none)</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.MoveToIndices[1]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">(none)</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.MoveToIndices[2]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">(none)</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.MoveToIndicesAndSwitch#Count</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:int">3</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.MoveToIndicesAndSwitch[0]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">49,164,91,162</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.MoveToIndicesAndSwitch[1]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">50,164,91,162</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.MoveToIndicesAndSwitch[2]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">51,164,91,162</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.SwapDesktopIndices#Count</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:int">3</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.SwitchToIndices#Count</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:int">3</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.SwitchToIndices[0]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">49,162,91</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.SwitchToIndices[1]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">50,162,91</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.SwitchToIndices[2]</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">51,91,162</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>ShortcutKeySettings.SwitchToPrevious</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:string">186,91,162</Value>
+  </KeyValueOfstringanyType>
+</ArrayOfKeyValueOfstringanyType>
