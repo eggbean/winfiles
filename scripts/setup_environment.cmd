@@ -91,7 +91,7 @@ mklink /d %USERPROFILE%\.config %USERPROFILE%\winfiles\Settings\.config
 attrib /l +h %USERPROFILE%\.config
 
 :: Symlink dotfiles
-for %%S in (.digrc .envrc .profile) do (
+for %%S in (.digrc .envrc .profile .ripgreprc) do (
     if exist %USERPROFILE%\%%S (
         del /a %USERPROFILE%\%%S
     )
