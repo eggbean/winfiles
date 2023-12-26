@@ -80,6 +80,7 @@ if not exist %USERPROFILE%\vimfiles (
 )
 if not exist %USERPROFILE%\vimfiles.lnk (
     nircmd shortcut "%USERPROFILE%\.dotfiles\config\.config\vim" "%USERPROFILE%" vimfiles "%USERPROFILE%\winfiles\icons\my_icons\vimfiles.ico"
+    echo vimfiles shortcut created
 )
 
 :: Copy any existing config files to repository
@@ -135,6 +136,36 @@ if exist %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalSt
     del %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
 )
 mklink %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json %USERPROFILE%\winfiles\Windows_Terminal\settings.json
+
+:: Make startup shortcut for CopyQ
+if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\copyq.lnk" (
+    nircmd shortcut "C:\Program Files (x86)\CopyQ\copyq.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" CopyQ
+    echo CopyQ startup shortcut created
+)
+
+:: Make startup shortcut for MarbleScroll
+if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\MarbleScroll.lnk" (
+    nircmd shortcut "%USERPROFILE%\winfiles\MarbleScroll\MarbleScroll.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" MarbleScroll
+    echo MarbleScroll startup shortcut created
+)
+
+:: Make startup shortcut for pageant
+if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\pageant.lnk" (
+    nircmd shortcut %USERPROFILE%\winfiles\bin\pageant.exe "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" pageant %USERPROFILE%\.ssh\id_ed25519.ppk
+    echo pageant startup shortcut created
+)
+
+:: Make startup shortcut for Sizer
+if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Sizer.lnk" (
+    nircmd shortcut "C:\Program Files (x86)\Sizer\sizer.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" Sizer
+    echo Sizer startup shortcut created
+)
+
+:: Make startup shortcut for SylphyHornPlus11
+if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\SylphyHorn.lnk" (
+    nircmd shortcut "%USERPROFILE%\winfiles\SylphyHorn\SylphyHorn.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" SylphyHorn
+    echo SylphyHorn startup shortcut created
+)
 
 :: Install fonts
 pushd %USERPROFILE%\winfiles\fonts
