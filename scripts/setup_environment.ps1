@@ -14,14 +14,14 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
     exit 1
 }
 
-# Import GITHUB_API_KEY
-. "$PSScriptRoot\GITHUB_API_KEY.ps1"
+# Import GITHUB_ACCESS_TOKEN
+. "$PSScriptRoot\GITHUB_ACCESS_TOKEN.ps1"
 
 # Sparse checkout dotfiles
 $userProfileDotfiles = Join-Path $env:USERPROFILE ".dotfiles"
 if (-not (Test-Path $userProfileDotfiles)) {
     Set-Location $env:USERPROFILE
-    git clone --no-checkout --depth=1 --filter=tree:0 "https://$env:GITHUB_API_KEY@github.com/eggbean/.dotfiles.git"
+    git clone --no-checkout --depth=1 --filter=tree:0 "https://$env:GITHUB_ACCESS_TOKEN@github.com/eggbean/.dotfiles.git"
 }
 Set-Location $userProfileDotfiles
 git sparse-checkout set --no-cone /.gitattributes .git-crypt bin/scripts config

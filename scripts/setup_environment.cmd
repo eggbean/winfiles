@@ -11,12 +11,12 @@ if not %ERRORLEVEL% == 0 (
     exit /b 1
 )
 
-call %~dp0GITHUB_API_KEY.cmd
+call %~dp0GITHUB_ACCESS_TOKEN.cmd
 
 :: Sparse checkout dotfiles
 if not exist %USERPROFILE%\.dotfiles (
     cd %USERPROFILE%
-    git clone --no-checkout --depth=1 --filter=tree:0 https://%GITHUB_API_KEY%@github.com/eggbean/.dotfiles.git
+    git clone --no-checkout --depth=1 --filter=tree:0 https://%GITHUB_ACCESS_TOKEN%@github.com/eggbean/.dotfiles.git
 )
 cd %USERPROFILE%\.dotfiles
 git sparse-checkout set --no-cone /.gitattributes .git-crypt bin/scripts config

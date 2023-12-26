@@ -22,5 +22,5 @@
 *.env filter=git-crypt diff=git-crypt
 *.key filter=git-crypt diff=git-crypt
 bin/XXCOPY.LIC filter=git-crypt diff=git-crypt
-scripts/GITHUB_API_KEY.cmd filter=git-crypt diff=git-crypt
-scripts/GITHUB_API_KEY.ps1 filter=git-crypt diff=git-crypt
+scripts/GITHUB_ACCESS_TOKEN.cmd filter=git-crypt diff=git-crypt
+scripts/GITHUB_ACCESS_TOKEN.ps1 filter=git-crypt diff=git-crypt
