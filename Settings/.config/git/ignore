@@ -2,6 +2,7 @@ __pycache__/
 __init__.py
 **/desktop.ini
 **/.vim-bookmarks
+**/.hidden
 *.cfg
 *.ini
 *.ppk
