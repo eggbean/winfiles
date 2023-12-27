@@ -1,0 +1,87 @@
+# Inserts a blank line between shell prompts
+add_newline = false
+
+format = """
+$username\
+$hostname\
+$shlvl\
+$directory\
+$kubernetes\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$docker_context\
+$cmake\
+$python\
+$terraform\
+$vagrant\
+$nix_shell\
+$env_var\
+$cmd_duration\
+$jobs\
+$status\
+$container\
+$shell\
+$character"""
+
+[line_break]
+disabled = true
+
+[username]
+style_user = "bold green"
+style_root = "bold red"
+format = "[$user]($style)"
+show_always = true
+
+[hostname]
+ssh_only = false
+style = "bold green"
+format = "@[$hostname]($style):"
+trim_at = "."
+
+[directory]
+truncation_length = 4
+truncate_to_repo = false
+style = "bold blue"
+format = "[$path]($style)[$read_only]($read_only_style)"
+read_only = "🔒"
+home_symbol = "~"
+
+[shlvl]
+disabled = false
+format = '[$shlvl]($style)'
+threshold = 3
+
+[git_branch]
+format = "[$symbol $branch]($style)"
+symbol = " "
+style = "bold purple"
+truncation_symbol = "…"
+only_attached = false
+ignore_branches = ["master", "main"]
+
+[git_state]
+format = ' \([$state($progress_current/$progress_total)]($style)\) '
+
+[python]
+format = ' [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[terraform]
+format = "[$symbol$workspace]($style) "
+
+[nix_shell]
+format = '[$symbol$state( \($name\))]($style) '
+
+[cmd_duration]
+min_time = 60_000
+format = "  [$duration]($style)"
+
+[jobs]
+symbol = "+"
+style = "bold cyan"
+format = "[$symbol$number]($style)"
+
+[character]
+success_symbol = "[\\$](white)"
+error_symbol = "[\\$](bold red)"
