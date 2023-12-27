@@ -17,6 +17,10 @@ set "sac=0"
 set "scr=0"
 set "ssz=0"
 
+:: Display help if requested
+if "%1"=="--help" goto display_help
+if "%1"=="/?" goto display_help
+
 :: Parse options
 :parse_options
 if "%1"=="" goto :end_parse_options
@@ -57,5 +61,18 @@ if %col% equ 0 set "eza_opts=!eza_opts! --color=never"
 
 :: Run eza command
 eza.exe --no-quotes %eza_opts% %*
+exit /b 0
 
-:end
+:display_help
+echo Usage: ls [options]
+echo.
+echo Options:
+echo   -a             all
+echo   -l             long listing format
+echo   -h             human readable file sizes
+echo   -g             do not show file git status
+echo   --icons        show icons
+echo   --color=never  disable color output
+echo   --help         display this help message
+echo.
+exit /b 0
