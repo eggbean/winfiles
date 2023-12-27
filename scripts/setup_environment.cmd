@@ -22,6 +22,10 @@ cd %USERPROFILE%\.dotfiles
 git sparse-checkout set --no-cone /.gitattributes .git-crypt bin/scripts config
 git checkout
 
+:: Add bin directory from Windows Defender's exclusion list
+:: (because some binaries are getting false positives)
+powershell -ExecutionPolicy Bypass -Command "Add-MpPreference -ExclusionPath ""$env:HOME\winfiles\bin"""
+
 :: Symlink gnupg configuration
 if exist %APPDATA%\gnupg (
     if exist "%APPDATA%\gnupg\*" (
