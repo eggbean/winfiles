@@ -24,6 +24,7 @@ doskey rm=rm -i $*
 doskey vi=vim $*
 doskey br=broot $*
 doskey wol=WakeMeOnLan.exe $*
+doskey vimdiff=vim -d $*
 doskey vihosts=sudo gvim C:\Windows\System32\Drivers\etc\hosts
 doskey props=GDProps.exe $*
 doskey which=where $*
