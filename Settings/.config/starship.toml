@@ -83,5 +83,5 @@ style = "bold cyan"
 format = "[$symbol$number]($style)"
 
 [character]
-success_symbol = "[\\$](white)"
-error_symbol = "[\\$](bold red)"
+success_symbol = "[>](white)"
+error_symbol = "[>](bold red)"
