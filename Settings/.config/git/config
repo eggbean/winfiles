@@ -85,6 +85,10 @@
 	localhist = "reflog --abbrev-commit --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'"
 [gpg]
 	program = c:/Program Files (x86)/GnuPG/bin/gpg.exe
+[web]
+	browser = chrome
+[browser "chrome"]
+	path = C:\\Program Files\\qutebrowser\\qutebrowser.exe
 [safe]
 	directory = F:/Users/jason/.dotfiles
 	directory = C:/ProgramData/scoop
