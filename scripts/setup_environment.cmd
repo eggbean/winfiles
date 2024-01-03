@@ -1,5 +1,6 @@
 @echo off
 
+:: Installs scoop and scoop packages
 :: Clones Linux dotfiles repository and makes relevant symlinks to AppData
 :: Sets symlinks in AppData for clink settings and dotfiles in this repository
 :: Hides dotfiles and dotdirectories in %USERPROFILE% and winfiles
@@ -11,9 +12,16 @@ if not %ERRORLEVEL% == 0 (
     exit /b 1
 )
 
-call %~dp0GITHUB_ACCESS_TOKEN.cmd
+:: Install scoop for multi-users and packages
+where scoop >nul 2>&1
+if not %ERRORLEVEL% == 0 (
+    powershell -ExecutionPolicy Bypass -File "%~dp0install_scoop.ps1"
+    echo Now unlock encryption for this repository and run the script again
+    exit /b 0
+)
 
 :: Sparse checkout dotfiles
+call %~dp0GITHUB_ACCESS_TOKEN.cmd
 if not exist %USERPROFILE%\.dotfiles (
     cd %USERPROFILE%
     git clone --no-checkout --depth=1 --filter=tree:0 https://%GITHUB_ACCESS_TOKEN%@github.com/eggbean/.dotfiles.git
