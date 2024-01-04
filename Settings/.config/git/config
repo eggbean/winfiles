@@ -84,11 +84,16 @@
 	divergence = diff master origin/master
 	localhist = "reflog --abbrev-commit --pretty=format:'%Cblue%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'"
 [gpg]
-	program = c:/Program Files (x86)/GnuPG/bin/gpg.exe
+	program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
 [web]
 	browser = chrome
 [browser "chrome"]
 	path = C:\\Program Files\\qutebrowser\\qutebrowser.exe
 [safe]
-	directory = F:/Users/jason/.dotfiles
-	directory = C:/ProgramData/scoop
+	directory = F:\\Users\\jason\\winfiles
+	directory = F:\\Users\\webadmin\\winfiles
+	directory = C:\\ProgramData\\scoop\\apps\\scoop\\current\\.git
+	directory = C:\\ProgramData\\scoop\\buckets\\extras\\.git
+	directory = C:\\ProgramData\\scoop\\buckets\\main\\.git
+	directory = C:\\ProgramData\\scoop\\buckets\\nirsoft\\.git
+	directory = C:\\ProgramData\\scoop\\buckets\\sysinternals\\.git
