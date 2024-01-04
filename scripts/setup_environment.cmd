@@ -147,7 +147,12 @@ if not exist %LOCALAPPDATA%\Packages\Microsoft\Microsoft.WindowsTerminal_8wekyb3
 if exist %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json (
     del %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
 )
-mklink %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json %USERPROFILE%\winfiles\Windows_Terminal\settings.json
+if %USERNAME% == webadmin (
+    mklink %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json %USERPROFILE%\winfiles\Windows_Terminal\settings-ubuntu.json
+) else (
+    mklink %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json %USERPROFILE%\winfiles\Windows_Terminal\settings.json
+)
+
 
 :: Make startup shortcut for CopyQ
 if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\copyq.lnk" (
