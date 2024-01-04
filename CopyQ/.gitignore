@@ -1,0 +1,8 @@
+*.log
+*.lock
+copyq-bak.conf
+copyq-commands.ini.bak
+copyq-commands.ini.new.bak
+copyq_geometry.ini
+copyq_tab_*
+copyq_tabs.ini

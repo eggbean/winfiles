@@ -5,6 +5,7 @@ set GIT_SSH=%USERPROFILE%\winfiles\bin\plink.exe
 set SCOOP=C:\ProgramData\scoop
 set GNUPGHOME=%APPDATA%\gnupg
 set LESSHISTFILE=%APPDATA%\_lesshst
+set LESS=-MRQx4F#10
 set PATH=%USERPROFILE%\winfiles\bin;%USERPROFILE%\winfiles\scripts;%PATH%
 set EDITOR=vim
 set RIPGREP_CONFIG_PATH=%USERPROFILE%\.ripgreprc
