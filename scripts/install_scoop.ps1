@@ -57,6 +57,13 @@ $packages = @(
     'ripgrep'
     'sed'
     'starship'
+    'sysinternals/autoruns'
+    'sysinternals/psexec'
+    'sysinternals/psshutdown'
+    'sysinternals/regjump'
+    'sysinternals/sdelete'
+    'sysinternals/shellrunas'
+    'sysinternals/sync'
     'touch'
     'tre'
     'wakemeonlan'
@@ -65,7 +72,7 @@ $packages = @(
     'zoxide'
 )
 
-for ($i = 0; $i -lt $packages.Length; $i++) {
+($i = 0; $i -lt $packages.Length; $i++) {
     $package = $packages[$i]
     scoop install $package -u -g
 }
