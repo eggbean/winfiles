@@ -1,25 +1,36 @@
 # PowerShell script to install scoop for multi-user and packages
+# if scoop is already installed, any additional packages are installed
 
 # Test if Admin
 if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
 { Write-Host "This script requires administrative privileges."; Exit }
 
-# Install scoop
-$SCOOP = "C:\ProgramData\scoop"
-[Environment]::SetEnvironmentVariable("SCOOP", "C:\ProgramData\scoop", "Machine")
-Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
+# Check if scoop is installed
+Function Test-ScoopInstalled {
+    $scoopExists = Get-Command scoop -ErrorAction SilentlyContinue
+    return $scoopExists -ne $null
+}
+
+# Install scoop for all users if not installed
+if (-NOT (Test-ScoopInstalled)) {
+    $SCOOP = "C:\ProgramData\scoop"
+    [Environment]::SetEnvironmentVariable("SCOOP", "C:\ProgramData\scoop", "Machine")
+    Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+    iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
+    icacls $SCOOP /grant "Users:(OI)(CI)F" /T
+
+    # Install aria2c for multi-connection downloads
+    scoop install aria2 -u -g
+    scoop config aria2-warning-enabled false
+
+    # Install buckets
+    scoop bucket add extras
+    scoop bucket add nirsoft
+    scoop bucket add sysinternals
+}
+
+# Update scoop
 scoop update * -g
-icacls $SCOOP /grant "Users:(OI)(CI)F" /T
-
-# Install aria2c for multi-connection downloads
-scoop install aria2 -u -g
-scoop config aria2-warning-enabled false
-
-# Install buckets
-scoop bucket add extras
-scoop bucket add nirsoft
-scoop bucket add sysinternals
 
 # Install packages
 $packages = @(
@@ -55,6 +66,7 @@ $packages = @(
     'nirsoft/nircmd'
     'rclone'
     'ripgrep'
+    'scoop-search'
     'sed'
     'starship'
     'sysinternals/autoruns'
@@ -65,14 +77,12 @@ $packages = @(
     'sysinternals/shellrunas'
     'sysinternals/sync'
     'touch'
-    'tre'
     'wakemeonlan'
     'wget'
     'whois'
     'zoxide'
 )
 
-($i = 0; $i -lt $packages.Length; $i++) {
-    $package = $packages[$i]
+foreach ($package in $packages) {
     scoop install $package -u -g
 }
