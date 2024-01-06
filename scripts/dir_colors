@@ -33,7 +33,7 @@ SETGID 30;43
 # CAPABILITY 30;41
 
 STICKY_OTHER_WRITABLE 30;42
-OTHER_WRITABLE 34;42
+# OTHER_WRITABLE 34;42
 STICKY 37;44
 
 #+-------------------+
@@ -268,5 +268,6 @@ STICKY 37;44
 #+--- Windows stuff ---+
 .regtrans-ms 1;30
 .blf 1;30
-.ini 1;30
 .DAT 1;30
+*desktop.ini 1;30
+*ntuser.ini 1;30
