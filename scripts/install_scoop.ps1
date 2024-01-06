@@ -77,6 +77,7 @@ $packages = @(
     'sysinternals/shellrunas'
     'sysinternals/sync'
     'touch'
+    'tre-command'
     'wakemeonlan'
     'wget'
     'whois'
