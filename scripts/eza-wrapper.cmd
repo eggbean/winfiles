@@ -1,4 +1,7 @@
 @echo off
+
+:: eza wrapper script - work in progress
+
 setlocal enabledelayedexpansion
 
 :: Default options
@@ -18,21 +21,21 @@ set "scr=0"
 set "ssz=0"
 
 :: Display help if requested
-if "%1"=="--help" goto display_help
-if "%1"=="/?" goto display_help
+if "%~1" == "--help" goto display_help
+if "%~1" == "/?" goto display_help
 
 :: Parse options
 :parse_options
-if "%1"=="" goto :end_parse_options
-if /i "%1"=="-a" set "dot=1"
-if /i "%1"=="-h" set "hru=1"
-if /i "%1"=="-g" set "git=0"
-if /i "%1"=="-t" set "snu=1"
-if /i "%1"=="-u" set "sac=1"
-if /i "%1"=="-c" set "scr=1"
-if /i "%1"=="-S" set "ssz=1"
-if /i "%1"=="--icons" set "ico=1"
-if /i "%1"=="--color=never" set "col=0"
+if "%~1" == "" goto :end_parse_options
+if /i "%~1" == "-a" set "dot=1"
+if /i "%~1" == "-h" set "hru=1"
+if /i "%~1" == "-g" set "git=0"
+if /i "%~1" == "-t" set "snu=1"
+if /i "%~1" == "-u" set "sac=1"
+if /i "%~1" == "-c" set "scr=1"
+if /i "%~1" == "-S" set "ssz=1"
+if /i "%~1" == "--icons" set "ico=1"
+if /i "%~1" == "--color=never" set "col=0"
 shift
 goto :parse_options
 
@@ -51,7 +54,7 @@ if %fgp% equ 1 set "eza_opts=!eza_opts! -g"
 if %lnk% equ 1 set "eza_opts=!eza_opts! -H"
 if %git% equ 1 (
   git rev-parse --is-inside-work-tree >nul 2>nul
-  if !errorlevel! equ 0 set "eza_opts=%eza_opts% --git"
+  if !errorlevel! equ 0 set "eza_opts=!eza_opts! --git"
 )
 if %ico% equ 1 set "eza_opts=!eza_opts! --icons"
 if %hed% equ 1 set "eza_opts=!eza_opts! -h"
@@ -60,7 +63,8 @@ if %col% equ 1 set "eza_opts=!eza_opts! --color=always"
 if %col% equ 0 set "eza_opts=!eza_opts! --color=never"
 
 :: Run eza command
-eza.exe --no-quotes %eza_opts% %*
+set "args=%*"
+eza.exe --no-quotes %eza_opts% %args%
 exit /b 0
 
 :display_help
