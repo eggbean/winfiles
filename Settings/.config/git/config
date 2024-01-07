@@ -48,6 +48,7 @@
 [color "status"]
 	untracked = blue
 [delta]
+	tabs = 4
 	features = decorations
 	line-numbers = true
 	syntax-theme = TwoDark
@@ -92,6 +93,8 @@
 [safe]
 	directory = F:\\Users\\jason\\winfiles
 	directory = F:\\Users\\webadmin\\winfiles
+	directory = F:\\Users\\jason\\.dotfiles
+	directory = F:\\Users\\webadmin\\.dotfiles
 	directory = C:\\ProgramData\\scoop\\apps\\scoop\\current\\.git
 	directory = C:\\ProgramData\\scoop\\buckets\\extras\\.git
 	directory = C:\\ProgramData\\scoop\\buckets\\main\\.git
