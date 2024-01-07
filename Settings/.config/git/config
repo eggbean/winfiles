@@ -91,12 +91,14 @@
 [browser "chrome"]
 	path = C:\\Program Files\\qutebrowser\\qutebrowser.exe
 [safe]
-	directory = F:\\Users\\jason\\winfiles
-	directory = F:\\Users\\webadmin\\winfiles
-	directory = F:\\Users\\jason\\.dotfiles
-	directory = F:\\Users\\webadmin\\.dotfiles
-	directory = C:\\ProgramData\\scoop\\apps\\scoop\\current\\.git
-	directory = C:\\ProgramData\\scoop\\buckets\\extras\\.git
-	directory = C:\\ProgramData\\scoop\\buckets\\main\\.git
-	directory = C:\\ProgramData\\scoop\\buckets\\nirsoft\\.git
-	directory = C:\\ProgramData\\scoop\\buckets\\sysinternals\\.git
+	directory = F:/Users/jason/winfiles
+	directory = F:/Users/webadmin/winfiles
+	directory = F:/Users/jason/.dotfiles
+	directory = F:/Users/webadmin/.dotfiles
+	directory = C:/ProgramData/scoop/apps/scoop/current
+	directory = C:/ProgramData/scoop/buckets/extras
+	directory = C:/ProgramData/scoop/buckets/main
+	directory = C:/ProgramData/scoop/buckets/nirsoft
+	directory = C:/ProgramData/scoop/buckets/sysinternals
+[credential]
+	helper = C:\\Program Files\\Git\\mingw64\\bin\\git-credential-manager.exe
