@@ -9,6 +9,7 @@ set LESS=-MRQx4F#10
 set PATH=%USERPROFILE%\winfiles\bin;%USERPROFILE%\winfiles\scripts;%PATH%
 set EDITOR=vim
 set RIPGREP_CONFIG_PATH=%USERPROFILE%\.ripgreprc
+set BROWSER="C:\Program Files\qutebrowser\qutebrowser.exe"
 set GH_BROWSER="C:\\Program\ Files\\qutebrowser\\qutebrowser.exe"
 set CLINK_PATH=%USERPROFILE%\winfiles\Settings\clink-path
 set CLINK_COMPLETIONS_DIR=%USERPROFILE%\winfiles\Settings\clink-completions\completions
@@ -23,6 +24,8 @@ doskey vihosts=sudo gvim C:\Windows\System32\Drivers\etc\hosts
 doskey props=GDProps.exe $*
 doskey which=where $*
 doskey take=mkdir $1 $T cd $1
+doskey qutebrowser="C:\Program Files\qutebrowser\qutebrowser.exe" $*
+doskey qb="C:\Program Files\qutebrowser\qutebrowser.exe" $*
 doskey ls=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd $*
 doskey ll=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd -l $*
 where scoop /q
