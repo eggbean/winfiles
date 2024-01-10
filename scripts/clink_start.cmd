@@ -48,10 +48,6 @@ if %ERRORLEVEL% == 0 (
     doskey tree=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd -T $*
 )
 
-if exist %USERPROFILE%\winfiles\Settings\clink-completions (
-    git -C %USERPROFILE%\winfiles\Settings\clink-completions pull --ff --quiet
-)
-
 if %CD%==C:\Windows\System32 (
     cdd %USERPROFILE%
     cdd --reset >nul 2>&1
