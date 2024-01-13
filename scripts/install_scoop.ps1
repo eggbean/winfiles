@@ -42,6 +42,7 @@ $packages = @(
     'broot'
     'curl'
     'delta'
+    'diffutils'
     'dos2unix'
     'dust'
     'eza'
