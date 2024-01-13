@@ -6,7 +6,7 @@ set SCOOP=C:\ProgramData\scoop
 set GNUPGHOME=%APPDATA%\gnupg
 set LESSHISTFILE=%APPDATA%\_lesshst
 set LESS=-MRQx4F#10
-set PATH=%USERPROFILE%\winfiles\bin;%USERPROFILE%\winfiles\scripts;%PATH%
+set PATH=%USERPROFILE%\winfiles\scripts;%USERPROFILE%\winfiles\bin;%PATH%
 set EDITOR=vim
 set RIPGREP_CONFIG_PATH=%USERPROFILE%\.ripgreprc
 set BROWSER="C:\Program Files\qutebrowser\qutebrowser.exe"
@@ -26,10 +26,10 @@ doskey which=where $*
 doskey take=mkdir $1 $T cd $1
 doskey qutebrowser="C:\Program Files\qutebrowser\qutebrowser.exe" $*
 doskey qb="C:\Program Files\qutebrowser\qutebrowser.exe" $*
+doskey copyq="C:\Program Files (x86)\CopyQ\copyq.exe" $*
 doskey ls=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd $*
 doskey ll=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd -l $*
-where scoop /q
-if not %ERRORLEVEL% == 0 (
+if not exist "%SCOOP%\shims\scoop.cmd" (
     echo scoop not installed
     exit /b 0
 )
@@ -39,22 +39,30 @@ doskey cp=cp -i $*
 doskey mv=mv -i $*
 doskey rm=rm -i $*
 doskey br=broot $*
+doskey tree=tre.exe $*
 doskey wol=WakeMeOnLan.exe $*
+doskey z=z   :: These are just so that these zoxide commands don't
+doskey zi=zi :: get highlighted in red in the interactive shell
 doskey za=zoxide add $*
-where /q tre
-if %ERRORLEVEL% == 0 (
-    doskey tree=tre.exe $*
-) else (
-    doskey tree=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd -T $*
-)
 
 if %CD%==C:\Windows\System32 (
     cdd %USERPROFILE%
     cdd --reset >nul 2>&1
 )
-if %CD%==%LOCALAPPDATA%\PowerToys (
-    clear
-    fastfetch -l Windows
-    cdd %USERPROFILE%
-    cdd --reset >nul 2>&1
+
+if %CD%==%LOCALAPPDATA%\Microsoft\WindowsApps (
+    goto :processCD
+) else (
+    if %CD%==%LOCALAPPDATA%\PowerToys (
+        goto :processCD
+    )
 )
+
+goto :eof
+
+:processCD
+clear
+fastfetch -l Windows
+cdd %USERPROFILE%
+cdd --reset >nul 2>&1
+goto :eof
