@@ -1,8 +1,9 @@
 @echo off
 setlocal
 
-call :processRepo "%USERPROFILE%\winfiles"
 call :processRepo "%USERPROFILE%\winfiles\Settings\clink-completions"
+call :processRepo "%USERPROFILE%\winfiles\Settings\clink-gizmos"
+call :processRepo "%USERPROFILE%\winfiles"
 call :processRepo "%USERPROFILE%\.dotfiles"
 
 goto :eof

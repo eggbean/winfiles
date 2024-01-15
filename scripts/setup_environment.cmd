@@ -134,6 +134,11 @@ if not exist %CLINK_COMPLETIONS_DIR% (
     git clone https://github.com/vladimir-kotikov/clink-completions.git %USERPROFILE%\winfiles\Settings\clink-completions
 )
 
+if not exist %USERPROFILE%\winfiles\Settings\clink-gizmos (
+    git clone https://github.com/chrisant996/clink-gizmos.git %USERPROFILE%\winfiles\Settings\clink-gizmos
+    clink installscripts %USERPROFILE%\winfiles\Settings\clink-gizmos
+)
+
 :: Symlink SumatraPDF config
 if not exist %LOCALAPPDATA%\SumatraPDF (
     mkdir %LOCALAPPDATA%\SumatraPDF
