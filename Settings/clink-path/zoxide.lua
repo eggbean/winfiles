@@ -21,10 +21,10 @@ local function __zoxide_cd(dir)
   -- 'cd /d -' doesn't work for clink versions before v1.2.41 (https://github.com/chrisant996/clink/issues/191)
   -- lastest cmder release (v1.3.18) uses clink v1.1.45
   if dir == '-' and (clink.version_encoded or 0) < 10020042 then
-    return ' pushd %cd% & ;cd -'
+    return ' set OLDPWD=%cd% & ;pushd %cd% & ;cd -'
   end
 
-  return ' pushd %cd% & ;cd /d ' .. dir
+  return ' set OLDPWD=%cd% & ;pushd %cd% & ;cd /d ' .. dir
 end
 
 -- Run `zoxide query` and generate `cd` command from result
