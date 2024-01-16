@@ -69,6 +69,7 @@ $packages = @(
     'ripgrep'
     'scoop-search'
     'sed'
+    'spotify-tui'
     'starship'
     'sysinternals/autoruns'
     'sysinternals/psexec'
