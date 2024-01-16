@@ -95,6 +95,10 @@
 	directory = F:/Users/webadmin/winfiles
 	directory = F:/Users/jason/.dotfiles
 	directory = F:/Users/webadmin/.dotfiles
+	directory = F:/Users/jason/winfiles/Settings/clink-completions
+	directory = F:/Users/webadmin/winfiles/Settings/clink-completions
+	directory = F:/Users/jason/winfiles/Settings/clink-gizmos
+	directory = F:/Users/webadmin/winfiles/Settings/clink-gizmos
 	directory = C:/ProgramData/scoop/apps/scoop/current
 	directory = C:/ProgramData/scoop/buckets/extras
 	directory = C:/ProgramData/scoop/buckets/main
