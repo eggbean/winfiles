@@ -185,7 +185,7 @@
                 "experimental.retroTerminalEffect": false,
                 "font": 
                 {
-                    "face": "Hack NF",
+                    "face": "Hack Nerd Font Mono",
                     "size": 11.0
                 },
                 "guid": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
@@ -261,7 +261,7 @@
                 "experimental.retroTerminalEffect": false,
                 "font": 
                 {
-                    "face": "Hack NF",
+                    "face": "Hack Nerd Font Mono",
                     "size": 11.0
                 },
                 "guid": "{4f3641ed-0500-48bd-9432-86beaa47917b}",
@@ -293,7 +293,7 @@
                 "experimental.retroTerminalEffect": false,
                 "font": 
                 {
-                    "face": "Hack NF",
+                    "face": "Hack Nerd Font Mono",
                     "size": 11.0
                 },
                 "guid": "{9f6cb867-1399-4ec0-92c9-04be72deb6dc}",
