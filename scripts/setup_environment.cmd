@@ -1,10 +1,12 @@
 @echo off
 
-:: Installs scoop and scoop packages
-:: Clones Linux dotfiles repository and makes relevant symlinks to AppData
-:: Sets symlinks in AppData for clink settings and dotfiles in this repository
-:: Hides dotfiles and dotdirectories in %USERPROFILE% and winfiles
-:: Installs and registers fonts in font directory
+:: Automates the setup and configuration of the Windows environment
+:: * Installs scoop and scoop packages
+:: * Symlinks dotfile configurations for ported unix tools
+:: * Clones Linux dotfiles repository and makes relevant symlinks to AppData
+:: * Sets symlinks in AppData for clink settings and dotfiles in this repository
+:: * Hides dotfiles and dotdirectories in %USERPROFILE% and winfiles
+:: * Installs and registers fonts in font directory
 
 net session >nul 2>&1
 if not %ERRORLEVEL% == 0 (
@@ -25,13 +27,14 @@ call %~dp0GITHUB_ACCESS_TOKEN.cmd
 if not exist %USERPROFILE%\.dotfiles (
     cd %USERPROFILE%
     git clone --no-checkout --depth=1 --filter=tree:0 https://%GITHUB_ACCESS_TOKEN%@github.com/eggbean/.dotfiles.git
+    cd %USERPROFILE%\.dotfiles
+    git sparse-checkout set --no-cone /.gitattributes .git-crypt bin/scripts config
+    git checkout
 )
-cd %USERPROFILE%\.dotfiles
-git sparse-checkout set --no-cone /.gitattributes .git-crypt bin/scripts config
-git checkout
 
-:: Add bin directory from Windows Defender's exclusion list
-:: (because some binaries are getting false positives)
+:: Add bin directory from Windows Defender's exclusion list,
+:: because some binaries are getting false positives. This
+:: is a bit risky, so scheduled scans will be done.
 powershell -ExecutionPolicy Bypass -Command "Add-MpPreference -ExclusionPath ""$env:HOME\winfiles\bin"""
 
 :: Symlink gnupg configuration
@@ -130,8 +133,10 @@ if exist %LOCALAPPDATA%\clink\_inputrc (
 )
 mklink %LOCALAPPDATA%\clink\_inputrc %USERPROFILE%\winfiles\Settings\_inputrc
 
-if not exist %CLINK_COMPLETIONS_DIR% (
-    git clone https://github.com/vladimir-kotikov/clink-completions.git %USERPROFILE%\winfiles\Settings\clink-completions
+if defined CLINK_COMPLETIONS_DIR (
+    if not exist %CLINK_COMPLETIONS_DIR% (
+        git clone https://github.com/vladimir-kotikov/clink-completions.git %USERPROFILE%\winfiles\Settings\clink-completions
+    )
 )
 
 if not exist %USERPROFILE%\winfiles\Settings\clink-gizmos (
@@ -157,7 +162,6 @@ if %USERNAME% == webadmin (
 ) else (
     mklink %LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json %USERPROFILE%\winfiles\Windows_Terminal\settings.json
 )
-
 
 :: Make startup shortcut for CopyQ
 if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\copyq.lnk" (
@@ -199,9 +203,13 @@ if %USERNAME% == webadmin (
 
 :: Install fonts
 pushd %USERPROFILE%\winfiles\fonts
-for /d %%F in (*) do pushd %%F & %USERPROFILE%\winfiles\bin\fontreg /copy & popd
+for /d %%F in (*) do pushd %%F & %USERPROFILE%\winfiles\bin\fontreg /copy & echo %%~nxF fonts installed & popd
 popd
 
 :: Hide dotfiles and dotdirectories in %USERPROFILE% and winfiles
 for /f %%D in ('dir /b /a:-h %USERPROFILE%\.*') do attrib +h %USERPROFILE%\%%D
 for /f %%E in ('dir /b /a:-h %USERPROFILE%\winfiles\.*') do attrib +h %USERPROFILE%\winfiles\%%E
+
+:: Set clink to autorun for all users
+:: (this is done at the end as it seems to terminate the script)
+clink autorun -a set "C:\ProgramData\scoop\apps\clink\current\clink.bat inject --autorun" >nul 2>&1
