@@ -61,7 +61,7 @@ if %CD%==%LOCALAPPDATA%\Microsoft\WindowsApps (
 goto :eof
 
 :processCD
-clear
+cls
 fastfetch -l Windows
 cdd %USERPROFILE%
 cdd --reset >nul 2>&1
