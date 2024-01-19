@@ -35,7 +35,6 @@ scoop update * -g
 
 # Install packages
 $packages = @(
-    'busybox'
     'uutils-coreutils'
     'bat'
     'bind'
@@ -80,6 +79,7 @@ $packages = @(
     'sysinternals/sync'
     'touch'
     'tre-command'
+    'unzip'
     'wakemeonlan'
     'wget'
     'whois'
