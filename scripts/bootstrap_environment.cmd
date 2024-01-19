@@ -57,6 +57,16 @@ if not exist %APPDATA%\copyq (
     mklink /d %APPDATA%\copyq %USERPROFILE%\.dotfiles\config\.config\copyq
 )
 
+:: Symlink XnViewMP config
+if exist %APPDATA%\XnViewMP (
+    if exist "%APPDATA%\XnViewMP\*" (
+        rmdir /s /q %APPDATA%\XnViewMP
+    )
+)
+if not exist %APPDATA%\XnViewMP (
+    mklink /d %APPDATA%\XnViewMP %USERPROFILE%\.dotfiles\config\.config\XnViewMP
+)
+
 :: Symlink gh configuration
 if exist %APPDATA%\"GitHub CLI" (
     if exist "%APPDATA%\GitHub CLI\*" (
