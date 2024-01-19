@@ -28,7 +28,7 @@ if not exist %USERPROFILE%\.dotfiles (
     cd %USERPROFILE%
     git clone --no-checkout --depth=1 --filter=tree:0 https://%GITHUB_ACCESS_TOKEN%@github.com/eggbean/.dotfiles.git
     cd %USERPROFILE%\.dotfiles
-    git sparse-checkout set --no-cone /.gitattributes .git-crypt bin/scripts config
+    git sparse-checkout set --no-cone /.gitattributes .git-crypt .githooks bin/scripts config
     git checkout
 )
 
