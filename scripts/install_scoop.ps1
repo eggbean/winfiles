@@ -1,5 +1,6 @@
-# PowerShell script to install scoop for multi-user and packages
-# if scoop is already installed, any additional packages are installed
+# PowerShell script to install scoop for multi-user and packages.
+# If scoop is already installed, any additional packages are installed
+# and shims are reset in order of the package list.
 
 # Test if Admin
 if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
@@ -35,7 +36,6 @@ scoop update * -g
 # Install packages
 $packages = @(
     'busybox'
-    'coreutils'
     'uutils-coreutils'
     'bat'
     'bind'
@@ -88,4 +88,12 @@ $packages = @(
 
 foreach ($package in $packages) {
     scoop install $package -u -g
+}
+
+# Reset shims in order of package list
+# if scoop was already installed
+if (Test-ScoopInstalled) {
+    foreach ($package in $packages) {
+        scoop reset $package
+    }
 }
