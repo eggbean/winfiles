@@ -1,11 +1,12 @@
 @echo off
 
 :: Automates the setup and configuration of the Windows environment
-:: * Installs scoop and scoop packages
-:: * Symlinks dotfile configurations for ported unix tools
-:: * Clones Linux dotfiles repository and makes relevant symlinks to AppData
-:: * Sets symlinks in AppData for clink settings and dotfiles in this repository
+:: * Install scoop for multi-users and packages through PowerShell script
+:: * Sets up Clink, cloning relevant repositores for extra features
+:: * Sparse clones Linux dotfiles repository
+:: * Makes symlinks from configurations in this repository and .dotfiles
 :: * Hides dotfiles and dotdirectories in %USERPROFILE% and winfiles
+:: * Makes startup shortcuts for some systray applications
 :: * Installs and registers fonts in font directory
 
 net session >nul 2>&1
@@ -32,10 +33,38 @@ if not exist %USERPROFILE%\.dotfiles (
     git checkout
 )
 
-:: Add bin directory from Windows Defender's exclusion list,
-:: because some binaries are getting false positives. This
-:: is a bit risky, so scheduled scans will be done.
+:: Add bin directory from Windows Defender's exclusion list, because some binaries are
+:: getting false positives. This is a bit risky, so scheduled scans will be done.
 powershell -ExecutionPolicy Bypass -Command "Add-MpPreference -ExclusionPath ""$env:HOME\winfiles\bin"""
+
+:: Setup Clink
+if not exist %LOCALAPPDATA%\clink (
+    mkdir %LOCALAPPDATA%\clink
+)
+if exist %LOCALAPPDATA%\clink\clink_start.cmd (
+    del %LOCALAPPDATA%\clink\clink_start.cmd
+)
+mklink %LOCALAPPDATA%\clink\clink_start.cmd %USERPROFILE%\winfiles\scripts\clink_start.cmd
+if exist %LOCALAPPDATA%\clink\clink_settings (
+    del %LOCALAPPDATA%\clink\clink_settings
+)
+mklink %LOCALAPPDATA%\clink\clink_settings %USERPROFILE%\winfiles\Settings\clink_settings
+
+if exist %LOCALAPPDATA%\clink\_inputrc (
+    del %LOCALAPPDATA%\clink\_inputrc
+)
+mklink %LOCALAPPDATA%\clink\_inputrc %USERPROFILE%\winfiles\Settings\_inputrc
+
+if defined CLINK_COMPLETIONS_DIR (
+    if not exist %CLINK_COMPLETIONS_DIR% (
+        git clone https://github.com/vladimir-kotikov/clink-completions.git %USERPROFILE%\winfiles\Settings\clink-completions
+    )
+)
+
+if not exist %USERPROFILE%\winfiles\Settings\clink-gizmos (
+    git clone https://github.com/chrisant996/clink-gizmos.git %USERPROFILE%\winfiles\Settings\clink-gizmos
+    clink installscripts %USERPROFILE%\winfiles\Settings\clink-gizmos
+)
 
 :: Symlink gnupg configuration
 if exist %APPDATA%\gnupg (
@@ -123,35 +152,6 @@ for %%S in (.digrc .envrc .profile .ripgreprc) do (
     )
     mklink %USERPROFILE%\%%S %USERPROFILE%\winfiles\Settings\%%S
     attrib /l +h %USERPROFILE%\%%S
-)
-
-:: Setup Clink
-if not exist %LOCALAPPDATA%\clink (
-    mkdir %LOCALAPPDATA%\clink
-)
-if exist %LOCALAPPDATA%\clink\clink_start.cmd (
-    del %LOCALAPPDATA%\clink\clink_start.cmd
-)
-mklink %LOCALAPPDATA%\clink\clink_start.cmd %USERPROFILE%\winfiles\scripts\clink_start.cmd
-if exist %LOCALAPPDATA%\clink\clink_settings (
-    del %LOCALAPPDATA%\clink\clink_settings
-)
-mklink %LOCALAPPDATA%\clink\clink_settings %USERPROFILE%\winfiles\Settings\clink_settings
-
-if exist %LOCALAPPDATA%\clink\_inputrc (
-    del %LOCALAPPDATA%\clink\_inputrc
-)
-mklink %LOCALAPPDATA%\clink\_inputrc %USERPROFILE%\winfiles\Settings\_inputrc
-
-if defined CLINK_COMPLETIONS_DIR (
-    if not exist %CLINK_COMPLETIONS_DIR% (
-        git clone https://github.com/vladimir-kotikov/clink-completions.git %USERPROFILE%\winfiles\Settings\clink-completions
-    )
-)
-
-if not exist %USERPROFILE%\winfiles\Settings\clink-gizmos (
-    git clone https://github.com/chrisant996/clink-gizmos.git %USERPROFILE%\winfiles\Settings\clink-gizmos
-    clink installscripts %USERPROFILE%\winfiles\Settings\clink-gizmos
 )
 
 :: Symlink SumatraPDF config
