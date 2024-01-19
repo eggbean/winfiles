@@ -32,6 +32,10 @@ color.arginfo = sgr 38;5;172
 # type: color
 color.argmatcher = sgr 1;38;5;40
 
+# name: Color for home dir tilde
+# type: color
+color.autoexpandtilde = bright cyan
+
 # name: Shell command completions
 # type: color
 color.cmd = sgr 1;38;5;231
@@ -52,9 +56,21 @@ color.comment_row = sgr 38;5;87;48;5;18
 # type: color
 color.description = sgr 38;5;39
 
+# name: Color for command divider line
+# type: color
+color.divider_line = sgr 30;48;5;25
+
+# name: Color for command end divider line
+# type: color
+color.divider_line_end = sgr 38;5;25
+
 # name: Doskey completions
 # type: color
 color.doskey = sgr 1;38;5;75
+
+# name: Color for escape for plain tilde
+# type: color
+color.escapetilde = bright cyan on blue
 
 # name: Color for executable command word
 # type: color
@@ -92,6 +108,10 @@ color.input = sgr 00:33
 # type: color
 color.interact = bold
 
+# name: Color for 'rem lua:' prefix
+# type: color
+color.luaprefix = bright cyan on blue
+
 # name: Message area color
 # type: color
 color.message = default
@@ -127,6 +147,14 @@ color.yarn.module = bright green
 # name: Color for yarn run project.json script
 # type: color
 color.yarn.script = bright blue
+
+# name: Add enhancements to Doskey
+# type: boolean
+doskey.enhanced = True
+
+# name: Use default key bindings
+# type: boolean
+fzf.default_bindings = True
 
 # name: The number of history lines to save
 # type: integer
