@@ -58,6 +58,7 @@ mklink %LOCALAPPDATA%\clink\_inputrc %USERPROFILE%\winfiles\Settings\_inputrc
 if defined CLINK_COMPLETIONS_DIR (
     if not exist %CLINK_COMPLETIONS_DIR% (
         git clone https://github.com/vladimir-kotikov/clink-completions.git %USERPROFILE%\winfiles\Settings\clink-completions
+        clink installscripts %USERPROFILE%\winfiles\Settings\clink-completions
     )
 )
 
