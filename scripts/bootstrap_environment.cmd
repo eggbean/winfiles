@@ -204,12 +204,10 @@ if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\SylphyHorn
     echo SylphyHorn startup shortcut created
 )
 
-:: Make startup shortcut for Quake Terminal on webadmin
-if %USERNAME% == webadmin (
-    if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Quake Terminal.lnk" (
-        nircmd shortcut "%LOCALAPPDATA%\Microsoft\WindowsApps\wt.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" "Quake Terminal" "-w _quake" "%USERPROFILE%\winfiles\icons\app_icons\terminal.ico" "" min
-        echo Quake Terminal startup shortcut created
-    )
+:: Make startup shortcut for Quake Terminal
+if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Quake Terminal.lnk" (
+    nircmd shortcut "%LOCALAPPDATA%\Microsoft\WindowsApps\wt.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" "Quake Terminal" "-w _quake -p ~qCommand Prompt~q" "%USERPROFILE%\winfiles\icons\app_icons\terminal.ico" "" min
+    echo Quake Terminal startup shortcut created
 )
 
 :: Install fonts
@@ -224,3 +222,4 @@ for /f %%E in ('dir /b /a:-h %USERPROFILE%\winfiles\.*') do attrib +h %USERPROFI
 :: Set clink to autorun for all users
 :: (this is done at the end as it seems to terminate the script)
 clink autorun -a set "C:\ProgramData\scoop\apps\clink\current\clink.bat inject --autorun" >nul 2>&1
+
