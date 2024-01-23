@@ -188,7 +188,7 @@ if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\MarbleScro
 
 :: Make startup shortcut for pageant
 if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\pageant.lnk" (
-    nircmd shortcut %USERPROFILE%\winfiles\bin\pageant.exe "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" pageant %USERPROFILE%\.ssh\id_ed25519.ppk
+    nircmd shortcut %USERPROFILE%\winfiles\bin\pageant.exe "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" pageant "--encrypted %USERPROFILE%\.ssh\id_ed25519.ppk"
     echo pageant startup shortcut created
 )
 
@@ -222,4 +222,3 @@ for /f %%E in ('dir /b /a:-h %USERPROFILE%\winfiles\.*') do attrib +h %USERPROFI
 :: Set clink to autorun for all users
 :: (this is done at the end as it seems to terminate the script)
 clink autorun -a set "C:\ProgramData\scoop\apps\clink\current\clink.bat inject --autorun" >nul 2>&1
-
