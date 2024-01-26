@@ -76,7 +76,6 @@ $packages = @(
     'sysinternals/regjump'
     'sysinternals/sdelete'
     'sysinternals/shellrunas'
-    'sysinternals/sync'
     'touch'
     'tre-command'
     'unzip'
