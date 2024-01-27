@@ -2,6 +2,7 @@
 
 :: Automates the setup and configuration of the Windows environment
 :: * Install scoop for multi-users and packages through PowerShell script
+:: * Retrieves current SSH key from Dashlane vault
 :: * Sets up Clink, cloning relevant repositores for extra features
 :: * Sparse clones Linux dotfiles repository
 :: * Makes symlinks from configurations in this repository and .dotfiles
@@ -23,11 +24,25 @@ if not %ERRORLEVEL% == 0 (
     exit /b 0
 )
 
+:: Get current SSH key from Dashlane vault and add to pageant agent
+call %~dp0DASHLANE_ACCOUNT.cmd
+if not exist %USERPROFILE%\.ssh (
+    mkdir %USERPROFILE%\.ssh
+)
+for /f "delims=" %%i in ('dcli accounts whoami') do set output=%%i
+if "%output%"=="%DASHLANE_ACCOUNT%" (
+    dcli sync
+    dcli note id_ed25519.ppk > %USERPROFILE%\.ssh\id_ed25519.ppk
+    pageant --encrypted %USERPROFILE%\.ssh\id_ed25519.ppk
+) else (
+    echo Not signed into Dashlane vault. Exiting..
+    exit /b 1
+)
+
 :: Sparse checkout dotfiles
-call %~dp0GITHUB_ACCESS_TOKEN.cmd
 if not exist %USERPROFILE%\.dotfiles (
     cd %USERPROFILE%
-    git clone --no-checkout --depth=1 --filter=tree:0 https://%GITHUB_ACCESS_TOKEN%@github.com/eggbean/.dotfiles.git
+    git clone --no-checkout --depth=1 --filter=tree:0 git@github.com:eggbean/.dotfiles.git
     cd %USERPROFILE%\.dotfiles
     git sparse-checkout set --no-cone /.gitattributes .git-crypt .githooks bin/scripts config
     git checkout

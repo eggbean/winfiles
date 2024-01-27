@@ -22,6 +22,5 @@
 *.env filter=git-crypt diff=git-crypt
 *.key filter=git-crypt diff=git-crypt
 bin/XXCOPY.LIC filter=git-crypt diff=git-crypt
-scripts/GITHUB_ACCESS_TOKEN.cmd filter=git-crypt diff=git-crypt
-scripts/GITHUB_ACCESS_TOKEN.ps1 filter=git-crypt diff=git-crypt
+scripts/DASHLANE_ACCOUNT.cmd filter=git-crypt diff=git-crypt
 Settings/.config/spotify-tui/client.yml filter=git-crypt diff=git-crypt
