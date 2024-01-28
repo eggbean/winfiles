@@ -25,18 +25,14 @@ if not %ERRORLEVEL% == 0 (
 )
 
 :: Get current SSH key from Dashlane vault and add to pageant agent
-call %~dp0DASHLANE_ACCOUNT.cmd
-if not exist %USERPROFILE%\.ssh (
-    mkdir %USERPROFILE%\.ssh
-)
-for /f "delims=" %%i in ('dcli accounts whoami') do set output=%%i
-if "%output%"=="%DASHLANE_ACCOUNT%" (
+if not exist %USERPROFILE%\.ssh\id_ed25519.ppk (
+    if not exist %USERPROFILE%\.ssh (
+        mkdir %USERPROFILE%\.ssh
+    )
     dcli sync
     dcli note id_ed25519.ppk > %USERPROFILE%\.ssh\id_ed25519.ppk
+    dcli logout
     pageant --encrypted %USERPROFILE%\.ssh\id_ed25519.ppk
-) else (
-    echo Not signed into Dashlane vault. Exiting..
-    exit /b 1
 )
 
 :: Sparse checkout dotfiles
