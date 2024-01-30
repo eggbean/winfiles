@@ -170,7 +170,16 @@ for %%S in (.digrc .envrc .profile .ripgreprc) do (
     attrib /l +h %USERPROFILE%\%%S
 )
 
-:: Symlink SumatraPDF config
+:: Symlink WinSCP config
+if not exist %LOCALAPPDATA%\Programs\WinSCP (
+    mkdir%LOCALAPPDATA%\Programs\WinSCP
+)
+if exist %LOCALAPPDATA%\Programs\WinSCP\WinSCP.ini (
+    rm %LOCALAPPDATA%\Programs\WinSCP\WinSCP.ini
+    mklink %LOCALAPPDATA%\Programs\WinSCP\WinSCP.ini %USERPROFILE%\winfiles\Settings\WinSCP.ini
+)
+
+:: Copy SumatraPDF config
 if not exist %LOCALAPPDATA%\SumatraPDF (
     mkdir %LOCALAPPDATA%\SumatraPDF
     copy %USERPROFILE%\winfiles\Settings\SumatraPDF-settings.txt %LOCALAPPDATA%\SumatraPDF
