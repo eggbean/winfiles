@@ -4,6 +4,7 @@
 :: * Install scoop for multi-users and packages through PowerShell script
 :: * Retrieves current SSH key from Dashlane vault
 :: * Sets up Clink, cloning relevant repositores for extra features
+:: * Enables Developer Mode (allows symlink creation without elevation)
 :: * Sparse clones Linux dotfiles repository
 :: * Makes symlinks from configurations in this repository and .dotfiles
 :: * Hides dotfiles and dotdirectories in %USERPROFILE% and winfiles
@@ -34,6 +35,9 @@ if not exist %USERPROFILE%\.ssh\id_ed25519.ppk (
     dcli logout
     pageant --encrypted %USERPROFILE%\.ssh\id_ed25519.ppk
 )
+
+:: Enable Developer Mode
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Appx" /v "AllowDevelopmentWithoutDevLicense" /t REG_DWORD /d 1 /f
 
 :: Sparse checkout dotfiles
 if not exist %USERPROFILE%\.dotfiles (
