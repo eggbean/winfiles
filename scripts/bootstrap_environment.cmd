@@ -2,6 +2,7 @@
 
 :: Automates the setup and configuration of the Windows environment
 :: * Install scoop for multi-users and packages through PowerShell script
+:: * Setup OpenSSH and retrieve key from Dashlane
 :: * Retrieves current SSH key from Dashlane vault
 :: * Sets up Clink, cloning relevant repositores for extra features
 :: * Enables Developer Mode (allows symlink creation without elevation)
@@ -10,6 +11,9 @@
 :: * Hides dotfiles and dotdirectories in %USERPROFILE% and winfiles
 :: * Makes startup shortcuts for some systray applications
 :: * Installs and registers fonts in font directory
+
+:: TO DO:
+:: * Translate to pure PowerShell at some point
 
 net session >nul 2>&1
 if not %ERRORLEVEL% == 0 (
@@ -25,19 +29,11 @@ if not %ERRORLEVEL% == 0 (
     exit /b 0
 )
 
-:: Get current SSH key from Dashlane vault and add to pageant agent
-if not exist %USERPROFILE%\.ssh\id_ed25519.ppk (
-    if not exist %USERPROFILE%\.ssh (
-        mkdir %USERPROFILE%\.ssh
-    )
-    dcli sync
-    dcli note id_ed25519.ppk > %USERPROFILE%\.ssh\id_ed25519.ppk
-    dcli logout
-    pageant --encrypted %USERPROFILE%\.ssh\id_ed25519.ppk
-)
+:: Setup OpenSSH and retrieve key from Dashlane
+powershell -ExecutionPolicy Bypass -File "%~dp0setup_openssh.ps1"
 
 :: Enable Developer Mode
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Appx" /v "AllowDevelopmentWithoutDevLicense" /t REG_DWORD /d 1 /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Appx" /v "AllowDevelopmentWithoutDevLicense" /t REG_DWORD /d 1 /f >nul
 
 :: Sparse checkout dotfiles
 if not exist %USERPROFILE%\.dotfiles (
@@ -208,12 +204,6 @@ if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\copyq.lnk"
 if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\MarbleScroll.lnk" (
     nircmd shortcut "%USERPROFILE%\winfiles\MarbleScroll\MarbleScroll.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" MarbleScroll
     echo MarbleScroll startup shortcut created
-)
-
-:: Make startup shortcut for pageant
-if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\pageant.lnk" (
-    nircmd shortcut %USERPROFILE%\winfiles\bin\pageant.exe "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" pageant "--encrypted %USERPROFILE%\.ssh\id_ed25519.ppk"
-    echo pageant startup shortcut created
 )
 
 :: Make startup shortcut for Sizer

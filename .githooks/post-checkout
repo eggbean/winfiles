@@ -3,6 +3,4 @@
 find . -name 'desktop.ini' -exec attrib.exe +A +S +H {} \;
 find . -name '.*?' -not -path './Settings/*' -exec attrib.exe +H {} \;
 
-chmod +x bin/wsl2-ssh-pageant.exe
-
 git update-index --assume-unchanged Settings/WinSCP.ini
