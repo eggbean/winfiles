@@ -3,7 +3,6 @@
 winget install -e --id chrisant996.Clink
 winget install -e --id hluk.CopyQ
 winget install -e --id Git.Git
-winget install -e --id GitHub.cli
 winget install -e --id Google.Chrome
 winget install -e --id gerardog.gsudo
 winget install -e --id Logitech.OptionsPlus
