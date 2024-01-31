@@ -1,7 +1,7 @@
 @echo off
 
 set HOME=%USERPROFILE%
-set GIT_SSH=%USERPROFILE%\winfiles\bin\plink.exe
+set GIT_SSH=C:\Windows\System32\OpenSSH\ssh.exe
 set SCOOP=C:\ProgramData\scoop
 set GNUPGHOME=%APPDATA%\gnupg
 set LESSHISTFILE=%APPDATA%\_lesshst
