@@ -1,4 +1,5 @@
 @echo off
+setlocal EnableDelayedExpansion
 
 :: Automates the setup and configuration of the Windows environment
 :: * Install scoop for multi-users and packages through PowerShell script
@@ -226,7 +227,18 @@ if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Quake Term
 
 :: Install fonts
 pushd %USERPROFILE%\winfiles\fonts
-for /d %%F in (*) do pushd %%F & %USERPROFILE%\winfiles\bin\fontreg /copy & echo %%~nxF fonts installed & popd
+for /d %%F in (*) do (
+    pushd %%F
+    for %%x in (*.ttf *.otf) do (
+        set "fontInstalled=false"
+        for /f "tokens=3*" %%i in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" ^| findstr /i "%%~nx"') do set "fontInstalled=true"
+        if "!fontInstalled!"=="false" (
+            %USERPROFILE%\winfiles\bin\fontreg /copy
+            echo %%~nxF fonts installed
+        )
+    )
+    popd
+)
 popd
 
 :: Hide dotfiles and dotdirectories in %USERPROFILE% and winfiles
