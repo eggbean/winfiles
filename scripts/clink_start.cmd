@@ -35,6 +35,7 @@ if not exist "%SCOOP%\shims\scoop.cmd" (
 )
 doskey date=%SCOOP%\shims\date.exe $*
 doskey find=%SCOOP%\shims\find.exe $*
+doskey cat=ccat $*
 doskey cp=cp -i $*
 doskey mv=mv -i $*
 doskey rm=rm -i $*

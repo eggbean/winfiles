@@ -39,6 +39,7 @@ $packages = @(
     'bat'
     'bind'
     'broot'
+    'ccat'
     'curl'
     'delta'
     'diffutils'
