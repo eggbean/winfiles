@@ -154,7 +154,7 @@ doskey.enhanced = True
 
 # name: Use default key bindings
 # type: boolean
-fzf.default_bindings = True
+fzf.default_bindings = False
 
 # name: The number of history lines to save
 # type: integer
