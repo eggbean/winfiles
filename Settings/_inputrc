@@ -47,3 +47,11 @@ set keymap emacs
 # Misc other key bindings.
 "\e[27;2;32~":      clink-magic-suggest-space       # Shift-Space
 "\e[5;6~":          clink-popup-directories         # Ctrl-Shift-PgUp
+
+# fzf.lua
+"\C-t":             "luafunc:fzf_file"              # Ctrl+T lists files recursively; choose one or multiple to insert them.
+"\C-r":             "luafunc:fzf_history"           # Ctrl+R lists history entries; choose one to insert it.
+"\M-c":             "luafunc:fzf_directory"         # Alt+C lists subdirectories; choose one to 'cd /d' to it.
+"\C-b":             "luafunc:fzf_bindings"          # Ctrl+B lists key bindings; choose one to invoke it.
+"\t":               "luafunc:fzf_complete"          # Tab uses fzf to filter match completions, but only when preceded by '**' (recursive).
+"\e[27;5;32~":      "luafunc:fzf_complete_force"    # Ctrl+Space uses fzf to filter match completions (and supports '**' for recursive).
