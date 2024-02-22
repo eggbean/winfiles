@@ -48,6 +48,7 @@ $packages = @(
     'eza'
     'fastfetch'
     'fd'
+    'ffmpeg'
     'file'
     'findutils'
     'fzf'
