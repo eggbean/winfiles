@@ -247,4 +247,4 @@ for /f %%E in ('dir /b /a:-h %USERPROFILE%\winfiles\.*') do attrib +h %USERPROFI
 
 :: Set clink to autorun for all users
 :: (this is done at the end as it seems to terminate the script)
-clink autorun -a set "C:\ProgramData\scoop\apps\clink\current\clink.bat inject --autorun" >nul 2>&1
+clink autorun -a install >nul 2>&1
