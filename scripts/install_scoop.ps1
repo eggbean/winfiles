@@ -61,6 +61,7 @@ $packages = @(
     'less'
     'lf'
     'mediainfo'
+    'minio-client'
     'monolith'
     'netcat'
     'nirsoft/browsinghistoryview'
