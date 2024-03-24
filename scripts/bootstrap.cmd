@@ -197,7 +197,7 @@ if %USERNAME% == webadmin (
 
 :: Make startup shortcut for CopyQ
 if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\copyq.lnk" (
-    nircmd shortcut "C:\Program Files (x86)\CopyQ\copyq.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" CopyQ
+    nircmd shortcut "C:\Program Files\CopyQ\copyq.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" CopyQ
     echo CopyQ startup shortcut created
 )
 
