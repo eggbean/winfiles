@@ -45,6 +45,7 @@ doskey wol=WakeMeOnLan.exe $*
 doskey z=z   :: These are just so that these zoxide commands don't
 doskey zi=zi :: get highlighted in red in the interactive shell
 doskey za=zoxide add $*
+doskey screenoff=nircmd monitor async_off
 
 if %CD%==C:\Windows\System32 (
     cdd %USERPROFILE%
