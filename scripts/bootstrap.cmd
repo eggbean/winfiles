@@ -201,10 +201,23 @@ if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\copyq.lnk"
     echo CopyQ startup shortcut created
 )
 
-:: Make startup shortcut for MarbleScroll
-if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\MarbleScroll.lnk" (
-    nircmd shortcut "%USERPROFILE%\winfiles\MarbleScroll\MarbleScroll.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" MarbleScroll
-    echo MarbleScroll startup shortcut created
+:: Determine computer chassis type
+for /f "delims={}" %%i in ('wmic systemenclosure get chassistypes ^| findstr "{"') do @set "chassistype=%%i"`
+
+:: Make startup shortcut for tpmiddle-rs on desktops
+if %chassistype% GEQ 3 if %chassistype% LEQ 7 (
+    if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\tpmiddle-rs.lnk" (
+        nircmd shortcut "%USERPROFILE%\winfiles\bin\tpmiddle-rs.vbs" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" tpmiddle-rs
+        echo tpmiddle-rs startup shortcut created
+    )
+)
+
+:: Make startup shortcut for MarbleScroll on laptops
+if %chassistype% GEQ 8 if %chassistype% LEQ 10 (
+    if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\MarbleScroll.lnk" (
+        nircmd shortcut "%USERPROFILE%\winfiles\MarbleScroll\MarbleScroll.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" MarbleScroll
+        echo MarbleScroll startup shortcut created
+    )
 )
 
 :: Make startup shortcut for Sizer
