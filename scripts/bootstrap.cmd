@@ -1,5 +1,4 @@
 @echo off
-setlocal EnableDelayedExpansion
 
 :: Automates the setup and configuration of the Windows environment
 :: * Install scoop for multi-users and packages through PowerShell script
@@ -16,11 +15,17 @@ setlocal EnableDelayedExpansion
 :: TO DO:
 :: * Translate to pure PowerShell at some point
 
+setlocal EnableDelayedExpansion
+set PATH=%PATH%;%USERPROFILE%\winfiles\bin\
+
 net session >nul 2>&1
 if not %ERRORLEVEL% == 0 (
     echo Not admin/elevated
     exit /b 1
 )
+
+:: Install essential packages using winget
+call "%~dp0install_packages.cmd"
 
 :: Install scoop for multi-users and packages
 where scoop >nul 2>&1
