@@ -37,9 +37,11 @@ catch {
         New-Item -ItemType Directory -Path $sshDir
     }
 
-    dcli sync
-    dcli note id_ed25519 | Set-Content -Path $sshKeyPath
-    dcli logout
+    $dcliPath = Join-Path -Path $env:USERPROFILE -ChildPath "winfiles\bin\dcli.exe"
+    Write-Host 'Enter credentials for Dashlane:'
+    & $dcliPath sync
+    & $dcliPath note id_ed25519 | Set-Content -Path $sshKeyPath
+    & $dcliPath logout
 
     ssh-add $sshKeyPath
     Remove-Item $sshKeyPath
