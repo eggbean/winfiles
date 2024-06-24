@@ -6,6 +6,10 @@ autosuggest.enable = True
 # type: boolean
 autosuggest.hint = False
 
+# name: Colorize the input text
+# type: boolean
+clink.colorize_input = True
+
 # name: Selects default key bindings
 # type: enum
 # options: bash,windows
