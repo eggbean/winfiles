@@ -33,6 +33,7 @@ style_user = "bold green"
 style_root = "bold red"
 format = "[$user]($style)"
 show_always = true
+aliases = { "Administrator" = "admin" }
 
 [hostname]
 ssh_only = false
