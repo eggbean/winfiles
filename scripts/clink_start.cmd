@@ -31,7 +31,7 @@ doskey ls=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd $*
 doskey ll=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd -l $*
 if not exist "%SCOOP%\shims\scoop.cmd" (
     echo scoop not installed
-    exit /b 0
+    goto :HomeStart
 )
 doskey date=%SCOOP%\shims\date.exe $*
 doskey find=%SCOOP%\shims\find.exe $*
@@ -47,6 +47,7 @@ doskey zi=zi :: get highlighted in red in the interactive shell
 doskey za=zoxide add $*
 doskey screenoff=nircmd monitor async_off
 
+:HomeStart
 if %CD%==C:\Windows\System32 (
     cdd %USERPROFILE%
     cdd --reset >nul 2>&1
@@ -65,6 +66,5 @@ goto :eof
 :processCD
 cls
 fastfetch -l Windows
-cdd %USERPROFILE%
-cdd --reset >nul 2>&1
+cdd %USERPROFILE% & cdd --reset >nul 2>&1
 goto :eof
