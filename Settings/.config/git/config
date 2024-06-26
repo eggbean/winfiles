@@ -2,7 +2,7 @@
 	name = eggbean
 	email = 815311+eggbean@users.noreply.github.com
 [core]
-	editor = \"C:\\Program Files\\vim\\vim91\\vim.exe\"
+	editor = \"C:\\Program Files\\vim\\Current\\vim.exe\"
 	pager = delta
 	hooksPath = .githooks
 [init]

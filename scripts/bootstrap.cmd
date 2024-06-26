@@ -35,6 +35,9 @@ icacls "%USERPROFILE%\winfiles" /setowner "%USERNAME%" /t
 :: Install essential packages using winget
 call "%~dp0install_packages.cmd"
 
+:: Add vim to %PATH%
+powershell -File "%~dp0setup_vim_path.ps1"
+
 :: Install scoop for multi-users and packages
 dir %SCOOP% >nul 2>&1
 if not %ERRORLEVEL% == 0 (
