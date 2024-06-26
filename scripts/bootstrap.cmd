@@ -1,6 +1,8 @@
 @echo off
 
 :: Automates the setup and configuration of the Windows environment
+:: * Enables hibernation
+:: * Install essential packages using winget
 :: * Install scoop for multi-users and packages through PowerShell script
 :: * Setup OpenSSH and retrieve key from Dashlane
 :: * Retrieves current SSH key from Dashlane vault
@@ -15,24 +17,28 @@
 :: TO DO:
 :: * Translate to pure PowerShell at some point
 
-setlocal EnableDelayedExpansion
-set PATH=%PATH%;%USERPROFILE%\winfiles\bin\
-
 net session >nul 2>&1
 if not %ERRORLEVEL% == 0 (
     echo Not admin/elevated
     exit /b 1
 )
 
+setlocal EnableDelayedExpansion
+set PATH=%PATH%;%USERPROFILE%\winfiles\bin\
+
+:: Enable hibernation
+powercfg /hibernate on
+
+:: Take ownership of winfiles
+icacls "%USERPROFILE%\winfiles" /setowner "%USERNAME%" /t
+
 :: Install essential packages using winget
 call "%~dp0install_packages.cmd"
 
 :: Install scoop for multi-users and packages
-where scoop >nul 2>&1
+dir %SCOOP% >nul 2>&1
 if not %ERRORLEVEL% == 0 (
-    powershell -ExecutionPolicy Bypass -File "%~dp0install_scoop.ps1"
-    echo Now unlock encryption for this repository and run the script again
-    exit /b 0
+    powershell -File "%~dp0install_scoop.ps1"
 )
 
 :: Setup OpenSSH and retrieve key from Dashlane
@@ -44,10 +50,11 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Appx" /v "AllowD
 :: Sparse checkout dotfiles
 if not exist %USERPROFILE%\.dotfiles (
     cd %USERPROFILE%
-    git clone --no-checkout --depth=1 --filter=tree:0 git@github.com:eggbean/.dotfiles.git
+    git clone --no-checkout --depth=1 --filter=tree:0 https://github.com/eggbean/.dotfiles.git
     cd %USERPROFILE%\.dotfiles
     git sparse-checkout set --no-cone /.gitattributes .git-crypt .githooks bin/scripts config
     git checkout
+    icacls "%CD%" /setowner "%USERNAME%" /t
 )
 
 :: Add bin directory from Windows Defender's exclusion list, because some binaries are
@@ -73,9 +80,9 @@ if exist %LOCALAPPDATA%\clink\_inputrc (
 mklink %LOCALAPPDATA%\clink\_inputrc %USERPROFILE%\winfiles\Settings\_inputrc
 
 if defined CLINK_COMPLETIONS_DIR (
-    if not exist %CLINK_COMPLETIONS_DIR% (
+    if not exist "%CLINK_COMPLETIONS_DIR%" (
         git clone https://github.com/vladimir-kotikov/clink-completions.git %USERPROFILE%\winfiles\Settings\clink-completions
-        clink installscripts %USERPROFILE%\winfiles\Settings\clink-completions
+        clink installscripts "%USERPROFILE%\winfiles\Settings\clink-completions"
     )
 )
 
