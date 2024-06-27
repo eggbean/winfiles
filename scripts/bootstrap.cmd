@@ -269,6 +269,9 @@ for /d %%F in (*) do (
 )
 popd
 
+:: Set icons for various folders
+call "%~dp0fix_icons.cmd"
+
 :: Enable Show Desktop button at right edge of the taskbar
 powershell -Command "Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name TaskbarSd -Value 1"
 
