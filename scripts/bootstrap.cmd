@@ -230,7 +230,7 @@ if %chassistype% GEQ 3 if %chassistype% LEQ 7 (
 :: Make startup shortcut for MarbleScroll on laptops
 if %chassistype% GEQ 8 if %chassistype% LEQ 10 (
     if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\MarbleScroll.lnk" (
-        nircmd shortcut "%USERPROFILE%\winfiles\MarbleScroll\MarbleScroll.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" MarbleScroll
+        nircmd shortcut "%USERPROFILE%\winfiles\bin\MarbleScroll.exe" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" MarbleScroll
         echo MarbleScroll startup shortcut created
     )
 )
