@@ -105,4 +105,5 @@
 	directory = C:/ProgramData/scoop/buckets/nirsoft
 	directory = C:/ProgramData/scoop/buckets/sysinternals
 [credential]
-	helper = C:\\Program Files\\Git\\mingw64\\bin\\git-credential-manager.exe
+	helper =
+	helper = C:/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
