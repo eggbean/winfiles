@@ -13,6 +13,8 @@
 :: * Hides dotfiles and dotdirectories in %USERPROFILE% and winfiles
 :: * Makes startup shortcuts for some systray applications
 :: * Installs and registers fonts in font directory
+:: * Installs the wedge redirector for the Chrometana Pro Chrome extension
+:: * Sets other minor OS settings
 
 :: TO DO:
 :: * Translate to pure PowerShell at some point
@@ -268,6 +270,9 @@ for /d %%F in (*) do (
     popd
 )
 popd
+
+:: Install the wedge redirector for the Chrometana Pro Chrome extension
+powershell -File "%~dp0install_wedge.ps1"
 
 :: Set icons for various folders
 call "%~dp0fix_icons.cmd"
