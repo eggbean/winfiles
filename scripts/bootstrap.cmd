@@ -1,7 +1,7 @@
 @echo off
 
 :: Automates the setup and configuration of the Windows environment
-:: * Enables hibernation
+:: * Exclude known false positives from Windows Defender scanning
 :: * Install essential packages using winget
 :: * Install scoop for multi-users and packages through PowerShell script
 :: * Setup OpenSSH and retrieve key from Dashlane
@@ -14,6 +14,7 @@
 :: * Makes startup shortcuts for some systray applications
 :: * Installs and registers fonts in font directory
 :: * Installs the wedge redirector for the Chrometana Pro Chrome extension
+:: * Enables hibernation
 :: * Sets other minor OS settings
 
 :: TO DO:
@@ -28,8 +29,8 @@ if not %ERRORLEVEL% == 0 (
 setlocal EnableDelayedExpansion
 set PATH=%PATH%;%USERPROFILE%\winfiles\bin\
 
-:: Enable hibernation
-powercfg /hibernate on
+:: Exclude known false positives from Windows Defender scanning
+powershell -File "%~dp0defender_whitelist.ps1"
 
 :: Take ownership of winfiles
 icacls "%USERPROFILE%\winfiles" /setowner "%USERNAME%" /t
@@ -276,6 +277,9 @@ powershell -File "%~dp0install_wedge.ps1"
 
 :: Set icons for various folders
 call "%~dp0fix_icons.cmd"
+
+:: Enable hibernation
+powercfg /hibernate on
 
 :: Enable Show Desktop button at right edge of the taskbar
 powershell -Command "Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name TaskbarSd -Value 1"
