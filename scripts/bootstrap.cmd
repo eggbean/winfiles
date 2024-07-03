@@ -15,7 +15,7 @@
 :: * Installs and registers fonts in font directory
 :: * Installs the wedge redirector for the Chrometana Pro Chrome extension
 :: * Enables hibernation
-:: * Sets other minor OS settings
+:: * Sets other OS settings through registry
 
 :: TO DO:
 :: * Translate to pure PowerShell at some point
@@ -280,9 +280,26 @@ call "%~dp0fix_icons.cmd"
 
 :: Enable hibernation
 powercfg /hibernate on
+powershell -Command "Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowHibernateOption' -Value 1"
+
+:: Set Registered Owner and Organisation
+powershell -Command "Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'RegisteredOwner' -Value 'Jason Gomez'"
+powershell -Command "Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'RegisteredOrganization' -Value 'Jinko Systems'"
+
+:: Enable Remote Desktop
+powershell -Command "Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0"
+powershell -Command "Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server' -Name 'updateRDStatus' -Value 1"
+powershell -Command "Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -Name 'UserAuthentication' -Value 1"
+
+:: Set dark mode
+powershell -Command "Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name 'AppsUseLightTheme' -Value 0"
+powershell -Command "Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name 'SystemUsesLightTheme' -Value 0"
+
+:: Set taskbar to align to the left
+powershell -Command "Set-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarAl' -Value 0"
 
 :: Enable Show Desktop button at right edge of the taskbar
-powershell -Command "Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name TaskbarSd -Value 1"
+powershell -Command "Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarSd' -Value 1"
 
 :: Hide dotfiles and dotdirectories in %USERPROFILE% and winfiles
 for /f %%D in ('dir /b /a:-h %USERPROFILE%\.*') do attrib +h %USERPROFILE%\%%D
