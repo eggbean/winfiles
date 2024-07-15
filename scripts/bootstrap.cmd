@@ -39,7 +39,7 @@ icacls "%USERPROFILE%\winfiles" /setowner "%USERNAME%" /t
 call "%~dp0install_packages.cmd"
 
 :: Add vim to %PATH%
-powershell -File "%~dp0setup_vim_path.ps1"
+powershell -File "%~dp0add_vim_to_path.ps1"
 
 :: Install scoop for multi-users and packages
 dir %SCOOP% >nul 2>&1
