@@ -41,7 +41,7 @@ for /f "delims={}" %%i in ('wmic systemenclosure get chassistypes ^| findstr "{"
 if "%USERNAME%" == "jason" (
     winget install -e --id 9NKSQGP7F2NH --accept-package-agreements
     winget install -e --id 9P3JFR0CLLL6 --accept-package-agreements
-    winget install -e --id Amazon.SendToKindle
+    winget install -e --id Amazon.SendToKindle --skip-dependencies
     winget install -e --id Audacity.Audacity
     winget install -e --id BrianApps.Sizer
     winget install -e --id Discord.Discord
@@ -49,7 +49,7 @@ if "%USERNAME%" == "jason" (
     winget install -e --id Google.GoogleDrive
     winget install -e --id Microsoft.PowerToys --accept-source-agreements -h --disable-interactivity --accept-package-agreements
     winget install -e --id OpenWhisperSystems.Signal
-    winget install -e --id Oracle.VirtualBox
+    winget install -e --id Oracle.VirtualBox --skip-dependencies
     winget install -e --id REALiX.HWiNFO
     winget install -e --id RustemMussabekov.Raindrop
     winget install -e --id Samsung.DeX
