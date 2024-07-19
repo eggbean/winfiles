@@ -1,6 +1,11 @@
 [user]
 	name = eggbean
 	email = 815311+eggbean@users.noreply.github.com
+[credential]
+	helper =
+	helper = C:/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+[credential "https://github.com"]
+	username = eggbean
 [core]
 	editor = \"C:\\Program Files\\vim\\Current\\vim.exe\"
 	pager = delta
@@ -104,6 +109,3 @@
 	directory = C:/ProgramData/scoop/buckets/main
 	directory = C:/ProgramData/scoop/buckets/nirsoft
 	directory = C:/ProgramData/scoop/buckets/sysinternals
-[credential]
-	helper =
-	helper = C:/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
