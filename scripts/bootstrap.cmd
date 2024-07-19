@@ -248,9 +248,16 @@ set "arguments=%~3"
 set "icon=%~4"
 set "start_in=%~5"
 set "window_style=%~6"
-if not exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\%name%.lnk" (
-    nircmd shortcut "%target%" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" "%name%" "%icon%" "%start_in%" "%arguments%" "%window_style%"
-    echo %name% startup shortcut created
+set "shortcut_path=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\%name%.lnk"
+if not exist "%shortcut_path%" (
+    nircmd shortcut "%target%" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" "%name%" "%icon%" "%start_in%" "%arguments%" "%window_style%" 2>&1
+    if %ERRORLEVEL% NEQ 0 (
+        echo Failed to create shortcut for %name%. Error code: %ERRORLEVEL%
+    ) else (
+        echo %name% startup shortcut created.
+    )
+) else (
+    echo %name% shortcut already exists. Skipping creation.
 )
 endlocal
 goto :eof
