@@ -23,7 +23,7 @@
 :: * Translate to do everything in pure PowerShell (Work In Progress)
 
 :: Check for admin privileges
-net session >nul 2>&1
+net session >NUL 2>&1
 if %ERRORLEVEL% NEQ 0 (
     echo Not admin/elevated
     exit /b 1
@@ -34,9 +34,6 @@ set PATH=%PATH%;%USERPROFILE%\winfiles\bin\
 
 :: Exclude known false positives from Windows Defender scanning
 powershell -File "%~dp0defender_whitelist.ps1"
-
-:: Take ownership of winfiles
-icacls "%USERPROFILE%\winfiles" /setowner "%USERNAME%" /t
 
 :: Install essential packages using winget
 call "%~dp0install_packages.cmd"
@@ -76,6 +73,15 @@ if not exist "%USERPROFILE%\winfiles\Settings\clink-gizmos" (
     clink installscripts "%USERPROFILE%\winfiles\Settings\clink-gizmos"
 )
 
+:: Take ownership of winfiles
+icacls "%USERPROFILE%\winfiles" /setowner "%USERNAME%" /T >NUL
+if %ERRORLEVEL% == 0 (
+    echo Taken ownership of winfiles
+) else (
+    echo Error taking ownership of winfiles
+    exit /b 1
+)
+
 :: Sparse checkout Linux dotfiles repository
 if not exist "%USERPROFILE%\.dotfiles" (
     cd "%USERPROFILE%"
@@ -83,7 +89,7 @@ if not exist "%USERPROFILE%\.dotfiles" (
     cd "%USERPROFILE%\.dotfiles"
     git sparse-checkout set --no-cone /.gitattributes .git-crypt .githooks bin/scripts config
     git checkout
-    icacls "%CD%" /setowner "%USERNAME%" /t
+    icacls "%CD%" /setowner "%USERNAME%" /T
 )
 
 :: Create symlinks between %APPDATA% and Linux dotfiles
@@ -107,7 +113,7 @@ if not exist "%USERPROFILE%\vimfiles.lnk" (
 :: Move and symlink .config
 if exist "%USERPROFILE%\.config" (
     robocopy "%USERPROFILE%\.config\" "%USERPROFILE%\winfiles\Settings\.config\" /move /e /it /im >NUL
-    rmdir "%USERPROFILE%\.config" >nul 2>&1
+    rmdir "%USERPROFILE%\.config" >NUL 2>&1
 )
 call :CreateSymlink "%USERPROFILE%\.config" "%USERPROFILE%\winfiles\Settings\.config"
 
@@ -228,7 +234,7 @@ for /f %%E in ('dir /b /a:-h "%USERPROFILE%\winfiles\.*"') do attrib +h "%USERPR
 
 :: Set clink to autorun for all users
 :: (this is done at the end as it seems to terminate the script)
-clink autorun -a install >nul 2>&1
+clink autorun -a install >NUL 2>&1
 exit /b 0
 
 :: Function to create symlink after deleting existing directory
