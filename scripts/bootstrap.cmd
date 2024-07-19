@@ -219,6 +219,9 @@ powershell -Command "Set-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\S
 powershell -Command "Set-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\Keyboard Response' -Name 'Flags' -Value 122"
 powershell -Command "Set-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\ToggleKeys' -Name 'Flags' -Value 58"
 
+:: Set global EULA acceptance for SysInternals tools
+powershell -Command "Set-ItemProperty -Path 'HKCU:\Software\Sysinternals' -Name 'EulaAccepted' -Value 1"
+
 :: Enable Windows Features
 powershell -Command "Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName 'Microsoft-Windows-Subsystem-Linux' | Out-Null"
 powershell -Command "Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName 'VirtualMachinePlatform' | Out-Null"
