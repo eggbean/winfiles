@@ -8,7 +8,7 @@ if not %ERRORLEVEL% == 0 (
 )
 
 :: Install essential packages
-winget install -e --id Git.Git
+winget install -e --id Git.Git --override "/VERYSILENT /NORESTART /NOCANCEL /SP- /CLOSEAPPLICATIONS /RESTARTAPPLICATIONS /LOADINF=git_options.ini"
 winget install -e --id Google.Chrome
 winget install -e --id Microsoft.VCRedist.2015+.x64
 winget install -e --id Microsoft.VCRedist.2015+.x86
