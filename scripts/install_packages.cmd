@@ -15,7 +15,7 @@ winget install -e --id Microsoft.VCRedist.2015+.x86
 winget install -e --id Microsoft.WindowsTerminal
 winget install -e --id Mozilla.Firefox
 winget install -e --id Mythicsoft.AgentRansack
-winget install -e --id Notion.Notion
+winget install -e --id Notion.Notion --no-upgrade
 winget install -e --id SomePythonThings.WingetUIStore --override "/SP /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /NoAutoStart /ALLUSERS /LANG=english"
 winget install -e --id WinDirStat.WinDirStat --include-unknown
 winget install -e --id XnSoft.XnViewMP
