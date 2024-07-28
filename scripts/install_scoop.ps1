@@ -53,6 +53,7 @@ $packages = @(
     'file'
     'findutils'
     'fzf'
+    'gawk'
     'gh'
     'git-crypt'
     'glow'
