@@ -169,6 +169,14 @@ if %chassistype% GEQ 8 if %chassistype% LEQ 10 (
     call :CreateStartupShortcut "MarbleScroll" "%USERPROFILE%\winfiles\bin\MarbleScroll.exe"
 )
 
+:: Install extra scoop package on ThinkPad laptops
+if %chassistype% GEQ 8 if %chassistype% LEQ 10 (
+    scoop list batteryinfoview >NUL 2>&1
+    if %ERRORLEVEL% NEQ 0 (
+        scoop install nirsoft/batteryinfoview -u -g
+    )
+)
+
 :: Install and register fonts
 pushd "%USERPROFILE%\winfiles\fonts"
 for /d %%F in (*) do (
