@@ -22,6 +22,7 @@ winget install -e --id XnSoft.XnViewMP
 winget install -e --id chrisant996.Clink
 winget install -e --id gerardog.gsudo
 winget install -e --id hluk.CopyQ
+winget install -e --id ogdesign.Eagle
 winget install -e --id qutebrowser.qutebrowser -l "C:\Program Files\qutebrowser"
 winget install -e --id vim.vim
 
