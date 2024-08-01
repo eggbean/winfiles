@@ -41,7 +41,9 @@ catch {
     Write-Host 'Enter credentials for Dashlane:'
     & $dcliPath sync
     & $dcliPath note id_ed25519 | Set-Content -Path $sshKeyPath
-    & $dcliPath logout
+    # echo y | & $dcliPath logout
+    # ^ commenting this out so there isn't any need to login
+    #   again when the next script is run to retrieve the GPG key
 
     ssh-add $sshKeyPath
     Remove-Item $sshKeyPath
