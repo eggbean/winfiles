@@ -7,6 +7,7 @@
 :: * Add vim to %PATH%
 :: * Install scoop for multi-users and packages (if not already installed)
 :: * Setup OpenSSH and retrieve SSH key from Dashlane vault
+:: * Retrieve GPG private key from Dashlane if not present in GPG keyring
 :: * Install the wedge redirector for the Chrometana Pro Chrome extension
 :: * Setup Clink, cloning relevant repositories for extra features
 :: * Sparse checkout Linux dotfiles repository
@@ -52,6 +53,9 @@ if not exist "%SCOOP%" (
 :: Setup OpenSSH and retrieve SSH key from Dashlane vault
 powershell -File "%~dp0setup_openssh.ps1"
 
+:: Retrieve GPG private key from Dashlane if not present in GPG keyring
+powershell -File "%~dp0get_gpg_key.ps1"
+
 :: Install the wedge redirector for the Chrometana Pro Chrome extension
 powershell -File "%~dp0install_wedge.ps1"
 
@@ -82,7 +86,7 @@ if %ERRORLEVEL% == 0 (
     exit /b 1
 )
 
-:: Sparse checkout Linux dotfiles repository
+:: Sparse checkout Linux dotfiles repository and decrypt
 if not exist "%USERPROFILE%\.dotfiles" (
     cd "%USERPROFILE%"
     git clone --no-checkout --depth=1 --filter=tree:0 https://github.com/eggbean/.dotfiles.git
@@ -90,6 +94,7 @@ if not exist "%USERPROFILE%\.dotfiles" (
     git sparse-checkout set --no-cone /.gitattributes .git-crypt .githooks bin/scripts config
     git checkout
     icacls "%CD%" /setowner "%USERNAME%" /T
+    git crypt unlock
 )
 
 :: Create symlinks between %APPDATA% and Linux dotfiles
