@@ -3,6 +3,7 @@ set dest=%*
 if '%dest%'=='' goto :cdd
 if qq%dest:~0,1%%dest:~-1%qq == qq""qq set dest=%dest:~1,-1%
 if '%dest:~0,1%' == '~' set dest=%USERPROFILE%%dest:~1%
+if "%dest:~-1%"=="\" set dest=%dest:~0,-1%
 set dest="%dest%"
 set OLDPWD="%cd%"
 :cdd
