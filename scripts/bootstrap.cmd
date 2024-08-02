@@ -115,6 +115,14 @@ if not exist "%USERPROFILE%\vimfiles.lnk" (
     echo vimfiles shortcut created
 )
 
+:: Make lowercase HOSTNAME environment variable as I prefer it sometimes
+if not defined HOSTNAME (
+    for /F "usebackq delims=" %%i in (`powershell -command "$env:COMPUTERNAME.ToLower()"`) do (
+        set "HOSTNAME=%%i"
+        setx HOSTNAME "%%i" /M
+    )
+)
+
 :: Write config file for LocalSend using heredoc
 if not exist "%APPDATA%\LocalSend\settings.json" (
     mkdir "%APPDATA%\LocalSend" && cd "%APPDATA%\LocalSend"
@@ -126,7 +134,7 @@ if not exist "%APPDATA%\LocalSend\settings.json" (
     echo.  "flutter.ls_quick_save": true,
     echo.  "flutter.ls_minimize_to_tray": true,
     echo.  "flutter.ls_save_window_placement": false,
-    echo.  "flutter.ls_alias": "%COMPUTERNAME%"
+    echo.  "flutter.ls_alias": "%HOSTNAME%"
     echo.}
     ) > settings.json
     type settings.json
