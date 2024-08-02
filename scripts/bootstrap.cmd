@@ -115,6 +115,23 @@ if not exist "%USERPROFILE%\vimfiles.lnk" (
     echo vimfiles shortcut created
 )
 
+:: Write config file for LocalSend using heredoc
+if not exist "%APPDATA%\LocalSend\settings.json" (
+    mkdir "%APPDATA%\LocalSend" && cd "%APPDATA%\LocalSend"
+    (
+    echo.{
+    echo.  "flutter.ls_color": "localsend",
+    echo.  "flutter.ls_share_via_link_auto_accept": true,
+    echo.  "flutter.ls_auto_finish": true,
+    echo.  "flutter.ls_quick_save": true,
+    echo.  "flutter.ls_minimize_to_tray": true,
+    echo.  "flutter.ls_save_window_placement": false,
+    echo.  "flutter.ls_alias": "%COMPUTERNAME%"
+    echo.}
+    ) > settings.json
+    type settings.json
+)
+
 :: Move and symlink .config
 if exist "%USERPROFILE%\.config" (
     robocopy "%USERPROFILE%\.config\" "%USERPROFILE%\winfiles\Settings\.config\" /move /e /it /im >NUL
