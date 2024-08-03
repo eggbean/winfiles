@@ -269,6 +269,10 @@ powershell -Command "Enable-WindowsOptionalFeature -NoRestart -Online -FeatureNa
 powershell -Command "Disable-WindowsOptionalFeature -NoRestart -Online -FeatureName 'WindowsMediaPlayer' | Out-Null"
 powershell -Command "Disable-WindowsOptionalFeature -NoRestart -Online -FeatureName 'Printing-XPSServices-Features' | Out-Null"
 
+:: Disable IPv6 on main network adaptors as it increases webpage loading speed for me
+powershell -Command "Disable-NetAdapterBinding -Name "Ethernet" -ComponentID ms_tcpip6"
+powershell -Command "Disable-NetAdapterBinding -Name "WiFi" -ComponentID ms_tcpip6"
+
 :: Hide dotfiles and dotdirectories in %USERPROFILE% and winfiles
 for /f %%D in ('dir /b /a:-h "%USERPROFILE%\.*"') do attrib +h "%USERPROFILE%\%%D"
 for /f %%E in ('dir /b /a:-h "%USERPROFILE%\winfiles\.*"') do attrib +h "%USERPROFILE%\winfiles\%%E"
