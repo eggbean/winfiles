@@ -187,7 +187,7 @@ for /f "delims={}" %%i in ('wmic systemenclosure get chassistypes ^| findstr "{"
 call :CreateStartupShortcut "CopyQ" "C:\Program Files\CopyQ\copyq.exe"
 call :CreateStartupShortcut "Sizer" "C:\Program Files (x86)\Sizer\sizer.exe"
 call :CreateStartupShortcut "SylphyHorn" "%USERPROFILE%\winfiles\SylphyHorn\SylphyHorn.exe"
-call :CreateStartupShortcut "Quake Terminal" "%LOCALAPPDATA%\Microsoft\WindowsApps\wt.exe" "-w _quake -p ~qCommand Prompt~q" "%USERPROFILE%\winfiles\icons\app_icons\terminal.ico" "" "min"
+call :CreateStartupShortcut "Quake Terminal" "%LOCALAPPDATA%\Microsoft\WindowsApps\wt.exe" "-w _quake -p \"Command Prompt\"" "%USERPROFILE%\winfiles\icons\app_icons\terminal.ico" "" "min"
 
 :: Create startup shortcut for tpmiddle-rs on ThinkStation desktops
 if %chassistype% GEQ 3 if %chassistype% LEQ 7 (
@@ -301,7 +301,7 @@ set "start_in=%~5"
 set "window_style=%~6"
 set "shortcut_path=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\%name%.lnk"
 if not exist "%shortcut_path%" (
-    nircmd shortcut "%target%" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" "%name%" "%icon%" "%start_in%" "%arguments%" "%window_style%" 2>&1
+    nircmd shortcut "%target%" "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup" "%name%" "%icon%" "%start_in%" "\"%arguments%\"" "%window_style%" 2>&1
     if %ERRORLEVEL% NEQ 0 (
         echo Failed to create shortcut for %name%. Error code: %ERRORLEVEL%
     ) else (
