@@ -37,7 +37,13 @@ set PATH=%PATH%;%USERPROFILE%\winfiles\bin\
 powershell -File "%~dp0defender_whitelist.ps1"
 
 :: Install essential packages using winget
-call "%~dp0install_packages.cmd"
+set "SKIP_PACKAGES=false"
+if "%~1" == "--skip-packages" (
+    set "SKIP_PACKAGES=true"
+)
+if "%SKIP_PACKAGES%" == "false" (
+    call "%~dp0install_packages.cmd"
+)
 
 :: Set icons for various folders
 call "%~dp0fix_icons.cmd"
