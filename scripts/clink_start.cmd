@@ -48,6 +48,7 @@ doskey zi=zi :: get highlighted in red in the interactive shell
 doskey za=zoxide add $*
 doskey screenoff=nircmd monitor async_off
 doskey battery=batteryinfoview
+doskey google=explorer "https://www.google.com/search?q=$*"
 
 :HomeStart
 if %CD%==C:\Windows\System32 (
