@@ -284,10 +284,47 @@ exit /b 0
 
 :: Function to create symlink after deleting existing directory
 :CreateSymlink
-if exist "%1" (
-    rmdir /s /q "%1"
+setlocal
+set "link=%~1"
+set "target=%~2"
+
+echo Creating symlink from "%link%" to "%target%"
+if exist "%link%" (
+    if exist "%link%\*" (
+        echo "%link%" exists and is a directory.
+        if not exist "%link%\*" (
+            echo "%link%" is not a symlink, deleting directory...
+            rmdir /S /Q "%link%"
+            if exist "%link%" (
+                echo Failed to delete directory "%link%". Error code: %ERRORLEVEL%
+                endlocal
+                goto :eof
+            )
+        )
+    ) else (
+        echo "%link%" exists and is a file.
+        if not exist "%link%\*" (
+            echo "%link%" is not a symlink, deleting file...
+            del /Q "%link%"
+            if exist "%link%" (
+                echo Failed to delete file "%link%". Error code: %ERRORLEVEL%
+                endlocal
+                goto :eof
+            )
+        )
+    )
 )
-mklink /d "%1" "%2"
+if exist "%target%\*" (
+    mklink /D "%link%" "%target%"
+) else (
+    mklink "%link%" "%target%"
+)
+if %ERRORLEVEL% NEQ 0 (
+    echo Failed to create symlink for %link%. Error code: %ERRORLEVEL%
+) else (
+    echo Symlink for %link% created.
+)
+endlocal
 goto :eof
 
 :: Function to create a startup shortcut using nircmd
