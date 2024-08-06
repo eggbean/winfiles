@@ -2,6 +2,7 @@
 
 set HOME=%USERPROFILE%
 set GIT_SSH=C:\Windows\System32\OpenSSH\ssh.exe
+set GIT_CONFIG_GLOBAL=%USERPROFILE%\.config\git\win.config
 set SCOOP=C:\ProgramData\scoop
 set GNUPGHOME=%APPDATA%\gnupg
 set LESSHISTFILE=%APPDATA%\_lesshst
