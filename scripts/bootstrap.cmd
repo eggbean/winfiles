@@ -153,6 +153,9 @@ if exist "%USERPROFILE%\.config" (
 )
 call :CreateSymlink "%USERPROFILE%\.config" "%USERPROFILE%\winfiles\Settings\.config"
 
+:: Create symlink for gitconfig from Linux dotfiles repository
+call :CreateSymlink "%USERPROFILE%\.config\git" "%USERPROFILE%\.dotfiles\config\.config\git"
+
 :: Symlink other dotfiles
 for %%S in (.digrc .envrc .profile .ripgreprc) do (
     call :CreateSymlink "%USERPROFILE%\%%S" "%USERPROFILE%\winfiles\Settings\%%S"
