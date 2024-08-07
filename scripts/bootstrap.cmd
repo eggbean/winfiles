@@ -15,6 +15,7 @@
 :: * Create symlink for vimfiles from Linux dotfiles repository
 :: * Create symlinks for configs in this repo to %HOME% and %LOCALAPPDATA%
 :: * Make startup shortcuts for some systray applications
+:: * Fix missing StartMenu Shortcuts if package was installed using another account
 :: * Install and register fonts
 :: * Set various OS settings through the registry
 :: * Enable and Disable Windows Features
@@ -207,6 +208,9 @@ if %chassistype% GEQ 3 if %chassistype% LEQ 7 (
 if %chassistype% GEQ 8 if %chassistype% LEQ 10 (
     call :CreateStartupShortcut "MarbleScroll" "%USERPROFILE%\winfiles\bin\MarbleScroll.exe"
 )
+
+:: Fix missing StartMenu Shortcuts if package was installed using another account
+call "%~dp0fix_missing_startmenu_shortcuts.cmd"
 
 :: Install extra scoop package on ThinkPad laptops
 if %chassistype% GEQ 8 if %chassistype% LEQ 10 (
