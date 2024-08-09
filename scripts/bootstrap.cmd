@@ -105,11 +105,12 @@ if not exist "%USERPROFILE%\.dotfiles" (
 )
 
 :: Create symlinks between %APPDATA% and Linux dotfiles
-call :CreateSymlink "%APPDATA%\gnupg" "%USERPROFILE%\.dotfiles\config\.gnupg"
-call :CreateSymlink "%APPDATA%\copyq" "%USERPROFILE%\.dotfiles\config\.config\copyq"
-call :CreateSymlink "%APPDATA%\XnViewMP" "%USERPROFILE%\.dotfiles\config\.config\XnViewMP"
 call :CreateSymlink "%APPDATA%\GitHub CLI" "%USERPROFILE%\.dotfiles\config\.config\gh"
+call :CreateSymlink "%APPDATA%\XnViewMP" "%USERPROFILE%\.dotfiles\config\.config\XnViewMP"
+call :CreateSymlink "%APPDATA%\copyq" "%USERPROFILE%\.dotfiles\config\.config\copyq"
+call :CreateSymlink "%APPDATA%\gnupg" "%USERPROFILE%\.dotfiles\config\.gnupg"
 call :CreateSymlink "%APPDATA%\mpv" "%USERPROFILE%\.dotfiles\config\.config\mpv"
+call :CreateSymlink "%APPDATA%\tlrc" "%USERPROFILE%\.dotfiles\config\.config\tlrc"
 call :CreateSymlink "%APPDATA%\qutebrowser\config" "%USERPROFILE%\.dotfiles\config\.config\qutebrowser"
 
 :: Create symlink for vimfiles from Linux dotfiles repository
