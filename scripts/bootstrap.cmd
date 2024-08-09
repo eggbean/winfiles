@@ -64,7 +64,9 @@ powershell -File "%~dp0setup_openssh.ps1"
 powershell -File "%~dp0get_gpg_key.ps1"
 
 :: Install the wedge redirector for the Chrometana Pro Chrome extension
-powershell -File "%~dp0install_wedge.ps1"
+if "%SKIP_PACKAGES%" == "false" (
+    powershell -File "%~dp0install_wedge.ps1"
+)
 
 :: Setup Clink, cloning relevant repositores for extra features
 if not exist "%LOCALAPPDATA%\clink" (
