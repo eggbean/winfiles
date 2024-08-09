@@ -87,6 +87,7 @@ $packages = @(
     'sysinternals/regjump'
     'sysinternals/sdelete'
     'sysinternals/shellrunas'
+    'tlrc'
     'tre-command'
     'unzip'
     'wakemeonlan'
