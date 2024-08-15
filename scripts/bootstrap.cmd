@@ -290,6 +290,11 @@ powershell -Command "Disable-WindowsOptionalFeature -NoRestart -Online -FeatureN
 powershell -Command "Disable-NetAdapterBinding -Name "Ethernet" -ComponentID ms_tcpip6"
 powershell -Command "Disable-NetAdapterBinding -Name "WiFi" -ComponentID ms_tcpip6"
 
+:: Change PrtSc key to Context Menu key and AltGr to Alt
+if %chassistype% GEQ 8 if %chassistype% LEQ 10 (
+    powershell -Command "Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout' -Name 'Scancode Map' -Value [byte[]](0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x5d,0xe0,0x37,0xe0,0x38,0x00,0x38,0xe0,0x00,0x00,0x00,0x00) -Type Binary"
+)
+
 :: Hide dotfiles and dotdirectories in %USERPROFILE% and winfiles
 for /f %%D in ('dir /b /a:-h "%USERPROFILE%\.*"') do attrib +h "%USERPROFILE%\%%D"
 for /f %%E in ('dir /b /a:-h "%USERPROFILE%\winfiles\.*"') do attrib +h "%USERPROFILE%\winfiles\%%E"
