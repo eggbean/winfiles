@@ -49,12 +49,20 @@
     <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">false</Value>
   </KeyValueOfstringanyType>
   <KeyValueOfstringanyType>
+    <Key>GeneralSettings.LoopDesktop</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">false</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
     <Key>GeneralSettings.NotificationWhenSwitchedDesktop</Key>
     <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">false</Value>
   </KeyValueOfstringanyType>
   <KeyValueOfstringanyType>
     <Key>GeneralSettings.NotificationWindowStyle</Key>
     <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:unsignedInt">4</Value>
+  </KeyValueOfstringanyType>
+  <KeyValueOfstringanyType>
+    <Key>GeneralSettings.OverrideWindowsDefaultKeyCombination</Key>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">false</Value>
   </KeyValueOfstringanyType>
   <KeyValueOfstringanyType>
     <Key>GeneralSettings.Placement</Key>
@@ -66,7 +74,7 @@
   </KeyValueOfstringanyType>
   <KeyValueOfstringanyType>
     <Key>GeneralSettings.TrayShowDesktop</Key>
-    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">false</Value>
+    <Value xmlns:d3p1="http://www.w3.org/2001/XMLSchema" i:type="d3p1:boolean">true</Value>
   </KeyValueOfstringanyType>
   <KeyValueOfstringanyType>
     <Key>GeneralSettings.TrayShowOnlyCurrentNumber</Key>
