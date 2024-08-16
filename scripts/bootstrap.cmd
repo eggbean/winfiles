@@ -110,10 +110,11 @@ if not exist "%USERPROFILE%\.dotfiles" (
 call :CreateSymlink "%APPDATA%\GitHub CLI" "%USERPROFILE%\.dotfiles\config\.config\gh"
 call :CreateSymlink "%APPDATA%\XnViewMP" "%USERPROFILE%\.dotfiles\config\.config\XnViewMP"
 call :CreateSymlink "%APPDATA%\copyq" "%USERPROFILE%\.dotfiles\config\.config\copyq"
+call :CreateSymlink "%APPDATA%\geoipupdate" "%USERPROFILE%\.dotfiles\config\.config\geoipupdate"
 call :CreateSymlink "%APPDATA%\gnupg" "%USERPROFILE%\.dotfiles\config\.gnupg"
 call :CreateSymlink "%APPDATA%\mpv" "%USERPROFILE%\.dotfiles\config\.config\mpv"
-call :CreateSymlink "%APPDATA%\tlrc" "%USERPROFILE%\.dotfiles\config\.config\tlrc"
 call :CreateSymlink "%APPDATA%\qutebrowser\config" "%USERPROFILE%\.dotfiles\config\.config\qutebrowser"
+call :CreateSymlink "%APPDATA%\tlrc" "%USERPROFILE%\.dotfiles\config\.config\tlrc"
 
 :: Create symlink for vimfiles from Linux dotfiles repository
 call :CreateSymlink "%USERPROFILE%\vimfiles" "%USERPROFILE%\.dotfiles\config\.config\vim"

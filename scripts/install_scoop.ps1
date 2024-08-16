@@ -54,6 +54,7 @@ $packages = @(
     'findutils'
     'fzf'
     'gawk'
+    'geoipupdate'
     'gh'
     'git-crypt'
     'glow'
