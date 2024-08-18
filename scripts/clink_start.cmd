@@ -29,9 +29,11 @@ doskey which=where $*
 doskey take=mkdir $1 $T cd $1
 doskey qutebrowser="C:\Program Files\qutebrowser\qutebrowser.exe" $*
 doskey qb="C:\Program Files\qutebrowser\qutebrowser.exe" $*
-doskey copyq="C:\Program Files (x86)\CopyQ\copyq.exe" $*
-doskey ls=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd $*
-doskey ll=%USERPROFILE%\winfiles\scripts\eza-wrapper.cmd -l $*
+doskey copyq="C:\Program Files\CopyQ\copyq.exe" $*
+doskey ls=eza-wrapper.cmd $*
+doskey ll=eza-wrapper.cmd -l $*
+doskey scoop=scoop-wrapper.cmd $*
+doskey google=explorer "https://www.google.com/search?q=$*"
 if not exist "%SCOOP%\shims\scoop.cmd" (
     echo scoop not installed
     goto :HomeStart
@@ -50,7 +52,6 @@ doskey zi=zi :: get highlighted in red in the interactive shell
 doskey za=zoxide add $*
 doskey screenoff=nircmd monitor async_off
 doskey battery=batteryinfoview
-doskey google=explorer "https://www.google.com/search?q=$*"
 
 :HomeStart
 if %CD%==C:\Windows\System32 (
