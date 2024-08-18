@@ -94,6 +94,7 @@ $packages = @(
     'wakemeonlan'
     'wget'
     'whois'
+    'xmllint'
     'zoxide'
 )
 
