@@ -47,7 +47,7 @@ if "%USERNAME%" == "jason" (
     winget install -e --id Amazon.SendToKindle --skip-dependencies
     winget install -e --id Audacity.Audacity
     winget install -e --id BrianApps.Sizer
-    winget install -e --id Discord.Discord
+    winget install -e --id Discord.Discord --no-upgrade
     winget install -e --id GnuPG.Gpg4win
     winget install -e --id Google.GoogleDrive
     winget install -e --id M2Team.NanaZip
