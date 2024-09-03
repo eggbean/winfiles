@@ -50,6 +50,7 @@ if "%USERNAME%" == "jason" (
     winget install -e --id Discord.Discord --no-upgrade
     winget install -e --id GnuPG.Gpg4win
     winget install -e --id Google.GoogleDrive
+    winget install -e --id Hashicorp.Vagrant
     winget install -e --id M2Team.NanaZip
     winget install -e --id Microsoft.PowerToys --accept-source-agreements -h --disable-interactivity --accept-package-agreements
     winget install -e --id OpenWhisperSystems.Signal
