@@ -35,6 +35,7 @@ scoop update * -g
 
 # Install packages
 $packages = @(
+    'busybox'
     'uutils-coreutils'
     'bat'
     'bind'
@@ -108,4 +109,74 @@ if (Test-ScoopInstalled) {
     foreach ($package in $packages) {
         scoop reset $package
     }
+}
+
+# Hide shims
+$hide_shims = @(
+    'ar'
+    'ash'
+    'bash'
+    'bunzip2'
+    'busybox'
+    'bzcat'
+    'bzip2'
+    'cal'
+    'chmod'
+    'clear'
+    'cpio'
+    'dc'
+    'dpkg'
+    'dpkg-deb'
+    'ed'
+    'fsync'
+    'ftpget'
+    'ftpput'
+    'getopt'
+    'groups'
+    'gunzip'
+    'gzip'
+    'hd'
+    'hexdump'
+    'httpd'
+    'iconv'
+    'id'
+    'ipcalc'
+    'kill'
+    'killall'
+    'logname'
+    'lzcat'
+    'lzma'
+    'lzop'
+    'lzopcat'
+    'man'
+    'pgrep'
+    'pidof'
+    'pipe_progress'
+    'pkill'
+    'ps'
+    'reset'
+    'rpm'
+    'rpm2cpio'
+    'sh'
+    'ssl_client'
+    'su'
+    'ttysize'
+    'uncompress'
+    'unlzma'
+    'unlzop'
+    'unxz'
+    'usleep'
+    'uudecode'
+    'uuencode'
+    'vi'
+    'which'
+    'xxd'
+    'xz'
+    'xzcat'
+    'zcat'
+)
+
+foreach ($shim in $hide_shims) {
+    scoop shim rm $shim
+    Write-Host "Shim for $shim deleted."
 }
