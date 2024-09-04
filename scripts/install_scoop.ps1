@@ -8,17 +8,20 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 
 # Check if scoop is installed
 Function Test-ScoopInstalled {
-    $scoopExists = Get-Command scoop -ErrorAction SilentlyContinue
-    return $scoopExists -ne $null
+    $scoopPath = "C:\ProgramData\Scoop"
+    return (Test-Path $scoopPath)
 }
+$initiallyInstalled = Test-ScoopInstalled
 
 # Install scoop for all users if not installed
-if (-NOT (Test-ScoopInstalled)) {
-    $SCOOP = "C:\ProgramData\scoop"
-    [Environment]::SetEnvironmentVariable("SCOOP", "C:\ProgramData\scoop", "Machine")
+if (-NOT $initiallyInstalled) {
+    $env:SCOOP = "C:\ProgramData\Scoop"
+    $env:SCOOP_GLOBAL = "C:\ProgramData\Scoop"
+    [Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'Machine')
+    [Environment]::SetEnvironmentVariable('SCOOP_GLOBAL', $env:SCOOP_GLOBAL, 'Machine')
     Set-ExecutionPolicy RemoteSigned -scope CurrentUser
     iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
-    icacls $SCOOP /grant "Users:(OI)(CI)F" /T
+    icacls $env:SCOOP /grant "Users:(OI)(CI)F" /T
 
     # Install aria2c for multi-connection downloads
     scoop install aria2 -u -g
@@ -29,9 +32,6 @@ if (-NOT (Test-ScoopInstalled)) {
     scoop bucket add nirsoft
     scoop bucket add sysinternals
 }
-
-# Update scoop
-scoop update * -g
 
 # Install packages
 $packages = @(
@@ -67,6 +67,7 @@ $packages = @(
     'mediainfo'
     'minio-client'
     'monolith'
+    'nirsoft/batteryinfoview'
     'nirsoft/browsinghistoryview'
     'nirsoft/filetypesman'
     'nirsoft/hotkeyslist'
@@ -84,6 +85,7 @@ $packages = @(
     'spotify-tui'
     'starship'
     'sysinternals/autoruns'
+    'sysinternals/handle'
     'sysinternals/psexec'
     'sysinternals/psshutdown'
     'sysinternals/regjump'
@@ -105,14 +107,15 @@ foreach ($package in $packages) {
 
 # Reset shims in order of package list
 # if scoop was already installed
-if (Test-ScoopInstalled) {
+if ($initiallyInstalled) {
+    scoop update * -g
     foreach ($package in $packages) {
         scoop reset $package
     }
 }
 
-# Hide shims
-$hide_shims = @(
+# Delete irrelevant/unwanted shims from busybox
+$del_shims = @(
     'ar'
     'ash'
     'bash'
@@ -140,7 +143,6 @@ $hide_shims = @(
     'httpd'
     'iconv'
     'id'
-    'ipcalc'
     'kill'
     'killall'
     'logname'
@@ -176,7 +178,6 @@ $hide_shims = @(
     'zcat'
 )
 
-foreach ($shim in $hide_shims) {
-    scoop shim rm $shim
-    Write-Host "Shim for $shim deleted."
+foreach ($shim in $del_shims) {
+    scoop shim rm $shim -g
 }
