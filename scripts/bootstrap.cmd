@@ -122,7 +122,13 @@ attrib /l +h "%USERPROFILE%\vimfiles"
 
 :: Create vimfiles shortcut
 if not exist "%USERPROFILE%\vimfiles.lnk" (
-    nircmd shortcut "%USERPROFILE%\.dotfiles\config\.config\vim" "%USERPROFILE%" vimfiles "%USERPROFILE%\winfiles\icons\my_icons\vimfiles.ico"
+    powershell -Command "^
+    $ws = New-Object -ComObject WScript.Shell; ^
+    $s = $ws.CreateShortcut(\"$env:USERPROFILE\vimfiles.lnk\"); ^
+    $s.TargetPath = \"$env:USERPROFILE\.dotfiles\config\.config\vim\"; ^
+    $s.IconLocation = \"$env:USERPROFILE\winfiles\icons\my_icons\vimfiles.ico\"; ^
+    $s.Save()^
+    "
     echo vimfiles shortcut created
 )
 
