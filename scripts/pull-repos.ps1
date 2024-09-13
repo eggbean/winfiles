@@ -2,8 +2,8 @@
 $REPO_DIRS = @(
     "$env:USERPROFILE\Documents\Chrome Extensions\bypass-paywalls-chrome-clean",
     "$env:USERPROFILE\Documents\Chrome Extensions\bypass-paywalls-chrome-master",
-    "$env:USERPROFILE\winfiles\Settings\clink-completions",
-    "$env:USERPROFILE\winfiles\Settings\clink-gizmos",
+    "$env:USERPROFILE\winfiles\Clink\clink-completions",
+    "$env:USERPROFILE\winfiles\Clink\clink-gizmos",
     "$env:USERPROFILE\winfiles",
     "$env:USERPROFILE\.dotfiles"
 )
