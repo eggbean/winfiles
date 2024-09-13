@@ -61,11 +61,11 @@ attrib +a +s +h desktop.ini
 attrib +r %CD%
 popd
 
-:: Set icons folder icon
-pushd %USERPROFILE%\winfiles\icons
+:: Set clink folder icon
+pushd %USERPROFILE%\winfiles\Clink
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\Apps Folder.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\Batch Folder Icon.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
 attrib +r %CD%
 popd
@@ -74,7 +74,16 @@ popd
 pushd %USERPROFILE%\winfiles\fonts
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\font.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\fonts.ico,0 >> desktop.ini
+attrib +a +s +h desktop.ini
+attrib +r %CD%
+popd
+
+:: Set icons folder icon
+pushd %USERPROFILE%\winfiles\icons
+del /a ash desktop.ini
+echo [.ShellClassInfo] > desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\Apps Folder.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
 attrib +r %CD%
 popd
@@ -115,11 +124,20 @@ attrib +a +s +h desktop.ini
 attrib +r %CD%
 popd
 
+:: Set SylphyHorn folder icon
+pushd %USERPROFILE%\winfiles\SylphyHorn
+del /a ash desktop.ini
+echo [.ShellClassInfo] > desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\Batch Folder Icon.ico,0 >> desktop.ini
+attrib +a +s +h desktop.ini
+attrib +r %CD%
+popd
+
 :: Set windows terminal settings folder icon
 pushd %USERPROFILE%\winfiles\Windows_Terminal
 del /a ash desktop.ini
 echo [.ShellClassInfo] > desktop.ini
-echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\Batch Folder Icon.ico,0 >> desktop.ini
+echo IconResource=%%USERPROFILE%%\winfiles\icons\my_icons\terminal.ico,0 >> desktop.ini
 attrib +a +s +h desktop.ini
 attrib +r %CD%
 popd
