@@ -163,6 +163,7 @@ if exist "%USERPROFILE%\.config" (
     rmdir "%USERPROFILE%\.config" >NUL 2>&1
 )
 call :CreateSymlink "%USERPROFILE%\.config" "%USERPROFILE%\winfiles\Settings\.config"
+powershell -Command "Set-ItemProperty -Path "$env:USERPROFILE\.config" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)"
 
 :: Create symlink for git config from Linux dotfiles repository
 call :CreateSymlink "%USERPROFILE%\.config\git" "%USERPROFILE%\.dotfiles\config\.config\git"
