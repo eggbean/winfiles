@@ -73,17 +73,17 @@ if not exist "%LOCALAPPDATA%\clink" (
     mkdir "%LOCALAPPDATA%\clink"
 )
 call :CreateSymlink "%LOCALAPPDATA%\clink\clink_start.cmd" "%USERPROFILE%\winfiles\scripts\clink_start.cmd"
-call :CreateSymlink "%LOCALAPPDATA%\clink\clink_settings" "%USERPROFILE%\winfiles\Settings\clink_settings"
-call :CreateSymlink "%LOCALAPPDATA%\clink\_inputrc" "%USERPROFILE%\winfiles\Settings\_inputrc"
+call :CreateSymlink "%LOCALAPPDATA%\clink\clink_settings" "%USERPROFILE%\winfiles\Clink\clink_settings"
+call :CreateSymlink "%LOCALAPPDATA%\clink\_inputrc" "%USERPROFILE%\winfiles\Clink\_inputrc"
 
 if defined CLINK_COMPLETIONS_DIR if not exist "%CLINK_COMPLETIONS_DIR%" (
-    git clone https://github.com/vladimir-kotikov/clink-completions.git "%USERPROFILE%\winfiles\Settings\clink-completions"
-    clink installscripts "%USERPROFILE%\winfiles\Settings\clink-completions"
+    git clone https://github.com/vladimir-kotikov/clink-completions.git "%USERPROFILE%\winfiles\Clink\clink-completions"
+    "C:\Program Files (x86)\clink\clink_x64.exe" installscripts "%USERPROFILE%\winfiles\Clink\clink-completions"
 )
 
-if not exist "%USERPROFILE%\winfiles\Settings\clink-gizmos" (
-    git clone https://github.com/chrisant996/clink-gizmos.git "%USERPROFILE%\winfiles\Settings\clink-gizmos"
-    clink installscripts "%USERPROFILE%\winfiles\Settings\clink-gizmos"
+if not exist "%USERPROFILE%\winfiles\Clink\clink-gizmos" (
+    git clone https://github.com/chrisant996/clink-gizmos.git "%USERPROFILE%\winfiles\Clink\clink-gizmos"
+    "C:\Program Files (x86)\clink\clink_x64.exe" installscripts "%USERPROFILE%\winfiles\Clink\clink-gizmos"
 )
 
 :: Take ownership of winfiles
