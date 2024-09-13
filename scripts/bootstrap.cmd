@@ -170,7 +170,7 @@ call :CreateSymlink "%USERPROFILE%\.config\git" "%USERPROFILE%\.dotfiles\config\
 setx GIT_CONFIG_GLOBAL "%USERPROFILE%\.config\git\win.config"
 
 :: Symlink other dotfiles
-for %%S in (.digrc .envrc .profile .ripgreprc) do (
+for %%S in (.digrc .envrc .profile) do (
     call :CreateSymlink "%USERPROFILE%\%%S" "%USERPROFILE%\winfiles\Settings\%%S"
 )
 
