@@ -43,6 +43,11 @@ if "%~1" == "--skip-packages" (
     set "SKIP_PACKAGES=true"
 )
 if "%SKIP_PACKAGES%" == "false" (
+    :: if first run, uninstall git so that
+    :: it's reinstalled with my specified options
+    if not exist "%USERPROFILE%\winfiles\Clink\clink-gizmos" (
+        winget uninstall -e --id Git.Git
+    )
     call "%~dp0install_packages.cmd"
 )
 
