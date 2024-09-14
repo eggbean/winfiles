@@ -95,7 +95,7 @@ $packages = @(
     'tre-command'
     'unzip'
     'wakemeonlan'
-    'wget'
+    'wget2'
     'whois'
     'xmllint'
     'zoxide'
