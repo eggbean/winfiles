@@ -1,6 +1,9 @@
 # PowerShell script to install scoop for multi-user and packages.
-# If scoop is already installed, any additional packages are installed
-# and shims are reset in order of the package list.
+# If re-run when scoop is already installed, any additional packages
+# are installed and shims are reset in order of the package list.
+# I prefer to keep user and global packages as the same, so there's
+# a minor inconvenience in some situations where packages will
+# be listed twice with global commands.
 
 # Test if Admin
 if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))
@@ -60,7 +63,6 @@ $packages = @(
     'git-crypt'
     'glow'
     'grep'
-    'iperf3'
     'jq'
     'less'
     'lf'
