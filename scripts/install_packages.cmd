@@ -69,5 +69,6 @@ if "%USERNAME%" == "jason" (
     winget install -e --id WiresharkFoundation.Wireshark
     winget install -e --id Xanashi.Icaros --source winget
     winget install -e --id XnSoft.XnViewMP
+    winget install -e --id ente-io.auth-desktop --skip-dependencies
     winget install -e --id qBittorrent.qBittorrent
 )
