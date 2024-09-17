@@ -19,6 +19,7 @@
 :: * Install and register fonts
 :: * Set various OS settings through the registry
 :: * Enable and Disable Windows Features
+:: * Make Explorer window titlebars and borders thinner
 :: * Hide dotfiles and dotdirectories in %USERPROFILE% and winfiles
 
 :: TO DO:
@@ -301,6 +302,9 @@ powershell -Command "Disable-NetAdapterBinding -Name "WiFi" -ComponentID ms_tcpi
 if %chassistype% GEQ 8 if %chassistype% LEQ 10 (
     powershell -Command "Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout' -Name 'Scancode Map' -Value [byte[]](0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x03,0x00,0x00,0x00,0x5d,0xe0,0x37,0xe0,0x38,0x00,0x38,0xe0,0x00,0x00,0x00,0x00) -Type Binary"
 )
+
+:: Make Explorer window titlebars and borders thinner
+powershell -File "%~dp0make_explorer_titlebars_thinner.ps1"
 
 :: Hide dotfiles and dotdirectories in %USERPROFILE% and winfiles
 for /f %%D in ('dir /b /a:-h "%USERPROFILE%\.*"') do attrib +h "%USERPROFILE%\%%D"
