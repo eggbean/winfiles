@@ -70,6 +70,7 @@ powershell -Command "Set-ItemProperty -Path "$env:USERPROFILE\.ssh" -Name Attrib
 
 :: Retrieve GPG private key from Dashlane if not present in GPG keyring
 powershell -File "%~dp0get_gpg_key.ps1"
+echo y | dcli logout >NUL
 
 :: Install the wedge redirector for the Chrometana Pro Chrome extension
 if "%SKIP_PACKAGES%" == "false" (
