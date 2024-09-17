@@ -65,6 +65,8 @@ if not exist "%SCOOP%" (
 
 :: Setup OpenSSH and retrieve SSH key from Dashlane vault
 powershell -File "%~dp0setup_openssh.ps1"
+mklink /d "%USERPROFILE%\.ssh" "%USERPROFILE%\winfiles\Settings\.ssh"
+powershell -Command "Set-ItemProperty -Path "$env:USERPROFILE\.ssh" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)"
 
 :: Retrieve GPG private key from Dashlane if not present in GPG keyring
 powershell -File "%~dp0get_gpg_key.ps1"
