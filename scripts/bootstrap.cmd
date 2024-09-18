@@ -177,6 +177,15 @@ for %%S in (.digrc .envrc .profile) do (
     call :CreateSymlink "%USERPROFILE%\%%S" "%USERPROFILE%\winfiles\Settings\%%S"
 )
 
+:: Symlink OnePhotoViewer Pro config
+if not exist "%LOCALAPPDATA%\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer" (
+    mkdir "%LOCALAPPDATA%\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer"
+)
+if exist "%LOCALAPPDATA%\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config" (
+    del "%LOCALAPPDATA%\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config"
+)
+mklink "%LOCALAPPDATA%\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config" "%USERPROFILE%\winfiles\Settings\OnePhotoViewer.config"
+
 :: Symlink WinSCP config
 if not exist "%LOCALAPPDATA%\Programs\WinSCP" (
     mkdir "%LOCALAPPDATA%\Programs\WinSCP"
