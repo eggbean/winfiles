@@ -22,6 +22,21 @@ if ($service.Status -ne 'Running') {
     Write-Host 'ssh-agent service started'
 }
 
+# Create ssh directory
+$sshDir = Join-Path -Path $env:USERPROFILE -ChildPath ".ssh"
+
+if (-not (Test-Path -Path $sshDir)) {
+    New-Item -ItemType Directory -Path $sshDir
+}
+
+# Disable inheritance from parent and grant full control to the current
+# user and SYSTEM, with permissions inherited by all files and subdirectories
+icacls $sshDir /inheritance:d | Out-Null
+icacls $sshDir /inheritance:r | Out-Null
+$currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+icacls $sshDir /grant:r "${currentUser}:(OI)(CI)(F)" | Out-Null
+icacls $sshDir /grant:r "SYSTEM:(OI)(CI)(F)" | Out-Null
+
 # Get key from Dashlane CLI if not loaded in ssh-agent
 try {
     $sshKeysLoaded = ssh-add -l
@@ -31,11 +46,6 @@ try {
 }
 catch {
     $sshKeyPath = Join-Path -Path $env:USERPROFILE -ChildPath ".ssh\id_ed25519"
-    $sshDir = Join-Path -Path $env:USERPROFILE -ChildPath ".ssh"
-
-    if (-not (Test-Path -Path $sshDir)) {
-        New-Item -ItemType Directory -Path $sshDir
-    }
 
     $dcliPath = Join-Path -Path $env:USERPROFILE -ChildPath "winfiles\bin\dcli.exe"
     Write-Host 'Enter credentials for Dashlane:'
