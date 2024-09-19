@@ -177,3 +177,7 @@ match.expand_envvars = True
 # type: boolean
 match.substring = True
 
+# name: Show a tip when Clink starts
+# type: boolean
+tips.enable = True
+
