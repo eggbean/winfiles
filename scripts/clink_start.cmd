@@ -3,7 +3,6 @@
 set HOME=%USERPROFILE%
 set GIT_SSH=C:\Windows\System32\OpenSSH\ssh.exe
 set GIT_CONFIG_GLOBAL=%USERPROFILE%\.config\git\win.config
-set SCOOP=C:\ProgramData\scoop
 set GNUPGHOME=%APPDATA%\gnupg
 set LESSHISTFILE=%APPDATA%\_lesshst
 set LESS=-MRQx4F#10
@@ -21,7 +20,6 @@ set LS_COLORS=no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;
 
 doskey startmenu=pushd %APPDATA%\Microsoft\Windows\Start Menu\Programs
 doskey sudo=gsudo $*
-doskey cd=cdd.cmd $*
 doskey vi=vim $*
 doskey vimdiff=vim -d $*
 doskey vihosts=sudo gvim C:\Windows\System32\Drivers\etc\hosts
@@ -31,14 +29,15 @@ doskey take=mkdir $1 $T cd $1
 doskey qutebrowser="C:\Program Files\qutebrowser\qutebrowser.exe" $*
 doskey qb="C:\Program Files\qutebrowser\qutebrowser.exe" $*
 doskey copyq="C:\Program Files\CopyQ\copyq.exe" $*
-doskey ls=eza-wrapper.cmd $*
-doskey ll=eza-wrapper.cmd -l $*
-doskey scoop=scoop-wrapper.cmd $*
 doskey google=explorer "https://www.google.com/search?q=$*"
 if not exist "%SCOOP%\shims\scoop.cmd" (
     echo scoop not installed
     goto :HomeStart
 )
+doskey scoop=scoop-wrapper.cmd $*
+doskey cd=cdd.cmd $*
+doskey ls=eza-wrapper.cmd $*
+doskey ll=eza-wrapper.cmd -l $*
 doskey date=%SCOOP%\shims\date.exe $*
 doskey find=%SCOOP%\shims\find.exe $*
 doskey cat=ccat -C always $*
