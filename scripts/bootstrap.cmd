@@ -1,4 +1,4 @@
-@echo on
+@echo off
 
 :: Automates the setup and configuration of my Windows environment
 :: * Exclude known false positives from Windows Defender scanning
@@ -245,20 +245,7 @@ if %chassistype% GEQ 8 if %chassistype% LEQ 10 (
 )
 
 :: Install and register fonts
-pushd "%USERPROFILE%\winfiles\fonts"
-for /d %%F in (*) do (
-    pushd %%F
-    for %%x in (*.ttf *.otf) do (
-        set "fontInstalled=false"
-        for /f "tokens=3*" %%i in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" ^| findstr /i "%%~nx"') do set "fontInstalled=true"
-        if "!fontInstalled!"=="false" (
-            "%USERPROFILE%\winfiles\bin\fontreg" /copy
-            echo %%~nxF fonts installed
-        )
-    )
-    popd
-)
-popd
+powershell -File "%~dp0install_fonts.ps1"
 
 :: Enable Developer Mode (allows symlink creation without elevation)
 powershell -Command "Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Appx' -Name 'AllowDevelopmentWithoutDevLicense' -Value 1"
