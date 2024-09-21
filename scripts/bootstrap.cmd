@@ -184,7 +184,7 @@ if not exist "%LOCALAPPDATA%\Packages\48914EllipticPhenomena.OnePhotoViewer_8w31
 if exist "%LOCALAPPDATA%\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config" (
     del "%LOCALAPPDATA%\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config"
 )
-mklink "%LOCALAPPDATA%\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config" "%USERPROFILE%\winfiles\Settings\OnePhotoViewer.config"
+mklink "%LOCALAPPDATA%\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config" "%USERPROFILE%\winfiles\Settings\AppData\OnePhotoViewer.config"
 
 :: Symlink WinSCP config
 if not exist "%LOCALAPPDATA%\Programs\WinSCP" (
@@ -193,12 +193,12 @@ if not exist "%LOCALAPPDATA%\Programs\WinSCP" (
 if exist "%LOCALAPPDATA%\Programs\WinSCP\WinSCP.ini" (
     del "%LOCALAPPDATA%\Programs\WinSCP\WinSCP.ini"
 )
-mklink "%LOCALAPPDATA%\Programs\WinSCP\WinSCP.ini" "%USERPROFILE%\winfiles\Settings\WinSCP.ini"
+mklink "%LOCALAPPDATA%\Programs\WinSCP\WinSCP.ini" "%USERPROFILE%\winfiles\Settings\AppData\WinSCP.ini"
 
 :: Copy SumatraPDF config
 if not exist "%LOCALAPPDATA%\SumatraPDF" (
     mkdir "%LOCALAPPDATA%\SumatraPDF"
-    copy "%USERPROFILE%\winfiles\Settings\SumatraPDF-settings.txt" "%LOCALAPPDATA%\SumatraPDF"
+    copy "%USERPROFILE%\winfiles\Settings\AppData\SumatraPDF-settings.txt" "%LOCALAPPDATA%\SumatraPDF"
 )
 
 :: Symlink Windows Terminal config
