@@ -1,10 +1,10 @@
 # Jason Gomez - June 2024
-# Problem 1: When installing Vim for Windows it's not added to %PATH%
-#            so it cannot easily be used from the command line.
+# Problem 1: When installing Vim for Windows using winget it's not added
+#            to $PATH so it cannot easily be used from the command line.
 # Problem 2: The path to the Vim executables keeps changing as the
 #            version number is part of the path.
 # Solution:  This script makes a persistent symlink to the latest installed
-#            version of Vim for Windows and adds it to %PATH%. Re-run the
+#            version of Vim for Windows and adds it to $PATH. Re-run the
 #            script when a new version of Vim is installed.
 
 # Get all Vim directories and sort them by version number
@@ -30,14 +30,15 @@ if (-not (Test-Path $symLinkPath) -or (Get-Item $symLinkPath).Target -ne $latest
     Write-Host "Vim symlink created"
 }
 
-# Add vim to %PATH%
-$vimExe = Join-Path -Path $symLinkPath -ChildPath "vim.exe"
+# Get current $PATH
+$path = [Environment]::GetEnvironmentVariable("PATH", [EnvironmentVariableTarget]::User)
 
-if (-not (Get-Command gvim.exe -ErrorAction SilentlyContinue)) {
-    if (Test-Path $vimExe) {
-        $path = [Environment]::GetEnvironmentVariable("PATH", [EnvironmentVariableTarget]::Machine)
-        $newPath = "$path;$symLinkPath"
-        [Environment]::SetEnvironmentVariable("PATH", $newPath, [EnvironmentVariableTarget]::Machine)
-        Write-Host "Vim added to path"
-    }
+# Add vim to $PATH if necessary
+if ($path -notlike "*$symLinkPath*") {
+    # Append the symLinkPath to $PATH if it's not already there
+    $newPath = "$path;$symLinkPath"
+    [Environment]::SetEnvironmentVariable("PATH", $newPath, [EnvironmentVariableTarget]::User)
+    Write-Host "Vim added to path"
+} else {
+    Write-Host "Vim path is already in the system PATH"
 }
