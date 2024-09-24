@@ -45,6 +45,7 @@ $packages = @(
     'broot'
     'ccat'
     'charm-gum'
+    'croc'
     'curl'
     'delta'
     'diffutils'
