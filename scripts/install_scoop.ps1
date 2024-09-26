@@ -93,6 +93,7 @@ $packages = @(
     'sysinternals/regjump'
     'sysinternals/sdelete'
     'sysinternals/shellrunas'
+    'time'
     'tlrc'
     'tre-command'
     'unzip'
