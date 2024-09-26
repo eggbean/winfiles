@@ -17,7 +17,6 @@ if "%1" == "outdated" goto sfsu_subroutine
 if "%1" == "scan" goto sfsu_subroutine
 if "%1" == "status" goto sfsu_subroutine
 if "%1" == "unused-buckets" goto sfsu_subroutine
-if "%1" == "update" goto sfsu_subroutine
 powershell scoop.ps1 %*
 goto :EOF
 
