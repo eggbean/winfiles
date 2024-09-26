@@ -45,6 +45,7 @@ doskey cp=cp -i $*
 doskey mv=mv -i $*
 doskey rm=rm -I $*
 doskey br=broot $*
+doskey time=timecmd $*
 doskey tree=tre.exe $*
 doskey wget=wget2 $*
 doskey wol=WakeMeOnLan.exe $*
