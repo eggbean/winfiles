@@ -24,4 +24,5 @@
 Settings/.config/spotify-tui/client.yml filter=git-crypt diff=git-crypt
 Settings/.ssh/id_ed25519.pub filter=git-crypt diff=git-crypt
 bin/XXCOPY.LIC filter=git-crypt diff=git-crypt
+fonts/MonoLisa/* filter=git-crypt diff=git-crypt
 reg/WordWebPro_settings.reg filter=git-crypt diff=git-crypt
