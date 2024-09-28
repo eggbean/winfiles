@@ -7,13 +7,13 @@
 :: * Add vim to %PATH%
 :: * Install scoop for multi-users and packages (if not already installed)
 :: * Setup OpenSSH and retrieve SSH key from Dashlane vault
-:: * Retrieve GPG private key from Dashlane if not present in GPG keyring
 :: * Install the wedge redirector for the Chrometana Pro Chrome extension
 :: * Setup Clink, cloning relevant repositories for extra features
 :: * Sparse checkout Linux dotfiles repository
 :: * Create symlinks between %APPDATA% and Linux dotfiles
 :: * Create symlink for vimfiles from Linux dotfiles repository
 :: * Create symlinks for configs in this repo to %HOME% and %LOCALAPPDATA%
+:: * Retrieve GPG private key from Dashlane if not present in GPG keyring
 :: * Make startup shortcuts for some systray applications
 :: * Fix missing StartMenu Shortcuts if package was installed using another account
 :: * Install and register fonts
@@ -70,10 +70,6 @@ if exist "%USERPROFILE%\.ssh" (
 )
 mklink /d "%USERPROFILE%\.ssh" "%USERPROFILE%\winfiles\Settings\.ssh"
 powershell -Command "Set-ItemProperty -Path "$env:USERPROFILE\.ssh" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)"
-
-:: Retrieve GPG private key from Dashlane if not present in GPG keyring
-powershell -File "%~dp0get_gpg_key.ps1"
-echo y | dcli logout >NUL
 
 :: Install the wedge redirector for the Chrometana Pro Chrome extension
 if "%SKIP_PACKAGES%" == "false" (
@@ -219,6 +215,10 @@ if "%USERNAME%" == "webadmin" (
 
 :: Determine computer chassis type
 for /f "delims={}" %%i in ('wmic systemenclosure get chassistypes ^| findstr "{"') do @set "chassistype=%%i"`
+
+:: Retrieve GPG private key from Dashlane if not present in GPG keyring
+powershell -File "%~dp0get_gpg_key.ps1"
+echo y | dcli logout >NUL
 
 :: Create startup shortcuts
 call :CreateStartupShortcut "CopyQ" "C:\Program Files\CopyQ\copyq.exe"
