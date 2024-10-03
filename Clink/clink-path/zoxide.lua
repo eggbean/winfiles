@@ -6,6 +6,8 @@
 settings.add('zoxide.cmd', 'z', 'Changes the prefix of the aliases')
 settings.add('zoxide.hook', { 'pwd', 'prompt', 'none' }, 'Changes when directory scores are incremented')
 settings.add('zoxide.no_aliases', false, "Don't define aliases")
+settings.add('zoxide.usepromptfilter', false, "Use clink promptfilter to hook even if onbeginedit is supported")
+settings.add('zoxide.promptfilter_prio', -50, "Changes the priority of the promptfilter hook (only if usepromptfilter is true)")
 
 -- =============================================================================
 --
@@ -52,11 +54,14 @@ end
 --
 -- Hook configuration for zoxide.
 --
+local __usepromptfilter = settings.get 'zoxide.usepromptfilter'
+
+if not clink.onbeginedit then
+  __usepromptfilter = true
+end
 
 local __zoxide_oldpwd
-local __zoxide_prompt = clink.promptfilter()
-
-function __zoxide_prompt:filter()
+function __zoxide_hook()
   local zoxide_hook = settings.get 'zoxide.hook'
 
   if zoxide_hook == 'none' then
@@ -75,6 +80,17 @@ function __zoxide_prompt:filter()
   end
 end
 
+if __usepromptfilter then
+  local __promptfilter_prio = settings.get 'zoxide.promptfilter_prio'
+  local __zoxide_prompt = clink.promptfilter(__promptfilter_prio)
+
+  function __zoxide_prompt:filter()
+    __zoxide_hook()
+  end
+else
+  clink.onbeginedit(__zoxide_hook)
+end
+
 -- =============================================================================
 --
 -- Define aliases.
@@ -83,7 +99,9 @@ end
 -- 'z' alias
 local function __zoxide_z(keywords)
   if #keywords == 0 then
-    return __zoxide_cd(os.getenv 'USERPROFILE')
+    -- NOTE: `os.getenv("HOME")` returns HOME or HOMEDRIVE+HOMEPATH
+    --       or USERPROFILE.
+    return __zoxide_cd(os.getenv('HOME'))
   elseif #keywords == 1 then
     local keyword = keywords[1]
     if keyword == '-' then
