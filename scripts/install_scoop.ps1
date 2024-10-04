@@ -43,6 +43,7 @@ $packages = @(
     'bat'
     'bind'
     'broot'
+    'btop'
     'ccat'
     'charm-gum'
     'croc'
