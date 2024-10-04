@@ -11,7 +11,7 @@ set expand-tilde                    off
 set mark-directories                off
 set mark-modified-lines             off
 set mark-symlinked-directories      on
-set match-hidden-files              on
+set match-hidden-files              off
 set menu-complete-display-prefix    on
 set show-all-if-ambiguous           off
 set show-all-if-unmodified          on
