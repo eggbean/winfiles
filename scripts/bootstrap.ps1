@@ -8,8 +8,9 @@ if (-Not $isAdmin) {
     exit 1
 }
 
-# Import module
+# Import modules
 Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
+Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
 
 # Exclude known false positives from Windows Defender scanning
 & "$PSScriptRoot\defender_whitelist.ps1"
@@ -169,6 +170,36 @@ $envName = "GIT_CONFIG_GLOBAL"
 $envValue = "$env:USERPROFILE\.config\git\win.config"
 Set-ItemProperty -Path "HKCU:\Environment" -Name $envName -Value $envValue
 [System.Environment]::SetEnvironmentVariable($envName, $envValue, [System.EnvironmentVariableTarget]::User)
+
+# Create startup shortcuts
+Set-StartupShortcut -Name "CopyQ" `
+                    -TargetPath "C:\Program Files\CopyQ\copyq.exe"
+
+Set-StartupShortcut -Name "Sizer" `
+                    -TargetPath "C:\Program Files (x86)\Sizer\sizer.exe"
+
+Set-StartupShortcut -Name "SylphyHorn" `
+                    -TargetPath "$env:USERPROFILE\winfiles\SylphyHorn\SylphyHorn.exe"
+
+Set-StartupShortcut -Name "Quake Terminal" `
+                    -TargetPath "$env:LOCALAPPDATA\Microsoft\WindowsApps\wt.exe" `
+                    -Arguments '-w _quake -p "Command Prompt"' `
+                    -IconPath "$env:USERPROFILE\winfiles\icons\app_icons\terminal.ico" `
+                    -StartIn "$env:LOCALAPPDATA\Microsoft\WindowsApps" `
+                    -WindowStyle 7  # Minimizes the terminal on startup
+
+# Create startup shortcut for tpmiddle-rs on ThinkStation desktops
+$chassisType = (Get-WmiObject -Class Win32_SystemEnclosure).ChassisTypes
+if ($chassisType -ge 3 -and $chassisType -le 7) {
+    Set-StartupShortcut -Name "tpmiddle-rs" `
+                        -TargetPath "%USERPROFILE%\winfiles\bin\tpmiddle-rs.vbs"
+}
+
+# Create startup shortcut for MarbleScroll on ThinkPad laptops
+if ($chassisType -ge 8 -and $chassisType -le 10) {
+    Set-StartupShortcut -Name "MarbleScroll" `
+                        -TargetPath "%USERPROFILE%\winfiles\bin\MarbleScroll.exe"
+}
 
 # Install and register fonts
 & "$PSScriptRoot\install_fonts.ps1"
