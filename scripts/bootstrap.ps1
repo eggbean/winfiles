@@ -36,7 +36,7 @@ if (-Not $SkipPackages) {
 & "$PSScriptRoot\add_vim_to_path.ps1"
 
 # Install scoop for multi-users and packages (if not already installed)
-if (-Not $env:SCOOP) {
+if (-Not $env:bootstrapped) {
     & "$PSScriptRoot\install_scoop.ps1"
 }
 
@@ -247,16 +247,17 @@ Set-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\ToggleKeys' -Name 'Fla
 New-Item -Path 'HKCU:\Software\Sysinternals' -Force | Out-Null
 Set-ItemProperty -Path 'HKCU:\Software\Sysinternals' -Name 'EulaAccepted' -Value 1
 
-if (-Not $SkipPackages) {
+if (-Not $env:bootstrapped) {
 
     # Enable Windows Features
-    Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName 'Microsoft-Windows-Subsystem-Linux' | Out-Null
-    Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName 'VirtualMachinePlatform' | Out-Null
-    Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName 'Containers-DisposableClientVM' | Out-Null
+    Enable-WindowsOptionalFeature -Online -FeatureName 'Microsoft-Windows-Subsystem-Linux' | Out-Null
+    Enable-WindowsOptionalFeature -Online -FeatureName 'VirtualMachinePlatform' | Out-Null
+    Enable-WindowsOptionalFeature -Online -FeatureName 'Containers-DisposableClientVM' | Out-Null
+    Enable-WindowsOptionalFeature -Online -FeatureName 'Microsoft-Hyper-V-All' -All | Out-Null
 
     # Disable Windows Features
-    Disable-WindowsOptionalFeature -NoRestart -Online -FeatureName 'WindowsMediaPlayer' | Out-Null
-    Disable-WindowsOptionalFeature -NoRestart -Online -FeatureName 'Printing-XPSServices-Features' | Out-Null
+    Disable-WindowsOptionalFeature -Online -FeatureName 'WindowsMediaPlayer' | Out-Null
+    Disable-WindowsOptionalFeature -Online -FeatureName 'Printing-XPSServices-Features' | Out-Null
 
 }
 
@@ -266,7 +267,7 @@ foreach ($file in $delfiles) {
     Remove-Item -Path "$env:USERPROFILE\$file" -Force -ErrorAction SilentlyContinue
 }
 
-# Set marker
+# Set environment variable showing that this script has been run before
 Set-ItemProperty -Path "HKCU:\Environment" -Name "bootstrapped" -Value "true"
 
 gum style --foreground 212 --border-foreground 212 --border double `
