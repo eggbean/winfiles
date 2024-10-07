@@ -69,7 +69,7 @@ try {
 # Sparse checkout Linux .dotfiles repository and decrypt
 $dotfilesPath = "$env:USERPROFILE\.dotfiles"
 if (-Not (Test-Path $dotfilesPath)) {
-    Set-Location $env:USERPROFILE
+    Push-Location -Path $env:USERPROFILE
     git clone --no-checkout --depth=1 --filter=tree:0 https://github.com/eggbean/.dotfiles.git
     Set-Location -Path $dotfilesPath
     git sparse-checkout set --no-cone /.gitattributes .git-crypt .githooks bin/scripts config
@@ -86,6 +86,7 @@ if (-Not (Test-Path $dotfilesPath)) {
     }
     git crypt unlock
     Stop-Process -Name "keyboxd" -Force
+    Pop-Location
 }
 
 # Create symlinks between $APPDATA and Linux dotfiles
@@ -250,14 +251,14 @@ Set-ItemProperty -Path 'HKCU:\Software\Sysinternals' -Name 'EulaAccepted' -Value
 if (-Not $env:bootstrapped) {
 
     # Enable Windows Features
-    Enable-WindowsOptionalFeature -Online -FeatureName 'Microsoft-Windows-Subsystem-Linux' | Out-Null
-    Enable-WindowsOptionalFeature -Online -FeatureName 'VirtualMachinePlatform' | Out-Null
-    Enable-WindowsOptionalFeature -Online -FeatureName 'Containers-DisposableClientVM' | Out-Null
-    Enable-WindowsOptionalFeature -Online -FeatureName 'Microsoft-Hyper-V-All' -All | Out-Null
+    Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'Microsoft-Windows-Subsystem-Linux' | Out-Null
+    Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'VirtualMachinePlatform' | Out-Null
+    Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'Containers-DisposableClientVM' | Out-Null
+    Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'Microsoft-Hyper-V-All' -All | Out-Null
 
     # Disable Windows Features
-    Disable-WindowsOptionalFeature -Online -FeatureName 'WindowsMediaPlayer' | Out-Null
-    Disable-WindowsOptionalFeature -Online -FeatureName 'Printing-XPSServices-Features' | Out-Null
+    Disable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'WindowsMediaPlayer' | Out-Null
+    Disable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'Printing-XPSServices-Features' | Out-Null
 
 }
 
@@ -270,6 +271,14 @@ foreach ($file in $delfiles) {
 # Set environment variable showing that this script has been run before
 Set-ItemProperty -Path "HKCU:\Environment" -Name "bootstrapped" -Value "true"
 
-gum style --foreground 212 --border-foreground 212 --border double `
-    --align center --width 50 --margin "1 2" --padding "2 4" `
-    'Restart shell for environment variables to take effect'
+# Check if a restart is required
+$restartNeeded = (Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager" -Name PendingFileRenameOperations -ErrorAction SilentlyContinue)
+
+if ($restartNeeded -and -Not $env:bootstrapped) {
+    Write-Host "Restarting the computer to finish..." -ForegroundColor Yellow
+    Restart-Computer
+} else {
+    gum style --foreground 212 --border-foreground 212 --border double `
+        --align center --width 50 --margin "1 2" --padding "2 4" `
+        'Restart shell now for' 'environment variables to take effect'
+}
