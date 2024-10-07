@@ -44,7 +44,7 @@ trim_at = "."
 [directory]
 truncation_length = 4
 truncate_to_repo = false
-style = "bold blue"
+style = "blue"
 format = "[$path]($style)[$read_only]($read_only_style)"
 read_only = "🔒"
 home_symbol = "~"
