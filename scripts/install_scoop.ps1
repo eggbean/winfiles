@@ -24,7 +24,7 @@ if (-NOT $initiallyInstalled) {
     [Environment]::SetEnvironmentVariable('SCOOP_GLOBAL', $env:SCOOP_GLOBAL, 'Machine')
     Set-ExecutionPolicy RemoteSigned -scope CurrentUser
     iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
-    icacls $env:SCOOP /grant "Users:(OI)(CI)F" /T
+    icacls $env:SCOOP /grant "Users:(OI)(CI)F" /T | Out-Null
 
     # Install aria2c for multi-connection downloads
     scoop install aria2 -u -g
@@ -44,6 +44,7 @@ $packages = @(
     'bind'
     'broot'
     'btop'
+    'cacert'
     'ccat'
     'charm-gum'
     'croc'
