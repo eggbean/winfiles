@@ -9,28 +9,35 @@ if (-Not $isAdmin) {
 }
 
 # Import modules
+Import-Module -Name "$PSScriptRoot\Set-StartMenuShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
 Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
+Import-Module -Name "$PSScriptRoot\Set-FolderIcon.psm1"
 
-# Exclude known false positives from Windows Defender scanning
-& "$PSScriptRoot\defender_whitelist.ps1"
-
+# Check command line arguments
 $SkipPackages = $false
 if ($args.Count -gt 0 -and $args[0] -eq "--skip-packages") {
     $SkipPackages = $true
 }
 
-# Install winget packages
+# Exclude known false positives from Windows Defender scanning
+& "$PSScriptRoot\defender_whitelist.ps1"
+
+# Install packages using winget
 if (-Not $SkipPackages) {
     if (-Not $env:bootstrapped) {
-        # Uninstall Git using winget
+        # Uninstall Git so that it can be
+        # reinstalled with my specified options
         winget uninstall -e --id Git.Git
     }
     & "$PSScriptRoot\install_packages.ps1"
 }
 
-# Set icons for various folders
-& "$PSScriptRoot\fix_icons.ps1"
+# Fix missing StartMenu Shortcuts if packages were installed using another account
+if ($env:USERNAME -ne "jason" -and $env:USERNAME -ne "vagrant") {
+    Set-StartMenuShortcut -Subdir "WinDirStat" -Name "WinDirStat" -Target "$env:ProgramFiles(x86)\WinDirStat\windirstat.exe"
+    Set-StartMenuShortcut -Subdir "WinDirStat" -Name "Help (ENG)" -Target "$env:ProgramFiles(x86)\WinDirStat\windirstat.chm"
+}
 
 # Add vim to $PATH
 & "$PSScriptRoot\add_vim_to_path.ps1"
@@ -40,13 +47,8 @@ if (-Not $env:bootstrapped) {
     & "$PSScriptRoot\install_scoop.ps1"
 }
 
-# Setup OpenSSH and retrieve SSH key from Dashlane vault
-& "$PSScriptRoot\setup_openssh.ps1"
-Set-Symlink "$env:USERPROFILE\.ssh" "$env:USERPROFILE\winfiles\Settings\.ssh"
-Set-ItemProperty -Path "$env:USERPROFILE\.ssh" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
-
 # Install the wedge redirector for the Chrometana Pro Chrome extension
-if (-Not $SkipPackages) {
+if (-Not $env:bootstrapped) {
     & "$PSScriptRoot\install_wedge.ps1"
 }
 
@@ -66,7 +68,7 @@ try {
     exit 1
 }
 
-# Sparse checkout Linux .dotfiles repository and decrypt
+# Sparse checkout Linux .dotfiles repository
 $dotfilesPath = "$env:USERPROFILE\.dotfiles"
 if (-Not (Test-Path $dotfilesPath)) {
     Push-Location -Path $env:USERPROFILE
@@ -84,24 +86,29 @@ if (-Not (Test-Path $dotfilesPath)) {
         Write-Output "Error taking ownership of .dotfiles: $_"
         exit 1
     }
-    git crypt unlock
-    Stop-Process -Name "keyboxd" -Force
     Pop-Location
 }
 
 # Create symlinks between $APPDATA and Linux dotfiles
-Set-Symlink "$env:APPDATA\GitHub CLI"         "$env:USERPROFILE\.dotfiles\config\.config\gh"
-Set-Symlink "$env:APPDATA\XnViewMP"           "$env:USERPROFILE\.dotfiles\config\.config\XnViewMP"
-Set-Symlink "$env:APPDATA\copyq"              "$env:USERPROFILE\.dotfiles\config\.config\copyq"
-Set-Symlink "$env:APPDATA\geoipupdate"        "$env:USERPROFILE\.dotfiles\config\.config\geoipupdate"
-Set-Symlink "$env:APPDATA\gnupg"              "$env:USERPROFILE\.dotfiles\config\.gnupg"
-Set-Symlink "$env:APPDATA\mpv"                "$env:USERPROFILE\.dotfiles\config\.config\mpv"
-Set-Symlink "$env:APPDATA\qutebrowser\config" "$env:USERPROFILE\.dotfiles\config\.config\qutebrowser"
-Set-Symlink "$env:APPDATA\tlrc"               "$env:USERPROFILE\.dotfiles\config\.config\tlrc"
+Set-Symlink "$env:APPDATA\GitHub CLI"                "$env:USERPROFILE\.dotfiles\config\.config\gh"
+Set-Symlink "$env:APPDATA\XnViewMP"                  "$env:USERPROFILE\.dotfiles\config\.config\XnViewMP"
+Set-Symlink "$env:APPDATA\copyq"                     "$env:USERPROFILE\.dotfiles\config\.config\copyq"
+Set-Symlink "$env:APPDATA\geoipupdate"               "$env:USERPROFILE\.dotfiles\config\.config\geoipupdate"
+Set-Symlink "$env:APPDATA\gnupg"                     "$env:USERPROFILE\.dotfiles\config\.gnupg"
+Set-Symlink "$env:APPDATA\mpv"                       "$env:USERPROFILE\.dotfiles\config\.config\mpv"
+Set-Symlink "$env:APPDATA\qutebrowser\config"        "$env:USERPROFILE\.dotfiles\config\.config\qutebrowser"
+Set-Symlink "$env:APPDATA\tlrc"                      "$env:USERPROFILE\.dotfiles\config\.config\tlrc"
+Set-Symlink "$env:LOCALAPPDATA\glow\Config\glow.yml" "$env:USERPROFILE\.dotfiles\config\.config\glow\glow.yml"
 
-# Create symlink for vimfiles from Linux dotfiles repository
+$link = "$env:LOCALAPPDATA\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config"
+$target = "$env:USERPROFILE\winfiles\Settings\AppData\OnePhotoViewer.config"
+Set-Symlink $link $target
+Set-Symlink "$env:LOCALAPPDATA\Programs\WinSCP\WinSCP.ini" "$env:USERPROFILE\winfiles\Settings\AppData\WinSCP.ini"
+Set-Symlink "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" "$env:USERPROFILE\winfiles\Windows_Terminal\settings.json"
+
+# Create symlink for vimfiles from Linux dotfiles repository and make it hidden
 Set-Symlink "$env:USERPROFILE\vimfiles" "$env:USERPROFILE\.dotfiles\config\.config\vim"
-attrib /l +h "$env:USERPROFILE\vimfiles"
+(Get-Item "$env:USERPROFILE\vimfiles" -Force).Attributes += 'Hidden'
 
 # Create vimfiles shortcut
 $shortcutPath = "$env:USERPROFILE\vimfiles.lnk"
@@ -113,6 +120,47 @@ if (-Not (Test-Path $shortcutPath)) {
     $shortcut.Save()
     Write-Output "vimfiles shortcut created"
 }
+
+# Setup OpenSSH and retrieve SSH key from Dashlane vault
+& "$PSScriptRoot\setup_openssh.ps1"
+Set-Symlink "$env:USERPROFILE\.ssh" "$env:USERPROFILE\winfiles\Settings\.ssh"
+(Get-Item "$env:USERPROFILE\.ssh" -Force).Attributes += 'Hidden'
+
+# Retrieve GPG private key from Dashlane if not present in GPG keyring
+& "$PSScriptRoot\get_gpg_key.ps1"
+Write-Output y | & "$env:USERPROFILE\winfiles\bin\dcli" logout | Out-Null
+
+# Decrypt repositories
+$repos = @("$env:USERPROFILE\winfiles", "$env:USERPROFILE\.dotfiles")
+foreach ($repo in $repos) {
+    if (Test-Path $repo) {
+        Push-Location $repo
+        try {
+            Write-Output "Unlocking git crypt in '$repo'..."
+            git crypt unlock
+            Write-Output "Unlocked successfully."
+        } catch {
+            Write-Output "Error unlocking git crypt in '$repo': $_"
+        } finally {
+            Pop-Location
+        }
+    } else {
+        Write-Output "Error: Directory '$repo' does not exist."
+    }
+}
+
+# Set environment variables
+Set-ItemProperty -Path "HKCU:\Environment" -Name "BROWSER"               -Value "C:\Program Files\qutebrowser\qutebrowser.exe"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "EDITOR"                -Value "vim"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "GEOIPUPDATE_CONF_FILE" -Value "$env:APPDATA\geoipupdate\GeoIP.conf"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "GEOIPUPDATE_LOCK_FILE" -Value "$env:APPDATA\geoipupdate\_geoipupdate.lock"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "GH_BROWSER"            -Value "C:\\Program\ Files\\qutebrowser\\qutebrowser.exe"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "GNUPGHOME"             -Value "$env:APPDATA\gnupg"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "HOME"                  -Value "$env:USERPROFILE"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "LESS"                  -Value "-MRQx4F#10"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "LESSHISTFILE"          -Value "$env:APPDATA\_lesshst"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "RIPGREP_CONFIG_PATH"   -Value "$env:USERPROFILE\.config\ripgrep\ripgreprc"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "WGET2RC"               -Value "$env:USERPROFILE\.config\wget\wget2rc"
 
 # Make lowercase HOSTNAME environment variable as I prefer it sometimes
 if (-Not $env:HOSTNAME) {
@@ -172,6 +220,31 @@ $envValue = "$env:USERPROFILE\.config\git\win.config"
 Set-ItemProperty -Path "HKCU:\Environment" -Name $envName -Value $envValue
 [System.Environment]::SetEnvironmentVariable($envName, $envValue, [System.EnvironmentVariableTarget]::User)
 
+# Set icons for Adobe Creative Cloud Sync if it exists
+if (Test-Path "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync") {
+    Push-Location "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync"
+    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\cloud_fld_w10.ico" .
+    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\cloud_fld_w10_offline.ico" .
+    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\shared_fld_w10.ico" .
+    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\RO_shared_fld_w10.ico" .
+    Pop-Location
+}
+
+# Set icons for various folders
+Set-FolderIcon "$env:USERPROFILE\My Drive" "%USERPROFILE%\winfiles\icons\my_icons\google_drive.ico" "Your Google Drive folder contains files that you're syncing with Google."
+Set-FolderIcon "$env:USERPROFILE\iCloudDrive" "%USERPROFILE%\winfiles\icons\my_icons\iCloud Folder.ico" "iCloud Drive" "iCloud Drive"
+Set-FolderIcon "$env:USERPROFILE\winfiles" "%USERPROFILE%\winfiles\icons\my_icons\microsoft_windows_11.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\Clink" "%USERPROFILE%\winfiles\icons\my_icons\Batch Folder Icon.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\Settings" "%USERPROFILE%\winfiles\icons\my_icons\Batch Folder Icon.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\SylphyHorn" "%USERPROFILE%\winfiles\icons\my_icons\Batch Folder Icon.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\Windows_Terminal" "%USERPROFILE%\winfiles\icons\my_icons\terminal.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\bin" "%USERPROFILE%\winfiles\icons\my_icons\bat.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\fonts" "%USERPROFILE%\winfiles\icons\my_icons\fonts.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\icons" "%USERPROFILE%\winfiles\icons\my_icons\Apps Folder.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\icons\my_icons" "%USERPROFILE%\winfiles\icons\my_icons\Apps Folder.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\reg" "%USERPROFILE%\winfiles\icons\my_icons\Registry Folder Icon.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\scripts" "%USERPROFILE%\winfiles\icons\my_icons\VBS Folder.ico"
+
 # Create startup shortcuts
 Set-StartupShortcut -Name "CopyQ" `
                     -TargetPath "C:\Program Files\CopyQ\copyq.exe"
@@ -193,13 +266,13 @@ Set-StartupShortcut -Name "Quake Terminal" `
 $chassisType = (Get-WmiObject -Class Win32_SystemEnclosure).ChassisTypes
 if ($chassisType -ge 3 -and $chassisType -le 7) {
     Set-StartupShortcut -Name "tpmiddle-rs" `
-                        -TargetPath "%USERPROFILE%\winfiles\bin\tpmiddle-rs.vbs"
+                        -TargetPath "$env:USERPROFILE\winfiles\bin\tpmiddle-rs.vbs"
 }
 
 # Create startup shortcut for MarbleScroll on ThinkPad laptops
 if ($chassisType -ge 8 -and $chassisType -le 10) {
     Set-StartupShortcut -Name "MarbleScroll" `
-                        -TargetPath "%USERPROFILE%\winfiles\bin\MarbleScroll.exe"
+                        -TargetPath "$env:USERPROFILE\winfiles\bin\MarbleScroll.exe"
 }
 
 # Install and register fonts
@@ -212,8 +285,9 @@ if ($chassisType -ge 8 -and $chassisType -le 10) {
 Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Appx' -Name 'AllowDevelopmentWithoutDevLicense' -Value 1
 
 # Enable Hibernation (not on vm)
-if ($env:USERNAME -eq "jason") {
-    powercfg /hibernate on
+$systemModel = (Get-WmiObject -Class Win32_ComputerSystem).Model
+if (-Not ($systemModel -match "Virtual|VMware|Hyper-V")) {
+    Start-Process -FilePath "powercfg" -ArgumentList "/hibernate on" -Verb RunAs
     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowHibernateOption' -Value 1
 }
 
@@ -248,24 +322,56 @@ Set-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\ToggleKeys' -Name 'Fla
 New-Item -Path 'HKCU:\Software\Sysinternals' -Force | Out-Null
 Set-ItemProperty -Path 'HKCU:\Software\Sysinternals' -Name 'EulaAccepted' -Value 1
 
+# Change PrtSc key to Context Menu key and AltGr to Alt on ThinkPad laptops
+if ($chassisType -ge 8 -and $chassisType -le 10) {
+    $scancodeMap = [byte[]](0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                            0x03, 0x00, 0x00, 0x00, 0x5d, 0xe0, 0x37, 0xe0,
+                            0x38, 0x00, 0x38, 0xe0, 0x00, 0x00, 0x00, 0x00)
+
+    Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout' `
+                     -Name 'Scancode Map' `
+                     -Value $scancodeMap `
+                     -Type Binary
+}
+
+# Disable Xbox Gamebar
+Set-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR' -Name AppCaptureEnabled -Type DWord -Value 0
+Set-ItemProperty -Path 'HKCU:\System\GameConfigStore' -Name GameDVR_Enabled -Type DWord -Value 0
+
+# Windows features
 if (-Not $env:bootstrapped) {
 
-    # Enable Windows Features
+    # Enable
     Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'Microsoft-Windows-Subsystem-Linux' | Out-Null
     Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'VirtualMachinePlatform' | Out-Null
     Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'Containers-DisposableClientVM' | Out-Null
     Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'Microsoft-Hyper-V-All' -All | Out-Null
 
-    # Disable Windows Features
+    # Disable
     Disable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'WindowsMediaPlayer' | Out-Null
     Disable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'Printing-XPSServices-Features' | Out-Null
 
 }
 
-# Cleanup shrapnel files
+# Remove some unwanted applications
+Get-AppxPackage Microsoft.Getstarted | Remove-AppxPackage
+
+# Cleanup junk files (locations have been changed)
 $delfiles = @(".gitconfig", ".lesshst", ".viminfo", "_viminfo", ".wget-hsts")
 foreach ($file in $delfiles) {
     Remove-Item -Path "$env:USERPROFILE\$file" -Force -ErrorAction SilentlyContinue
+}
+
+# Hide top-level dotfiles and dotdirectories in $env:USERPROFILE
+$dotfiles = Get-ChildItem -Path "$env:USERPROFILE\.*" -Force -Directory | Where-Object { -not ($_ | Get-ItemProperty -Name Attributes -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Attributes) -match 'Hidden' }
+foreach ($file in $dotfiles) {
+    Set-ItemProperty -Path $file.FullName -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
+}
+
+# Hide top-level dotfiles and dotdirectories in $env:USERPROFILE\winfiles
+$winfilesDotfiles = Get-ChildItem -Path "$env:USERPROFILE\winfiles\.*" -Force -Directory | Where-Object { -not ($_ | Get-ItemProperty -Name Attributes -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Attributes) -match 'Hidden' }
+foreach ($file in $winfilesDotfiles) {
+    Set-ItemProperty -Path $file.FullName -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
 }
 
 # Set environment variable showing that this script has been run before
@@ -277,7 +383,7 @@ $restartNeeded = (Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control
 if ($restartNeeded -and -Not $env:bootstrapped) {
     Write-Host "Restarting the computer to finish..." -ForegroundColor Yellow
     Restart-Computer
-} else {
+} elseif ($restartNeeded) {
     gum style --foreground 212 --border-foreground 212 --border double `
         --align center --width 50 --margin "1 2" --padding "2 4" `
         'Restart shell now for' 'environment variables to take effect'
