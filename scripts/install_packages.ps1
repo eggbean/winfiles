@@ -25,10 +25,12 @@ winget install -e --id SomePythonThings.WingetUIStore --override "/SP /VERYSILEN
 winget install -e --id WinDirStat.WinDirStat --include-unknown
 winget install -e --id XnSoft.XnViewMP
 winget install -e --id chrisant996.Clink
+winget install -e --id flyingpie.windows-terminal-quake
 winget install -e --id gerardog.gsudo
 winget install -e --id hluk.CopyQ
 winget install -e --id qutebrowser.qutebrowser -l "C:\Program Files\qutebrowser"
 winget install -e --id vim.vim
+winget install -e --id wez.wezterm
 
 
 # Install software for desktop computers
