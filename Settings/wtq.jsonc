@@ -1,0 +1,10 @@
+{
+	"$schema": "wtq.schema.2.json",
+	"Apps": [
+		{
+			"Name":			"WezTerm",
+			"HotKeys":		[{ "Modifiers": "Super", "Key": "Oem8" }],
+			"FileName":		"wezterm-gui"
+		}
+	]
+}

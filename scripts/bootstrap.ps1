@@ -213,6 +213,10 @@ foreach ($file in $dotfiles) {
     Set-Symlink $source $target
 }
 
+# Symlink flyingpie.windows-terminal-quake config
+Set-Symlink "$env:USERPROFILE\wtq.jsonc" "$env:USERPROFILE\winfiles\Settings\wtq.jsonc"
+(Get-Item "$env:USERPROFILE\wtq.jsonc" -Force).Attributes += 'Hidden'
+
 # Create symlink for git config from Linux dotfiles repository
 Set-Symlink "$env:USERPROFILE\.config\git" "$env:USERPROFILE\.dotfiles\config\.config\git"
 $envName = "GIT_CONFIG_GLOBAL"
