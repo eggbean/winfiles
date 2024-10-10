@@ -162,6 +162,13 @@ Set-ItemProperty -Path "HKCU:\Environment" -Name "LESSHISTFILE"          -Value 
 Set-ItemProperty -Path "HKCU:\Environment" -Name "RIPGREP_CONFIG_PATH"   -Value "$env:USERPROFILE\.config\ripgrep\ripgreprc"
 Set-ItemProperty -Path "HKCU:\Environment" -Name "WGET2RC"               -Value "$env:USERPROFILE\.config\wget\wget2rc"
 
+# Set default distro for Windows Terminal
+if ($env:USERNAME -eq "jason") {
+    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "7f586916-8357-53d4-bb2b-ca96f639898a"
+} elseif ($env:USERNAME -eq "webadmin") {
+    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "bd3678cb-99b6-41c8-aa3d-98e6e4ada214"
+}
+
 # Make lowercase HOSTNAME environment variable as I prefer it sometimes
 if (-Not $env:HOSTNAME) {
     $hostname = $env:COMPUTERNAME.ToLower()
