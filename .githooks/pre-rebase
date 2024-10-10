@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# Make sure we are not in the active winfiles directory
-last_arg=$(echo "$*" | awk '{print $NF}')
-if [[ $(pwd) =~ ^$HOME/.dotfiles/* && "$last_arg" != "HEAD~"* ]]; then
-  echo "You are in the active winfiles directory. Cancelling rebase."
-  exit 1
-fi
-
