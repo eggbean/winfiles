@@ -169,6 +169,23 @@ if ($env:USERNAME -eq "jason") {
     Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "bd3678cb-99b6-41c8-aa3d-98e6e4ada214"
 }
 
+# Set environment variables to hide Windows Terminal profiles when distro is not installed
+if (wsl.exe --list | Select-String -Pattern "WLinux") {
+        [System.Environment]::SetEnvironmentVariable("HAS_PENGWIN", "true", "User")
+} else {
+        [System.Environment]::SetEnvironmentVariable("HAS_PENGWIN", "false", "User")
+}
+if (wsl.exe --list | Select-String -Pattern "Ubuntu") {
+        [System.Environment]::SetEnvironmentVariable("HAS_UBUNTU", "true", "User")
+} else {
+        [System.Environment]::SetEnvironmentVariable("HAS_UBUNTU", "false", "User")
+}
+if (wsl.exe --list | Select-String -Pattern "fedoraremix") {
+        [System.Environment]::SetEnvironmentVariable("HAS_FEDORA", "true", "User")
+} else {
+        [System.Environment]::SetEnvironmentVariable("HAS_FEDORA", "false", "User")
+}
+
 # Make lowercase HOSTNAME environment variable as I prefer it sometimes
 if (-Not $env:HOSTNAME) {
     $hostname = $env:COMPUTERNAME.ToLower()

@@ -173,7 +173,7 @@
           "size": 11.0
         },
         "guid": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
-        "hidden": false,
+        "hidden": "%HAS_PENGWIN%",
         "intenseTextStyle": "all",
         "name": "Pengwin",
         "opacity": 100,
@@ -199,7 +199,7 @@
           "size": 11.0
         },
         "guid": "{bd3678cb-99b6-41c8-aa3d-98e6e4ada214}",
-        "hidden": false,
+        "hidden": "%HAS_UBUNTU%",
         "icon": "https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png",
         "intenseTextStyle": "all",
         "name": "Ubuntu",
@@ -271,7 +271,7 @@
           "size": 11.0
         },
         "guid": "{4f3641ed-0500-48bd-9432-86beaa47917b}",
-        "hidden": false,
+        "hidden": "%HAS_FEDORA%",
         "icon": "%USERPROFILE%\\WSL\\Assets\\fedoraremix.png",
         "intenseTextStyle": "all",
         "name": "Fedora",
