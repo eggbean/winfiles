@@ -15,10 +15,11 @@ if ($args.Count -gt 0 -and $args[0] -eq "--skip-packages") {
 }
 
 # Import modules
-Import-Module -Name "$PSScriptRoot\Set-StartMenuShortcut.psm1"
-Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
-Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-FolderIcon.psm1"
+Import-Module -Name "$PSScriptRoot\Set-StartMenuShortcut.psm1"
+Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
+Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
+Import-Module -Name "$PSScriptRoot\Unlock-Repository.psm1"
 
 # Exclude known false positives from Windows Defender scanning
 & "$PSScriptRoot\defender_whitelist.ps1"
@@ -130,23 +131,10 @@ Set-Symlink "$env:USERPROFILE\.ssh" "$env:USERPROFILE\winfiles\Settings\.ssh"
 & "$PSScriptRoot\get_gpg_key.ps1"
 Write-Output y | & "$env:USERPROFILE\winfiles\bin\dcli" logout | Out-Null
 
-# Decrypt repositories
+# Decrypt repositories if locked
 $repos = @("$env:USERPROFILE\winfiles", "$env:USERPROFILE\.dotfiles")
 foreach ($repo in $repos) {
-    if (Test-Path $repo) {
-        Push-Location $repo
-        try {
-            Write-Output "Unlocking git crypt in '$repo'..."
-            git crypt unlock
-            Write-Output "Unlocked successfully."
-        } catch {
-            Write-Error "Error unlocking git crypt in '$repo': $_"
-        } finally {
-            Pop-Location
-        }
-    } else {
-        Write-Error "Error: Directory '$repo' does not exist."
-    }
+    Unlock-Repository $repo
 }
 
 # Set environment variables
