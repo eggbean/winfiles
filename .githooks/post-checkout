@@ -1,6 +1,32 @@
 #!/bin/bash
 
+## Solution for managing a Windows Terminal configuration in git that can be used in different user accounts ##
+WT_TARGET_FILE="$LOCALAPPDATA/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+WT_CURRENT_FILE="Windows_Terminal/settings-current.json"
+WT_TEMPLATE_FILE="Windows_Terminal/settings-template.json"
+WT_TARGET_DIR=$(dirname "$WT_TARGET_FILE")
+
+# Get the current Windows Terminal configuration state and process it
+if [[ -f $WT_TARGET_FILE ]]; then
+  sed 's/^ *\/\/.*//' "$WT_TARGET_FILE" | \
+    jq -r 'to_entries | sort_by(.key) | from_entries | .actions |= sort_by(.command)' > "$WT_CURRENT_FILE"
+fi
+
+# Replace the placeholders in the template and write to target
+bool() {
+  if wsl.exe -l | grep -iq "$1"; then echo "true"; else echo "false"; fi
+}
+
+if [[ ! -d $WT_TARGET_DIR ]]; then mkdir -p "$WT_TARGET_DIR"; fi
+sed -e "s/{{DEFAULT_WSL}}/$DEFAULT_WSL/" \
+  -e "s/{{PENGWIN}}/$(bool "WLinux")/" \
+  -e "s/{{UBUNTU}}/$(bool "Ubuntu")/" \
+  -e "s/{{FEDORA}}/$(bool "fedoraremix")/" \
+  -e "s/{{ORACLE}}/$(bool "Oracle")/" \
+  -e "s/{{NIXOS}}/$(bool "NixOS")/" \
+  -e "s/{{KALI}}/$(bool "kali-linux")/" \
+  "$WT_TEMPLATE_FILE" > "$WT_TARGET_FILE"
+
+## Other stuff ##
 find . -name 'desktop.ini' -exec attrib.exe +A +S +H {} \;
 find . -name '.*?' -not -path './Settings/*' -exec attrib.exe +H {} \;
-
-git update-index --assume-unchanged Settings/WinSCP.ini
