@@ -8,18 +8,37 @@ if (-Not $isAdmin) {
     exit 1
 }
 
-# Check command line arguments
-$SkipPackages = $false
-if ($args.Count -gt 0 -and $args[0] -eq "--skip-packages") {
-    $SkipPackages = $true
-}
-
 # Import modules
 Import-Module -Name "$PSScriptRoot\Set-FolderIcon.psm1"
 Import-Module -Name "$PSScriptRoot\Set-StartMenuShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
 Import-Module -Name "$PSScriptRoot\Unlock-Repository.psm1"
+
+# Parse command-line arguments
+$Rename = $null
+$SkipPackages = $false
+for ($i = 0; $i -lt $args.Count; $i++) {
+    if ($args[$i] -eq "--rename" -and $i + 1 -lt $args.Count) {
+        $Rename = $args[$i + 1]
+    }
+    elseif ($args[$i] -eq "--skip-packages") {
+        $SkipPackages = $true
+    }
+}
+
+# Rename computer with --rename argument
+if ($Rename) {
+    Write-Host "Current computer name: $env:COMPUTERNAME"
+    try {
+        Rename-Computer -NewName $Rename -Force
+        Write-Host "Computer name changed successfully to '$Rename'."
+    }
+    catch {
+        Write-Error "Failed to rename the computer. Error: $_"
+        exit 1
+    }
+}
 
 # Exclude known false positives from Windows Defender scanning
 & "$PSScriptRoot\defender_whitelist.ps1"
