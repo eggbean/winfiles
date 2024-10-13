@@ -4,8 +4,14 @@ $principal = New-Object Security.Principal.WindowsPrincipal($currentUser)
 $isAdmin = $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
 if (-Not $isAdmin) {
-    Write-Output "Not admin/elevated"
+    Write-Error "This script needs to be run as admin/elevated."
     exit 1
+}
+
+# Check command line arguments
+$SkipPackages = $false
+if ($args.Count -gt 0 -and $args[0] -eq "--skip-packages") {
+    $SkipPackages = $true
 }
 
 # Import modules
@@ -13,12 +19,6 @@ Import-Module -Name "$PSScriptRoot\Set-StartMenuShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
 Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-FolderIcon.psm1"
-
-# Check command line arguments
-$SkipPackages = $false
-if ($args.Count -gt 0 -and $args[0] -eq "--skip-packages") {
-    $SkipPackages = $true
-}
 
 # Exclude known false positives from Windows Defender scanning
 & "$PSScriptRoot\defender_whitelist.ps1"
@@ -83,7 +83,7 @@ if (-Not (Test-Path $dotfilesPath)) {
         Set-Acl $dotfilesPath $acl
         Write-Output "Taken ownership of .dotfiles"
     } catch {
-        Write-Output "Error taking ownership of .dotfiles: $_"
+        Write-Error "Error taking ownership of .dotfiles: $_"
         exit 1
     }
     Pop-Location
@@ -100,17 +100,11 @@ Set-Symlink "$env:APPDATA\qutebrowser\config"        "$env:USERPROFILE\.dotfiles
 Set-Symlink "$env:APPDATA\tlrc"                      "$env:USERPROFILE\.dotfiles\config\.config\tlrc"
 Set-Symlink "$env:LOCALAPPDATA\glow\Config\glow.yml" "$env:USERPROFILE\.dotfiles\config\.config\glow\glow.yml"
 
-$link = "$env:LOCALAPPDATA\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config"
-$target = "$env:USERPROFILE\winfiles\Settings\AppData\OnePhotoViewer.config"
-Set-Symlink $link $target
-Set-Symlink "$env:LOCALAPPDATA\Programs\WinSCP\WinSCP.ini" "$env:USERPROFILE\winfiles\Settings\AppData\WinSCP.ini"
-Set-Symlink "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" "$env:USERPROFILE\winfiles\Windows_Terminal\settings.json"
-
 # Create symlink for vimfiles from Linux dotfiles repository and make it hidden
 Set-Symlink "$env:USERPROFILE\vimfiles" "$env:USERPROFILE\.dotfiles\config\.config\vim"
 (Get-Item "$env:USERPROFILE\vimfiles" -Force).Attributes += 'Hidden'
 
-# Create vimfiles shortcut
+# Create vimfiles shortcut to make it easily accessible in the GUI
 $shortcutPath = "$env:USERPROFILE\vimfiles.lnk"
 if (-Not (Test-Path $shortcutPath)) {
     $ws = New-Object -ComObject WScript.Shell
@@ -120,6 +114,12 @@ if (-Not (Test-Path $shortcutPath)) {
     $shortcut.Save()
     Write-Output "vimfiles shortcut created"
 }
+
+# Create symlinks between $APPDATA and this repository
+$link = "$env:LOCALAPPDATA\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config"
+$target = "$env:USERPROFILE\winfiles\Settings\AppData\OnePhotoViewer.config"
+Set-Symlink $link $target
+Set-Symlink "$env:LOCALAPPDATA\Programs\WinSCP\WinSCP.ini" "$env:USERPROFILE\winfiles\Settings\AppData\WinSCP.ini"
 
 # Setup OpenSSH and retrieve SSH key from Dashlane vault
 & "$PSScriptRoot\setup_openssh.ps1"
@@ -140,12 +140,12 @@ foreach ($repo in $repos) {
             git crypt unlock
             Write-Output "Unlocked successfully."
         } catch {
-            Write-Output "Error unlocking git crypt in '$repo': $_"
+            Write-Error "Error unlocking git crypt in '$repo': $_"
         } finally {
             Pop-Location
         }
     } else {
-        Write-Output "Error: Directory '$repo' does not exist."
+        Write-Error "Error: Directory '$repo' does not exist."
     }
 }
 
@@ -162,11 +162,11 @@ Set-ItemProperty -Path "HKCU:\Environment" -Name "LESSHISTFILE"          -Value 
 Set-ItemProperty -Path "HKCU:\Environment" -Name "RIPGREP_CONFIG_PATH"   -Value "$env:USERPROFILE\.config\ripgrep\ripgreprc"
 Set-ItemProperty -Path "HKCU:\Environment" -Name "WGET2RC"               -Value "$env:USERPROFILE\.config\wget\wget2rc"
 
-# Set default distro for Windows Terminal
+# Set default distro for Windows Terminal (you can see how this is used in the post-checkout git hook file)
 if ($env:USERNAME -eq "jason") {
-    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "7f586916-8357-53d4-bb2b-ca96f639898a"
+    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "{7f586916-8357-53d4-bb2b-ca96f639898a}"   # Pengwin
 } elseif ($env:USERNAME -eq "webadmin") {
-    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "bd3678cb-99b6-41c8-aa3d-98e6e4ada214"
+    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "{bd3678cb-99b6-41c8-aa3d-98e6e4ada214}"   # Ubuntu
 }
 
 # Make lowercase HOSTNAME environment variable as I prefer it sometimes
