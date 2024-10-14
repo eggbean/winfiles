@@ -12,11 +12,22 @@ if [[ -f $WT_TARGET_FILE ]]; then
     jq -r 'to_entries | sort_by(.key) | from_entries | .actions |= sort_by(.command)' > "$WT_CURRENT_FILE"
 fi
 
-# Replace the placeholders in the template and write to target
+# Check if pwsh (PowerShell Core) is available in PATH
+if command -v pwsh &> /dev/null
+then
+    core=false
+    powershell=true
+else
+    core=true
+    powershell=false
+fi
+
+# Check which WSL distros are installed
 bool() {
   if wsl.exe -l | grep -iq "$1"; then echo "true"; else echo "false"; fi
 }
 
+# Replace the placeholders in the template and write to target
 if [[ ! -d $WT_TARGET_DIR ]]; then mkdir -p "$WT_TARGET_DIR"; fi
 sed -e "s/{{DEFAULT_WSL}}/$DEFAULT_WSL/" \
   -e "s/{{PENGWIN}}/$(bool "WLinux")/" \
@@ -25,6 +36,8 @@ sed -e "s/{{DEFAULT_WSL}}/$DEFAULT_WSL/" \
   -e "s/{{ORACLE}}/$(bool "Oracle")/" \
   -e "s/{{NIXOS}}/$(bool "NixOS")/" \
   -e "s/{{KALI}}/$(bool "kali-linux")/" \
+  -e "s/{{POWERSHELL}}/$powershell/" \
+  -e "s/{{POWERSHELLCORE}}/$core/" \
   "$WT_TEMPLATE_FILE" > "$WT_TARGET_FILE"
 
 ## Other stuff ##
