@@ -1,10 +1,13 @@
-# Check if the script is running with admin privileges
+# Start timing the script
+$startTime = Get-Date
+
+# Ensure script is running with admin privileges
 $currentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
 $principal = New-Object Security.Principal.WindowsPrincipal($currentUser)
 $isAdmin = $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
 if (-Not $isAdmin) {
-    Write-Error "This script needs to be run as admin/elevated."
+    Write-Error "You must run this script as an administrator."
     exit 1
 }
 
@@ -295,6 +298,9 @@ if ($chassisType -ge 8 -and $chassisType -le 10) {
 # Make Explorer window titlebars and borders thinner
 & "$PSScriptRoot\make_explorer_titlebars_thinner.ps1"
 
+# Set British keyboard
+Set-WinUserLanguageList -LanguageList 'en-GB' -Force
+
 # Enable Developer Mode (allows symlink creation without elevation)
 Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Appx' -Name 'AllowDevelopmentWithoutDevLicense' -Value 1
 
@@ -323,6 +329,9 @@ Set-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 
 # Enable Show Desktop button at right edge of the taskbar
 Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarSd' -Value 1
+
+# Change Search box on taskbar to icon only
+Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search' -Name 'SearchboxTaskbarMode' -Value 1
 
 # Disable Snap Layouts on top of screen
 Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'EnableSnapBar' -Value 0
@@ -391,10 +400,24 @@ foreach ($file in $winfilesDotfiles) {
 # Set environment variable showing that this script has been run before
 Set-ItemProperty -Path "HKCU:\Environment" -Name "bootstrapped" -Value "true"
 
+# Calculate hours, minutes, and seconds from the total seconds
+$endTime = Get-Date
+$executionTime = $endTime - $startTime
+$timeTaken = $executionTime.TotalSeconds
+$hours = [math]::Floor($timeTaken / 3600)
+$minutes = [math]::Floor(($timeTaken % 3600) / 60)
+$seconds = [math]::Floor($timeTaken % 60)
+$timeTakenFormatted = "{0}:{1:00}:{2:00}" -f $hours, $minutes, $seconds
+
+# Print execution time to terminal
+Write-Host "Time taken: $timeTakenFormatted"
+
 # Check if a restart is required
 $restartNeeded = (Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager" -Name PendingFileRenameOperations -ErrorAction SilentlyContinue)
 
 if ($restartNeeded -and -Not $env:bootstrapped) {
+    $timeFilePath = Join-Path $env:USERPROFILE 'winfiles\bootstrap_time.txt'
+    $timeTakenFormatted | Out-File -FilePath $timeFilePath -Encoding UTF8
     Write-Host "Restarting the computer to finish..." -ForegroundColor Yellow
     Restart-Computer
 } elseif ($restartNeeded) {
