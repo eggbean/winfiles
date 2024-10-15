@@ -123,20 +123,8 @@ Set-Symlink "$env:APPDATA\qutebrowser\config"        "$env:USERPROFILE\.dotfiles
 Set-Symlink "$env:APPDATA\tlrc"                      "$env:USERPROFILE\.dotfiles\config\.config\tlrc"
 Set-Symlink "$env:LOCALAPPDATA\glow\Config\glow.yml" "$env:USERPROFILE\.dotfiles\config\.config\glow\glow.yml"
 
-# Create symlink for vimfiles from Linux dotfiles repository and make it hidden
+# Create symlink for vimfiles from Linux dotfiles repository
 Set-Symlink "$env:USERPROFILE\vimfiles" "$env:USERPROFILE\.dotfiles\config\.config\vim"
-(Get-Item "$env:USERPROFILE\vimfiles" -Force).Attributes += 'Hidden'
-
-# Create vimfiles shortcut to make it easily accessible in the GUI
-$shortcutPath = "$env:USERPROFILE\vimfiles.lnk"
-if (-Not (Test-Path $shortcutPath)) {
-    $ws = New-Object -ComObject WScript.Shell
-    $shortcut = $ws.CreateShortcut($shortcutPath)
-    $shortcut.TargetPath = "$env:USERPROFILE\.dotfiles\config\.config\vim"
-    $shortcut.IconLocation = "$env:USERPROFILE\winfiles\icons\my_icons\vimfiles.ico"
-    $shortcut.Save()
-    Write-Output "vimfiles shortcut created"
-}
 
 # Create symlinks between $APPDATA and this repository
 $link = "$env:LOCALAPPDATA\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config"
