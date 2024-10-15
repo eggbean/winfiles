@@ -147,7 +147,10 @@ $sshSetupTime = $sshSetupEndTime - $sshSetupStartTime
 Write-Output y | & "$env:USERPROFILE\winfiles\bin\dcli" logout | Out-Null
 
 # Decrypt repositories if locked
+Get-Process | Where-Object { $_.Name -like "*gpg*" } | Stop-Process -Force
+Remove-Item "$env:APPDATA\gnupg\*.lock" -Force -ErrorAction SilentlyContinue
 $repos = @("$env:USERPROFILE\winfiles", "$env:USERPROFILE\.dotfiles")
+Start-Sleep -Seconds 2
 foreach ($repo in $repos) {
     Unlock-Repository $repo
 }
