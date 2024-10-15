@@ -313,6 +313,12 @@ if (-Not $env:bootstrapped) {
 # Set British keyboard
 Set-WinUserLanguageList -LanguageList 'en-GB' -Force
 
+# Set UAC level to default (the vagrant box I'm using turns UAC off)
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "EnableLUA" -Value 1
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ConsentPromptBehaviorAdmin" -Value 5
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "PromptOnSecureDesktop" -Value 1
+
+
 # Enable Developer Mode (allows symlink creation without elevation)
 Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Appx' -Name 'AllowDevelopmentWithoutDevLicense' -Value 1
 
