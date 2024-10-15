@@ -61,7 +61,6 @@ if ($env:USERNAME -eq "jason" -or $env:USERNAME -eq "vagrant") {
     winget install -e --id NathanBeals.WinSSH-Pageant
     winget install -e --id Nikkho.FileOptimizer
     winget install -e --id OpenWhisperSystems.Signal
-    winget install -e --id Oracle.VirtualBox --skip-dependencies -v 7.0.20   # Hold version for vagrant compatibility
     winget install -e --id REALiX.HWiNFO
     winget install -e --id RustemMussabekov.Raindrop
     winget install -e --id Samsung.DeX
