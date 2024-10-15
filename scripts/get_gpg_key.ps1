@@ -9,6 +9,7 @@ try {
 catch {
     $gpgKeyPath = Join-Path -Path $env:TEMP -ChildPath "temp_gpg_key.asc"
     $dcliPath = Join-Path -Path $env:USERPROFILE -ChildPath "winfiles\bin\dcli.exe"
+    $gpgPath = Join-Path -Path ${env:ProgramFiles(x86)} -ChildPath "GnuPG\bin\gpg.exe"
 
     Write-Host 'Enter credentials for Dashlane:'
     & $dcliPath sync
@@ -16,7 +17,7 @@ catch {
     echo y | & $dcliPath logout
 
     Write-Host "Importing GPG key. You will be prompted for the passphrase."
-    gpg --import $gpgKeyPath
+    & $gpgPath --import $gpgKeyPath
 
     Remove-Item $gpgKeyPath -ErrorAction SilentlyContinue
 }
