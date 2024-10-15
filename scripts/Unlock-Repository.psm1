@@ -1,5 +1,5 @@
 # git crypt: unlock repository if locked
-
+$env:GNUPGHOME = "$env:APPDATA\gnupg"
 function Unlock-Repository {
     param (
         [string]$repo
