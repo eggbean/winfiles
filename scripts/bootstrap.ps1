@@ -148,17 +148,18 @@ foreach ($repo in $repos) {
 }
 
 # Set environment variables
-Set-ItemProperty -Path "HKCU:\Environment" -Name "BROWSER"               -Value "C:\Program Files\qutebrowser\qutebrowser.exe"
-Set-ItemProperty -Path "HKCU:\Environment" -Name "EDITOR"                -Value "vim"
-Set-ItemProperty -Path "HKCU:\Environment" -Name "GEOIPUPDATE_CONF_FILE" -Value "$env:APPDATA\geoipupdate\GeoIP.conf"
-Set-ItemProperty -Path "HKCU:\Environment" -Name "GEOIPUPDATE_LOCK_FILE" -Value "$env:APPDATA\geoipupdate\_geoipupdate.lock"
-Set-ItemProperty -Path "HKCU:\Environment" -Name "GH_BROWSER"            -Value "C:\\Program\ Files\\qutebrowser\\qutebrowser.exe"
-Set-ItemProperty -Path "HKCU:\Environment" -Name "GNUPGHOME"             -Value "$env:APPDATA\gnupg"
-Set-ItemProperty -Path "HKCU:\Environment" -Name "HOME"                  -Value "$env:USERPROFILE"
-Set-ItemProperty -Path "HKCU:\Environment" -Name "LESS"                  -Value "-MRQx4F#10"
-Set-ItemProperty -Path "HKCU:\Environment" -Name "LESSHISTFILE"          -Value "$env:APPDATA\_lesshst"
-Set-ItemProperty -Path "HKCU:\Environment" -Name "RIPGREP_CONFIG_PATH"   -Value "$env:USERPROFILE\.config\ripgrep\ripgreprc"
-Set-ItemProperty -Path "HKCU:\Environment" -Name "WGET2RC"               -Value "$env:USERPROFILE\.config\wget\wget2rc"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "BROWSER"                  -Value "C:\Program Files\qutebrowser\qutebrowser.exe"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "EDITOR"                   -Value "vim"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "GEOIPUPDATE_CONF_FILE"    -Value "$env:APPDATA\geoipupdate\GeoIP.conf"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "GEOIPUPDATE_LOCK_FILE"    -Value "$env:APPDATA\geoipupdate\_geoipupdate.lock"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "GH_BROWSER"               -Value "C:\\Program\ Files\\qutebrowser\\qutebrowser.exe"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "GNUPGHOME"                -Value "$env:APPDATA\gnupg"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "HOME"                     -Value "$env:USERPROFILE"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "LESS"                     -Value "-MRQx4F#10"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "LESSHISTFILE"             -Value "$env:APPDATA\_lesshst"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "RIPGREP_CONFIG_PATH"      -Value "$env:USERPROFILE\.config\ripgrep\ripgreprc"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "VAGRANT_DEFAULT_PROVIDER" -Value "hyperv"
+Set-ItemProperty -Path "HKCU:\Environment" -Name "WGET2RC"                  -Value "$env:USERPROFILE\.config\wget\wget2rc"
 
 # Set default distro for Windows Terminal (you can see how this is used in the post-checkout git hook file)
 if ($env:USERNAME -eq "jason") {
