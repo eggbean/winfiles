@@ -133,9 +133,14 @@ Set-Symlink $link $target
 Set-Symlink "$env:LOCALAPPDATA\Programs\WinSCP\WinSCP.ini" "$env:USERPROFILE\winfiles\Settings\AppData\WinSCP.ini"
 
 # Setup OpenSSH and retrieve SSH key from Dashlane vault
+$sshSetupStartTime = Get-Date
 & "$PSScriptRoot\setup_openssh.ps1"
 Set-Symlink "$env:USERPROFILE\.ssh" "$env:USERPROFILE\winfiles\Settings\.ssh"
 (Get-Item "$env:USERPROFILE\.ssh" -Force).Attributes += 'Hidden'
+$sshSetupEndTime = Get-Date
+
+# Calculate the time taken for OpenSSH setup
+$sshSetupTime = $sshSetupEndTime - $sshSetupStartTime
 
 # Retrieve GPG private key from Dashlane if not present in GPG keyring
 & "$PSScriptRoot\get_gpg_key.ps1"
@@ -406,7 +411,7 @@ Set-ItemProperty -Path "HKCU:\Environment" -Name "bootstrapped" -Value "true"
 
 # Calculate hours, minutes, and seconds from the total seconds
 $endTime = Get-Date
-$executionTime = $endTime - $startTime
+$executionTime = ($endTime - $startTime) - $sshSetupTime
 $timeTaken = $executionTime.TotalSeconds
 $hours = [math]::Floor($timeTaken / 3600)
 $minutes = [math]::Floor(($timeTaken % 3600) / 60)
