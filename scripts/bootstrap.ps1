@@ -287,6 +287,21 @@ if ($chassisType -ge 8 -and $chassisType -le 10) {
 # Make Explorer window titlebars and borders thinner
 & "$PSScriptRoot\make_explorer_titlebars_thinner.ps1"
 
+# Change Task Manager refresh rate to Low
+if (-Not $env:bootstrapped) {
+    $settingsFile = Join-Path $env:LOCALAPPDATA "Microsoft\Windows\TaskManager\settings.json"
+    $tempFile = Join-Path $env:TEMP "taskmgr.json"
+    Start-Process -FilePath "taskmgr.exe"
+    Start-Sleep -Seconds 2
+    1..10 | ForEach-Object {
+        if (Test-Path $settingsFile) { return }
+        Start-Sleep -Seconds 1
+    }
+    Stop-Process -Name "Taskmgr" -Force
+    jq ".RefreshRate = 4000" $settingsFile | Set-Content $tempFile
+    Move-Item $tempFile $settingsFile -Force
+}
+
 # Set British keyboard
 Set-WinUserLanguageList -LanguageList 'en-GB' -Force
 
@@ -296,7 +311,7 @@ Set-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Appx' -Name 'A
 # Enable Hibernation (not on vm)
 $systemModel = (Get-WmiObject -Class Win32_ComputerSystem).Model
 if (-Not ($systemModel -match "Virtual|VMware|Hyper-V")) {
-    Start-Process -FilePath "powercfg" -ArgumentList "/hibernate on" -Verb RunAs
+    Start-Process -FilePath 'powercfg' -ArgumentList '/hibernate on' -Verb RunAs
     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowHibernateOption' -Value 1
 }
 
