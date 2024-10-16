@@ -426,6 +426,9 @@ foreach ($file in $winfilesDotfiles) {
     Set-ItemProperty -Path $file.FullName -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
 }
 
+# Trigger post-checkout git hook to build Windows Terminal config
+git checkout $env:USERPROFILE\winfiles\.githooks\post-checkout *> $null
+
 # Set environment variable showing that this script has been run before
 Set-ItemProperty -Path "HKCU:\Environment" -Name "bootstrapped" -Value "true"
 
