@@ -125,6 +125,7 @@ Set-Symlink "$env:LOCALAPPDATA\glow\Config\glow.yml" "$env:USERPROFILE\.dotfiles
 
 # Create symlink for vimfiles from Linux dotfiles repository
 Set-Symlink "$env:USERPROFILE\vimfiles" "$env:USERPROFILE\.dotfiles\config\.config\vim"
+$symlink = Get-Item "$env:USERPROFILE\vimfiles"; $symlink.Attributes = $symlink.Attributes -bor [System.IO.FileAttributes]::System
 
 # Create symlinks between $APPDATA and this repository
 $link = "$env:LOCALAPPDATA\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config"
