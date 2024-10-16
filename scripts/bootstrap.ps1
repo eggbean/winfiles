@@ -278,7 +278,7 @@ Set-StartupShortcut -Name "Quake Terminal" `
 
 # Create startup shortcut for tpmiddle-rs on ThinkStation desktops
 $chassisType = (Get-WmiObject -Class Win32_SystemEnclosure).ChassisTypes
-if ($chassisType -ge 3 -and $chassisType -le 7) {
+if ($chassisType -ge 3 -and $chassisType -le 7 -and $env:USERNAME -ne "vagrant") {
     Set-StartupShortcut -Name "tpmiddle-rs" `
                         -TargetPath "$env:USERPROFILE\winfiles\bin\tpmiddle-rs.vbs"
 }
