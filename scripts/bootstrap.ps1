@@ -415,16 +415,12 @@ if (-Not $env:bootstrapped) {
     }
 }
 
-# Hide top-level dotfiles and dotdirectories in $env:USERPROFILE
-$dotfiles = Get-ChildItem -Path "$env:USERPROFILE\.*" -Force -Directory | Where-Object { -not ($_ | Get-ItemProperty -Name Attributes -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Attributes) -match 'Hidden' }
-foreach ($file in $dotfiles) {
-    Set-ItemProperty -Path $file.FullName -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
-}
-
-# Hide top-level dotfiles and dotdirectories in $env:USERPROFILE\winfiles
-$winfilesDotfiles = Get-ChildItem -Path "$env:USERPROFILE\winfiles\.*" -Force -Directory | Where-Object { -not ($_ | Get-ItemProperty -Name Attributes -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Attributes) -match 'Hidden' }
-foreach ($file in $winfilesDotfiles) {
-    Set-ItemProperty -Path $file.FullName -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
+# Hide top-level dotfiles and dotdirectories in USERPROFILE and USERPROFILE\winfiles
+$paths = @("$env:USERPROFILE", "$env:USERPROFILE\winfiles")
+foreach ($path in $paths) {
+    Get-ChildItem -Path "$path\.*" -Force |
+    Where-Object { -not ($_.Attributes -band [System.IO.FileAttributes]::Hidden) } |
+    ForEach-Object { $_.Attributes = $_.Attributes -bor [System.IO.FileAttributes]::Hidden }
 }
 
 # Trigger post-checkout git hook to build Windows Terminal config
