@@ -403,6 +403,17 @@ foreach ($file in $delfiles) {
     Remove-Item -Path "$env:USERPROFILE\$file" -Force -ErrorAction SilentlyContinue
 }
 
+# Delete application desktop shortcuts on first run
+if (-Not $env:bootstrapped) {
+    $userDesktopPath = [System.Environment]::GetFolderPath('Desktop')
+    $publicDesktopPath = [System.Environment]::GetFolderPath('CommonDesktopDirectory')
+    $shortcuts = Get-ChildItem -Path $userDesktopPath, $publicDesktopPath -Filter *.lnk
+    if ($shortcuts.Count -gt 0) {
+        $shortcuts | Remove-Item -Force
+        Write-Host "Desktop shortcuts removed."
+    }
+}
+
 # Hide top-level dotfiles and dotdirectories in $env:USERPROFILE
 $dotfiles = Get-ChildItem -Path "$env:USERPROFILE\.*" -Force -Directory | Where-Object { -not ($_ | Get-ItemProperty -Name Attributes -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Attributes) -match 'Hidden' }
 foreach ($file in $dotfiles) {
