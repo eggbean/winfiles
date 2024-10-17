@@ -148,12 +148,14 @@ $sshSetupTime = $sshSetupEndTime - $sshSetupStartTime
 Write-Output y | & "$env:USERPROFILE\winfiles\bin\dcli" logout | Out-Null
 
 # Decrypt repositories if locked
-Get-Process | Where-Object { $_.Name -like "*gpg*" } | Stop-Process -Force
-Remove-Item "$env:APPDATA\gnupg\*.lock" -Force -ErrorAction SilentlyContinue
-$repos = @("$env:USERPROFILE\winfiles", "$env:USERPROFILE\.dotfiles")
-Start-Sleep -Seconds 2
-foreach ($repo in $repos) {
-    Unlock-Repository $repo
+if ($env:bootstrapped) {
+    Get-Process | Where-Object { $_.Name -like "*gpg*" } | Stop-Process -Force
+    Remove-Item "$env:APPDATA\gnupg\*.lock" -Force -ErrorAction SilentlyContinue
+    $repos = @("$env:USERPROFILE\winfiles", "$env:USERPROFILE\.dotfiles")
+    Start-Sleep -Seconds 2
+    foreach ($repo in $repos) {
+        Unlock-Repository $repo
+    }
 }
 
 # Set environment variables
@@ -425,6 +427,30 @@ foreach ($path in $paths) {
 
 # Trigger post-checkout git hook to build Windows Terminal config
 git checkout $env:USERPROFILE\winfiles\.githooks\post-checkout *> $null
+
+# After first run, run script again after reboot (to unlock encrypted repositories)
+$taskName = "RunAgainAtLogin"
+$scriptPath = "$env:USERPROFILE\winfiles\scripts\bootstrap.ps1"
+if (-not $env:bootstrapped) {
+    if (Test-Path $scriptPath) {
+        $taskDescription = "Runs bootstrap again when the user logs in"
+        $action = New-ScheduledTaskAction -Execute "PowerShell.exe" `
+            -Argument "-ExecutionPolicy Bypass -NoExit -File `"$scriptPath` --skip-packages`""
+        $trigger = New-ScheduledTaskTrigger -AtLogOn
+        $userId = "$env:UserDomain\$env:UserName"
+        $principal = New-ScheduledTaskPrincipal -UserId $userId -LogonType Interactive -RunLevel Highest
+        $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+        Register-ScheduledTask -TaskName $taskName -Description $taskDescription `
+            -Action $action -Trigger $trigger -Principal $principal -Settings $settings
+        Write-Host "Scheduled task '$taskName' has been created successfully."
+    }
+} else {
+    $task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+    if ($task) {
+        Unregister-ScheduledTask -TaskName $taskName -Confirm:$false
+        Write-Host "Scheduled task '$taskName' has been deleted."
+    }
+}
 
 # Set environment variable showing that this script has been run before
 Set-ItemProperty -Path "HKCU:\Environment" -Name "bootstrapped" -Value "true"
