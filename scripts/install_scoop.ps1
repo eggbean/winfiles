@@ -99,6 +99,7 @@ $packages = @(
     'tlrc'
     'tre-command'
     'unzip'
+    'vcredist2022'
     'wakemeonlan'
     'wget2'
     'whois'
