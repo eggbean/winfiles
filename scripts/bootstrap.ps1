@@ -148,12 +148,14 @@ $sshSetupTime = $sshSetupEndTime - $sshSetupStartTime
 Write-Output y | & "$env:USERPROFILE\winfiles\bin\dcli" logout | Out-Null
 
 # Decrypt repositories if locked
-Get-Process | Where-Object { $_.Name -like "*gpg*" } | Stop-Process -Force
-Remove-Item "$env:APPDATA\gnupg\*.lock" -Force -ErrorAction SilentlyContinue
-$repos = @("$env:USERPROFILE\winfiles", "$env:USERPROFILE\.dotfiles")
-Start-Sleep -Seconds 2
-foreach ($repo in $repos) {
-    Unlock-Repository $repo
+if ($env:bootstrapped) {
+    Get-Process | Where-Object { $_.Name -like "*gpg*" } | Stop-Process -Force
+    Remove-Item "$env:APPDATA\gnupg\*.lock" -Force -ErrorAction SilentlyContinue
+    $repos = @("$env:USERPROFILE\winfiles", "$env:USERPROFILE\.dotfiles")
+    Start-Sleep -Seconds 2
+    foreach ($repo in $repos) {
+        Unlock-Repository $repo
+    }
 }
 
 # Set environment variables
@@ -426,6 +428,33 @@ foreach ($path in $paths) {
 # Trigger post-checkout git hook to build Windows Terminal config
 git checkout $env:USERPROFILE\winfiles\.githooks\post-checkout *> $null
 
+# After first run, run script again after reboot (to unlock encrypted repositories)
+$taskName = "RunAgainAtLogin"
+$scriptPath = "$env:USERPROFILE\winfiles\scripts\bootstrap.ps1"
+$task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+if (-not $env:bootstrapped) {
+    if (Test-Path $scriptPath) {
+        $taskDescription = "Runs bootstrap again when the user logs in"
+        $action = New-ScheduledTaskAction -Execute "PowerShell.exe" `
+            -Argument "-ExecutionPolicy Bypass -File `"$scriptPath`" --skip-packages -NoExit" `
+            -WorkingDirectory "$env:USERPROFILE\winfiles\scripts"
+        $trigger = New-ScheduledTaskTrigger -AtLogOn -User $env:UserName
+        $userId = "$env:UserDomain\$env:UserName"
+        $principal = New-ScheduledTaskPrincipal -UserId $userId -LogonType Interactive -RunLevel Highest
+        $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -DontStopOnIdleEnd
+        if (-Not $task) {
+            Register-ScheduledTask -TaskName $taskName -Description $taskDescription `
+                -Action $action -Trigger $trigger -Principal $principal -Settings $settings
+            Write-Host "Scheduled task '$taskName' has been created successfully."
+        }
+    }
+} else {
+    if ($task) {
+        Unregister-ScheduledTask -TaskName $taskName -Confirm:$false
+        Write-Host "Scheduled task '$taskName' has been deleted."
+    }
+}
+
 # Set environment variable showing that this script has been run before
 Set-ItemProperty -Path "HKCU:\Environment" -Name "bootstrapped" -Value "true"
 
@@ -444,13 +473,15 @@ Write-Host "Time taken: $timeTakenFormatted"
 # Check if a restart is required
 $restartNeeded = (Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager" -Name PendingFileRenameOperations -ErrorAction SilentlyContinue)
 
+# Finish up
 if ($restartNeeded -and -Not $env:bootstrapped) {
     $timeFilePath = Join-Path $env:USERPROFILE 'winfiles\bootstrap_time.txt'
     $timeTakenFormatted | Out-File -FilePath $timeFilePath -Encoding UTF8
     Write-Host "Restarting the computer to finish..." -ForegroundColor Yellow
+    Wait-WithCancel -WaitTime 15 -Message "Bootstrap will run again after rebooting..." -ShowCountdown
     Restart-Computer
 } elseif ($restartNeeded) {
     gum style --foreground 212 --border-foreground 212 --border double `
         --align center --width 50 --margin "1 2" --padding "2 4" `
-        'Restart shell now for' 'environment variables to take effect'
+        'Restart the computer now' 'to finish setup'
 }
