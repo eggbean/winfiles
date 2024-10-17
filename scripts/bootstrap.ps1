@@ -127,6 +127,10 @@ Set-Symlink "$env:LOCALAPPDATA\glow\Config\glow.yml" "$env:USERPROFILE\.dotfiles
 Set-Symlink "$env:USERPROFILE\vimfiles" "$env:USERPROFILE\.dotfiles\config\.config\vim"
 $symlink = Get-Item "$env:USERPROFILE\vimfiles"; $symlink.Attributes = $symlink.Attributes -bor [System.IO.FileAttributes]::System
 
+# Create symlink for CopyQ from Linux dotfiles repository (for easier access to database files)
+Set-Symlink "$env:USERPROFILE\CopyQ" "$env:USERPROFILE\.dotfiles\config\.config\copyq"
+$symlink = Get-Item "$env:USERPROFILE\CopyQ"; $symlink.Attributes = $symlink.Attributes -bor [System.IO.FileAttributes]::System
+
 # Create symlinks between $APPDATA and this repository
 $link = "$env:LOCALAPPDATA\Packages\48914EllipticPhenomena.OnePhotoViewer_8w313s78tpvfc\LocalCache\Local\One Photo Viewer\OnePhotoViewer.config"
 $target = "$env:USERPROFILE\winfiles\Settings\AppData\OnePhotoViewer.config"
