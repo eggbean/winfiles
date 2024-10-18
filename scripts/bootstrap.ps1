@@ -17,6 +17,7 @@ Import-Module -Name "$PSScriptRoot\Set-StartMenuShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
 Import-Module -Name "$PSScriptRoot\Unlock-Repository.psm1"
+Import-Module -Name "$PSScriptRoot\Wait-WithCancel.psm1"
 
 # Parse command-line arguments
 $Rename = $null
@@ -478,6 +479,7 @@ if ($restartNeeded -and -Not $env:bootstrapped) {
     $timeFilePath = Join-Path $env:USERPROFILE 'winfiles\bootstrap_time.txt'
     $timeTakenFormatted | Out-File -FilePath $timeFilePath -Encoding UTF8
     Write-Host "Restarting the computer to finish..." -ForegroundColor Yellow
+    Wait-WithCancel -WaitTime 15 -Message "Bootstrap will run again after rebooting..." -ShowCountdown
     Restart-Computer
 } elseif ($restartNeeded) {
     gum style --foreground 212 --border-foreground 212 --border double `
