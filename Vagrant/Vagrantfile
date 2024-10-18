@@ -1,0 +1,30 @@
+# Windows 11 Enterprise
+Vagrant.configure("2") do |config|
+  config.vm.define "win11", primary: true do |win11|
+    win11.vm.box = "gusztavvargadr/windows-11"
+    win11.vm.hostname = "win11"
+    win11.vm.box_version = "2302.0.2409"
+    win11.vm.network "forwarded_port", guest: 3389, host: 53389
+    win11.vm.boot_timeout = 600
+
+    # Provisioning with shell scripts
+    win11.vm.provision "shell", path: "scripts/fix_winget.ps1", privileged: true
+    win11.vm.provision "shell", path: "scripts/keyboard.ps1", privileged: false
+  end
+
+  # Provider-specific configurations
+  config.vm.provider "hyperv" do |h|
+    h.vmname = "Win11_bootstrap_test"
+    h.memory = "4096"
+    h.cpus = 2
+    h.enable_virtualization_extensions = true
+    h.linked_clone = true
+  end
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.vmname = "Win11_bootstrap_test"
+    vb.memory = "4096"
+    vb.cpus = 2
+    vb.gui = true
+  end
+end
