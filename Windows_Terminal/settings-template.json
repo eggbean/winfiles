@@ -214,7 +214,7 @@
         },
         "guid": "{bd3678cb-99b6-41c8-aa3d-98e6e4ada214}",
         "hidden": {{UBUNTU}},
-        "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+        "icon": "%USERPROFILE%\\winfiles\\icons\\WSL\\ubuntu.png",
         "intenseTextStyle": "all",
         "name": "Ubuntu",
         "opacity": 100,
@@ -292,7 +292,7 @@
         },
         "guid": "{4f3641ed-0500-48bd-9432-86beaa47917b}",
         "hidden": {{FEDORA}},
-        "icon": "%USERPROFILE%\\WSL\\Assets\\fedoraremix.png",
+        "icon": "%USERPROFILE%\\winfiles\\icons\\WSL\\fedoraremix.png",
         "intenseTextStyle": "all",
         "name": "Fedora",
         "opacity": 100,
@@ -305,7 +305,7 @@
         "commandline": "C:\\Windows\\system32\\wsl.exe -d NixOS",
         "guid": "{b43d1bc9-f641-4f7e-accc-b67162135ba6}",
         "hidden": {{NIXOS}},
-        "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+        "icon": "%USERPROFILE%\\winfiles\\icons\\WSL\\nixos.png",
         "name": "NixOS",
         "startingDirectory": "~"
       },
@@ -314,7 +314,7 @@
         "commandline": "C:\\Windows\\system32\\wsl.exe -d kali-linux",
         "guid": "{32343934-a7bd-4200-b88a-2fe3d035fbd6}",
         "hidden": {{KALI}},
-        "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+        "icon": "%USERPROFILE%\\winfiles\\icons\\WSL\\kali_linux.png",
         "name": "Kali Linux",
         "startingDirectory": "~"
       }
