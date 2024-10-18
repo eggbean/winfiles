@@ -265,6 +265,7 @@ Set-FolderIcon "$env:USERPROFILE\winfiles\Windows_Terminal" "%USERPROFILE%\winfi
 Set-FolderIcon "$env:USERPROFILE\winfiles\bin" "%USERPROFILE%\winfiles\icons\my_icons\bat.ico"
 Set-FolderIcon "$env:USERPROFILE\winfiles\fonts" "%USERPROFILE%\winfiles\icons\my_icons\fonts.ico"
 Set-FolderIcon "$env:USERPROFILE\winfiles\icons" "%USERPROFILE%\winfiles\icons\my_icons\Apps Folder.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\icons\WSL" "%USERPROFILE%\winfiles\icons\my_icons\windows_subsystem_for_linux.ico"
 Set-FolderIcon "$env:USERPROFILE\winfiles\icons\my_icons" "%USERPROFILE%\winfiles\icons\my_icons\Apps Folder.ico"
 Set-FolderIcon "$env:USERPROFILE\winfiles\reg" "%USERPROFILE%\winfiles\icons\my_icons\Registry Folder Icon.ico"
 Set-FolderIcon "$env:USERPROFILE\winfiles\scripts" "%USERPROFILE%\winfiles\icons\my_icons\VBS Folder.ico"
