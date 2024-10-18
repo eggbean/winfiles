@@ -1,6 +1,9 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
+# Avoid timeout issues with vagrant
+command_timeout = 1500
+
 format = """
 $username\
 $hostname\
