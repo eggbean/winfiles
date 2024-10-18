@@ -11,14 +11,6 @@ if (-Not $isAdmin) {
     exit 1
 }
 
-# Import modules
-Import-Module -Name "$PSScriptRoot\Set-FolderIcon.psm1"
-Import-Module -Name "$PSScriptRoot\Set-StartMenuShortcut.psm1"
-Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
-Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
-Import-Module -Name "$PSScriptRoot\Unlock-Repository.psm1"
-Import-Module -Name "$PSScriptRoot\Wait-WithCancel.psm1"
-
 # Parse command-line arguments
 $Rename = $null
 $SkipPackages = $false
@@ -29,6 +21,14 @@ for ($i = 0; $i -lt $args.Count; $i++) {
     elseif ($args[$i] -eq "--skip-packages") {
         $SkipPackages = $true
     }
+    elseif ($args[$i] -eq "--log") {
+        $LogScript = $true
+    }
+}
+
+# Start logging with --log argument
+if ($LogScript) {
+    Start-Transcript -Path "$env:USERPROFILE\bootstrap_log.txt" -Append
 }
 
 # Rename computer with --rename argument
@@ -43,6 +43,14 @@ if ($Rename) {
         exit 1
     }
 }
+
+# Import modules
+Import-Module -Name "$PSScriptRoot\Set-FolderIcon.psm1"
+Import-Module -Name "$PSScriptRoot\Set-StartMenuShortcut.psm1"
+Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
+Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
+Import-Module -Name "$PSScriptRoot\Unlock-Repository.psm1"
+Import-Module -Name "$PSScriptRoot\Wait-WithCancel.psm1"
 
 # Exclude known false positives from Windows Defender scanning
 & "$PSScriptRoot\defender_whitelist.ps1"
@@ -484,10 +492,17 @@ Write-Host "Time taken: $timeTakenFormatted"
 # Check if a restart is required
 $restartNeeded = (Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager" -Name PendingFileRenameOperations -ErrorAction SilentlyContinue)
 
+# Stop logging
+if ($LogScript) {
+    Start-Transcript -Path "$env:USERPROFILE\bootstrap_log.txt" -Append
+}
+
 # Finish up
 if ($restartNeeded -and -Not $env:bootstrapped) {
-    $timeFilePath = Join-Path $env:USERPROFILE 'winfiles\bootstrap_time.txt'
-    $timeTakenFormatted | Out-File -FilePath $timeFilePath -Encoding UTF8
+    if ($LogScript) {
+        $timeFilePath = Join-Path $env:USERPROFILE 'bootstrap_time.txt'
+        $timeTakenFormatted | Out-File -FilePath $timeFilePath -Encoding UTF8
+    }
     Write-Host "Restarting the computer to finish..." -ForegroundColor Yellow
     Wait-WithCancel -WaitTime 15 -Message "Bootstrap will run again after rebooting..." -ShowCountdown
     Restart-Computer
