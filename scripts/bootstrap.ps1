@@ -212,19 +212,19 @@ if (-Not (Test-Path $settingsPath)) {
     $config | Set-Content -Path $settingsPath -Force
 }
 
-# Move and symlink .config
+# Copy any existing configuration files to winfiles
+# and symlink .config from winfiles
 $configPath = "$env:USERPROFILE\.config"
 $targetPath = "$env:USERPROFILE\winfiles\Settings\.config"
-if (Test-Path $configPath -PathType Any) {
+if (Test-Path $configPath -PathType Container) {
     $item = Get-Item $configPath -Force
     if (-Not ($item.Attributes.HasFlag([IO.FileAttributes]::ReparsePoint))) {
+		Write-Host "ROBOCOPY WILL EXECUTE!"
         robocopy $configPath $targetPath /move /e /it /im > $null
-        Remove-Item -Recurse -Force $configPath
-        Write-Output "Existing .config directory removed."
     }
-    Set-Symlink $configPath $targetPath
-    (Get-Item $configPath -Force).Attributes += 'Hidden'
 }
+Set-Symlink $configPath $targetPath
+(Get-Item $configPath -Force).Attributes += 'Hidden'
 
 # Symlink other dotfiles
 $dotfiles = @(".digrc", ".envrc", ".profile")
