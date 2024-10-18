@@ -260,6 +260,7 @@ Set-FolderIcon "$env:USERPROFILE\winfiles" "%USERPROFILE%\winfiles\icons\my_icon
 Set-FolderIcon "$env:USERPROFILE\winfiles\Clink" "%USERPROFILE%\winfiles\icons\my_icons\Batch Folder Icon.ico"
 Set-FolderIcon "$env:USERPROFILE\winfiles\Settings" "%USERPROFILE%\winfiles\icons\my_icons\Batch Folder Icon.ico"
 Set-FolderIcon "$env:USERPROFILE\winfiles\SylphyHorn" "%USERPROFILE%\winfiles\icons\my_icons\Batch Folder Icon.ico"
+Set-FolderIcon "$env:USERPROFILE\winfiles\Vagrant" "%USERPROFILE%\winfiles\icons\my_icons\Vagrant.ico"
 Set-FolderIcon "$env:USERPROFILE\winfiles\Windows_Terminal" "%USERPROFILE%\winfiles\icons\my_icons\terminal.ico"
 Set-FolderIcon "$env:USERPROFILE\winfiles\bin" "%USERPROFILE%\winfiles\icons\my_icons\bat.ico"
 Set-FolderIcon "$env:USERPROFILE\winfiles\fonts" "%USERPROFILE%\winfiles\icons\my_icons\fonts.ico"
