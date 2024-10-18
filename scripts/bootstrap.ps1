@@ -17,6 +17,7 @@ Import-Module -Name "$PSScriptRoot\Set-StartMenuShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
 Import-Module -Name "$PSScriptRoot\Unlock-Repository.psm1"
+Import-Module -Name "$PSScriptRoot\Wait-WithCancel.psm1"
 
 # Parse command-line arguments
 $Rename = $null
