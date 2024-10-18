@@ -38,6 +38,7 @@ sed -e "s/{{DEFAULT_WSL}}/$DEFAULT_WSL/" \
   -e "s/{{KALI}}/$(bool "kali-linux")/" \
   -e "s/{{POWERSHELL}}/$powershell/" \
   -e "s/{{POWERSHELLCORE}}/$core/" \
+  -e "s/{{PYTHON_PATH}}/$(where.exe python.exe | head -n 1 | sed 's/\\/\\\\\\\\/g')/" \
   "$WT_TEMPLATE_FILE" > "$WT_TARGET_FILE"
 
 ## Other stuff ##
