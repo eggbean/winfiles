@@ -177,13 +177,6 @@ Set-ItemProperty -Path "HKCU:\Environment" -Name "RIPGREP_CONFIG_PATH"      -Val
 Set-ItemProperty -Path "HKCU:\Environment" -Name "VAGRANT_DEFAULT_PROVIDER" -Value "hyperv"
 Set-ItemProperty -Path "HKCU:\Environment" -Name "WGET2RC"                  -Value "$env:USERPROFILE\.config\wget\wget2rc"
 
-# Set default distro for Windows Terminal (you can see how this is used in the post-checkout git hook file)
-if ($env:USERNAME -eq "jason") {
-    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "{7f586916-8357-53d4-bb2b-ca96f639898a}"   # Pengwin
-} elseif ($env:USERNAME -eq "webadmin") {
-    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "{bd3678cb-99b6-41c8-aa3d-98e6e4ada214}"   # Ubuntu
-}
-
 # Make lowercase HOSTNAME environment variable as I prefer it sometimes
 if (-Not $env:HOSTNAME) {
     $hostname = $env:COMPUTERNAME.ToLower()
@@ -303,6 +296,21 @@ if ($chassisType -ge 8 -and $chassisType -le 10) {
 # Make Explorer window titlebars and borders thinner
 & "$PSScriptRoot\make_explorer_titlebars_thinner.ps1"
 
+# Setup WSL2 and Ubuntu distro
+if (-Not $env:bootstrapped) {
+    & "$PSScriptRoot\setup_wsl2.ps1"
+    if ($env:USERNAME -ne "jason") {
+        winget install -e --id Canonical.Ubuntu
+    }
+}
+
+# Set default distro for Windows Terminal (you can see how this is used in the post-checkout git hook file)
+if ($env:USERNAME -eq "jason") {
+    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "{7f586916-8357-53d4-bb2b-ca96f639898a}"   # Pengwin
+} elseif ($env:USERNAME -eq "webadmin") {
+    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "{bd3678cb-99b6-41c8-aa3d-98e6e4ada214}"   # Ubuntu
+}
+
 # Change Task Manager refresh rate to Low
 if (-Not $env:bootstrapped) {
     $settingsFile = Join-Path $env:LOCALAPPDATA "Microsoft\Windows\TaskManager\settings.json"
@@ -391,8 +399,6 @@ Set-ItemProperty -Path 'HKCU:\System\GameConfigStore' -Name GameDVR_Enabled -Typ
 if (-Not $env:bootstrapped) {
 
     # Enable
-    Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'Microsoft-Windows-Subsystem-Linux' | Out-Null
-    Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'VirtualMachinePlatform' | Out-Null
     Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'Containers-DisposableClientVM' | Out-Null
     Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName 'Microsoft-Hyper-V-All' -All | Out-Null
 
