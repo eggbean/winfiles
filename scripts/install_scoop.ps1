@@ -177,7 +177,6 @@ $del_shims = @(
     'uudecode'
     'uuencode'
     'vi'
-    'which'
     'xxd'
     'xz'
     'xzcat'

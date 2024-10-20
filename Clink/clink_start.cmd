@@ -22,7 +22,6 @@ if not exist "%SCOOP%\shims\scoop.cmd" (
     echo scoop not installed
     goto :HomeStart
 )
-doskey which=where $*
 doskey scoop=scoop-wrapper.cmd $*
 doskey cd=cdd.cmd $*
 doskey date=%SCOOP%\shims\date.exe $*
