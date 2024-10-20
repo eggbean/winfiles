@@ -149,12 +149,23 @@ Set-Symlink "$env:LOCALAPPDATA\Programs\WinSCP\WinSCP.ini" "$env:USERPROFILE\win
 # Setup OpenSSH and retrieve SSH key from Dashlane vault
 $sshSetupStartTime = Get-Date
 & "$PSScriptRoot\setup_openssh.ps1"
-Set-Symlink "$env:USERPROFILE\.ssh" "$env:USERPROFILE\winfiles\Settings\.ssh"
-(Get-Item "$env:USERPROFILE\.ssh" -Force).Attributes += 'Hidden'
 $sshSetupEndTime = Get-Date
 
 # Calculate the time taken for OpenSSH setup
 $sshSetupTime = $sshSetupEndTime - $sshSetupStartTime
+
+# Move any existing known_hosts files and symlink .ssh directory
+$sshDir = "$env:USERPROFILE\.ssh"
+$sshRepoDir = "$env:USERPROFILE\winfiles\Settings\.ssh"
+$knownHostsPattern = "$sshDir\known_hosts*"
+$knownHostsFiles = Get-ChildItem -Path $knownHostsPattern -ErrorAction SilentlyContinue
+if ($knownHostsFiles) {
+    foreach ($file in $knownHostsFiles) {
+        Move-Item -Path $file.FullName -Destination $sshRepoDir -Force
+    }
+}
+Set-Symlink $sshDir $sshRepoDir
+(Get-Item $sshDir -Force).Attributes += 'Hidden'
 
 # Retrieve GPG private key from Dashlane if not present in GPG keyring
 & "$PSScriptRoot\get_gpg_key.ps1"
