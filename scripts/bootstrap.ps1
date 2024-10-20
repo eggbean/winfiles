@@ -265,7 +265,7 @@ if (Test-Path "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync
 }
 
 # Set icons for various folders
-Set-FolderIcon "$env:USERPROFILE\Go" "%USERPROFILE%\winfiles\icons\my_icons\golang.ico"
+Set-FolderIcon "$env:USERPROFILE\Go" "%USERPROFILE%\winfiles\icons\my_icons\golang.ico" -Create
 Set-FolderIcon "$env:USERPROFILE\My Drive" "%USERPROFILE%\winfiles\icons\my_icons\google_drive.ico" "Your Google Drive folder contains files that you're syncing with Google."
 Set-FolderIcon "$env:USERPROFILE\iCloudDrive" "%USERPROFILE%\winfiles\icons\my_icons\iCloud Folder.ico" "iCloud Drive" "iCloud Drive"
 Set-FolderIcon "$env:USERPROFILE\winfiles" "%USERPROFILE%\winfiles\icons\my_icons\microsoft_windows_11.ico"
