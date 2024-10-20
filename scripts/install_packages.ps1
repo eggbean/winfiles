@@ -53,6 +53,7 @@ if ($env:USERNAME -eq "jason" -or $env:USERNAME -eq "vagrant") {
     winget install -e --id CrystalDewWorld.CrystalDiskMark
     winget install -e --id Discord.Discord --no-upgrade
     winget install -e --id GnuPG.Gpg4win
+    winget install -e --id GoLang.Go
     winget install -e --id Google.GoogleDrive
     winget install -e --id Hashicorp.Vagrant
     winget install -e --id LocalSend.LocalSend
