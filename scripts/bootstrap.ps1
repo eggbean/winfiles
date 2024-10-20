@@ -419,7 +419,11 @@ if (-Not $env:bootstrapped) {
 }
 
 # Remove some unwanted applications
-Get-AppxPackage Microsoft.Getstarted | Remove-AppxPackage
+# (there isn't any crapware in the Lenovo ThinkPad
+# and ThinkStation Windows images that I use)
+Get-AppxPackage Microsoft.GetHelp     | Remove-AppxPackage
+Get-AppxPackage Microsoft.Getstarted  | Remove-AppxPackage
+Get-AppxPackage Microsoft.WindowsMaps | Remove-AppxPackage
 
 # Cleanup junk files (locations have been changed)
 $delfiles = @(".gitconfig", ".lesshst", ".viminfo", "_viminfo", ".wget-hsts")
