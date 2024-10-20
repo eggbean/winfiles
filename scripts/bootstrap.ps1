@@ -287,15 +287,15 @@ Set-StartupShortcut -Name "Quake Terminal" `
                     -StartIn "$env:LOCALAPPDATA\Microsoft\WindowsApps" `
                     -WindowStyle 7  # Minimizes the terminal on startup
 
-# Create startup shortcut for tpmiddle-rs on ThinkStation desktops
-$chassisType = (Get-WmiObject -Class Win32_SystemEnclosure).ChassisTypes
+# Create startup shortcut for tpmiddle-rs on my ThinkStation desktops
+$chassisType = (Get-WmiObject -Class Win32_SystemEnclosure).ChassisTypes[0]
 if ($chassisType -ge 3 -and $chassisType -le 7 -and $env:USERNAME -ne "vagrant") {
     Set-StartupShortcut -Name "tpmiddle-rs" `
                         -TargetPath "$env:USERPROFILE\winfiles\bin\tpmiddle-rs.vbs"
 }
 
-# Create startup shortcut for MarbleScroll on ThinkPad laptops
-if ($chassisType -ge 8 -and $chassisType -le 10) {
+# Create startup shortcut for MarbleScroll on my ThinkPad laptops
+if (($chassisType -ge 8 -and $chassisType -le 10) -or $env:USERNAME -eq "vagrant") {
     Set-StartupShortcut -Name "MarbleScroll" `
                         -TargetPath "$env:USERPROFILE\winfiles\bin\MarbleScroll.exe"
 }
