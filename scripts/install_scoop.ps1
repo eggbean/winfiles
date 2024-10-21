@@ -81,7 +81,6 @@ $packages = @(
     'nirsoft/registrychangesview'
     'nirsoft/regscanner'
     'nirsoft/shellmenunew'
-    'nirsoft/shellmenuview'
     'nirsoft/usbdeview'
     'rclone'
     'ripgrep'
