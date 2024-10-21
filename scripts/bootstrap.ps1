@@ -121,6 +121,9 @@ if (-Not (Test-Path $dotfilesPath)) {
     Pop-Location
 }
 
+# Set file associations
+dism /online /Import-DefaultAppAssociations:"$PSScriptRoot\fileassociations.xml"
+
 # Create symlinks between $APPDATA and Linux dotfiles
 Set-Symlink "$env:APPDATA\GitHub CLI"                "$env:USERPROFILE\.dotfiles\config\.config\gh"
 Set-Symlink "$env:APPDATA\XnViewMP"                  "$env:USERPROFILE\.dotfiles\config\.config\XnViewMP"
