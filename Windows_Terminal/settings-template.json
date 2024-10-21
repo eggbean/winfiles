@@ -177,7 +177,7 @@
           "window",
           "taskbar"
         ],
-        "closeOnExit": "automatic",
+        "closeOnExit": "graceful",
         "colorScheme": "Argonaut",
         "commandline": "wsl -d WLinux",
         "cursorShape": "filledBox",
@@ -203,7 +203,7 @@
           "window",
           "taskbar"
         ],
-        "closeOnExit": "automatic",
+        "closeOnExit": "graceful",
         "colorScheme": "Ubuntu-ColorScheme",
         "commandline": "ubuntu.exe",
         "cursorShape": "filledBox",
@@ -223,7 +223,7 @@
         "useAcrylic": true
       },
       {
-        "closeOnExit": "automatic",
+        "closeOnExit": "always",
         "colorScheme": "One Half Brighter",
         "commandline": "%SystemRoot%\\System32\\cmd.exe",
         "cursorShape": "filledBox",
@@ -236,7 +236,7 @@
         "startingDirectory": null
       },
       {
-        "closeOnExit": "automatic",
+        "closeOnExit": "graceful",
         "colorScheme": "Campbell Powershell",
         "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
         "cursorShape": "filledBox",
@@ -248,7 +248,7 @@
         "name": "Windows PowerShell"
       },
       {
-        "closeOnExit": "automatic",
+        "closeOnExit": "graceful",
         "colorScheme": "Campbell Powershell",
         "cursorShape": "filledBox",
         "font": {
@@ -279,7 +279,7 @@
         "startingDirectory": "%USERPROFILE%"
       },
       {
-        "closeOnExit": "automatic",
+        "closeOnExit": "graceful",
         "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
         "hidden": false,
         "name": "Azure Cloud Shell",
