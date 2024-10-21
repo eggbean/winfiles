@@ -78,6 +78,7 @@ $packages = @(
     'nirsoft/hotkeyslist'
     'nirsoft/mobilefilesearch'
     'nirsoft/nircmd'
+    'nirsoft/registrychangesview'
     'nirsoft/regscanner'
     'nirsoft/shellmenunew'
     'nirsoft/shellmenuview'
