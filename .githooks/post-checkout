@@ -24,7 +24,7 @@ fi
 
 # Check which WSL distros are installed
 bool() {
-  if wsl.exe -l | grep -iq "$1"; then echo "true"; else echo "false"; fi
+  if wsl.exe -l | tr -d '\0' | grep -iq "$1"; then echo "false"; else echo "true"; fi
 }
 
 # Replace the placeholders in the template and write to target
