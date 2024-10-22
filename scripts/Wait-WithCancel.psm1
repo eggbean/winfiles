@@ -21,17 +21,24 @@ function Wait-WithCancel {
         Write-Host "$Message" -ForegroundColor Yellow
     }
 
+    # Clear any pending key presses
+    while ($Host.UI.RawUI.KeyAvailable) {
+        $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+    }
+
     while ($true) {
-        $remainingTime = [math]::Max([int]($endTime - (Get-Date)).TotalSeconds, 0)
+        $currentTime = Get-Date
+        $remainingTime = [math]::Max([int]($endTime - $currentTime).TotalSeconds, 0)
 
         # Show countdown if the switch is enabled
         if ($ShowCountdown) {
-            Write-Host -NoNewline "`rWaiting for $remainingTime seconds. Press any key to cancel..." -ForegroundColor Yellow
+            # Clear the entire line before writing new content
+            Write-Host "`r$(' ' * 80)" -NoNewline
+            Write-Host "`rWaiting for $remainingTime seconds. Press any key to cancel..." -NoNewline -ForegroundColor Yellow
         }
 
         # Check if the user has pressed a key (to cancel)
         if ($Host.UI.RawUI.KeyAvailable) {
-            # Consume the key press
             $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
             $cancelled = $true
             break
@@ -43,12 +50,13 @@ function Wait-WithCancel {
         }
 
         # Throttle the loop to avoid high CPU usage
-        Start-Sleep -Milliseconds 200
+        Start-Sleep -Milliseconds 100
     }
 
-    # If the countdown was shown, clear the last message
+    # If the countdown was shown, clear the line and move to next line
     if ($ShowCountdown) {
-        Write-Host "`r`n"
+        Write-Host "`r$(' ' * 80)" -NoNewline  # Clear the line
+        Write-Host "`r"  # Move to next line
     }
 
     # Return whether the wait was cancelled
