@@ -329,13 +329,6 @@ if (-Not $env:bootstrapped) {
     }
 }
 
-# Set default distro for Windows Terminal (you can see how this is used in the post-checkout git hook file)
-if ($env:USERNAME -eq "jason") {
-    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "{7f586916-8357-53d4-bb2b-ca96f639898a}"   # Pengwin
-} elseif ($env:USERNAME -eq "webadmin") {
-    Set-ItemProperty -Path "HKCU:\Environment" -Name "DEFAULT_WSL" -Value "{bd3678cb-99b6-41c8-aa3d-98e6e4ada214}"   # Ubuntu
-}
-
 # Change Task Manager refresh rate to Low
 if (-Not $env:bootstrapped) {
     $settingsFile = Join-Path $env:LOCALAPPDATA "Microsoft\Windows\TaskManager\settings.json"

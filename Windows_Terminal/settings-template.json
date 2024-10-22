@@ -155,7 +155,7 @@
   "alwaysShowTabs": false,
   "copyFormatting": "none",
   "copyOnSelect": true,
-  "defaultProfile": "{{DEFAULT_WSL}}",
+  "defaultProfile": "{{WT_DEFAULT_SHELL}}",
   "initialCols": 90,
   "initialRows": 42,
   "newTabMenu": [
