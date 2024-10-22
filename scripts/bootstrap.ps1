@@ -342,6 +342,17 @@ if (Test-Path "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync
     Pop-Location
 }
 
+# Write default PowerShell $profile if it does not exist
+$profileDirectory = Join-Path ([System.Environment]::GetFolderPath('MyDocuments')) "PowerShell"
+$profilePath = Join-Path $profileDirectory "Microsoft.PowerShell_profile.ps1"
+if (-Not (Test-Path $profileDirectory)) {
+    New-Item -Path $profileDirectory -ItemType Directory -Force
+}
+if (-Not (Test-Path $profilePath)) {
+    $profileUri = 'https://gist.githubusercontent.com/eggbean/81e7d1be5e7302c281ccc9b04134949e/raw/3f5dfebb350eefd340a354887cbb876b1149e697/$profile'
+    Invoke-WebRequest -Uri $profileUri -OutFile $profilePath
+}
+
 # Set icons for various folders
 Set-FolderIcon "$env:USERPROFILE\Go" "%USERPROFILE%\winfiles\icons\my_icons\golang.ico" -Create
 Set-FolderIcon "$env:USERPROFILE\My Drive" "%USERPROFILE%\winfiles\icons\my_icons\google_drive.ico" "Your Google Drive folder contains files that you're syncing with Google."
