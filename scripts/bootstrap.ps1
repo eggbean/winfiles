@@ -121,8 +121,32 @@ if (-Not (Test-Path $dotfilesPath)) {
     Pop-Location
 }
 
-# Set file associations
-dism /online /Import-DefaultAppAssociations:"$PSScriptRoot\fileassociations.xml"
+# Set a scheduled task to set file associations at logon
+$taskName = "RunSetUserFTA"
+$task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+if (-Not $task) {
+    $action = New-ScheduledTaskAction `
+        -Execute "$env:USERPROFILE\winfiles\bin\SetUserFTA.exe" `
+        -Argument "$PSScriptRoot\fileassociations.txt"
+
+    $trigger = New-ScheduledTaskTrigger -AtLogOn
+    $principal = New-ScheduledTaskPrincipal `
+        -UserId $env:USERNAME `
+        -LogonType Interactive `
+        -RunLevel Limited
+
+    $settings = New-ScheduledTaskSettingsSet `
+        -AllowStartIfOnBatteries `
+        -DontStopIfGoingOnBatteries
+
+    Register-ScheduledTask `
+        -TaskName $taskName `
+        -Action $action `
+        -Trigger $trigger `
+        -Principal $principal `
+        -Settings $settings `
+        -Force
+}
 
 # Create symlinks between $APPDATA and Linux dotfiles
 Set-Symlink "$env:APPDATA\GitHub CLI"                "$env:USERPROFILE\.dotfiles\config\.config\gh"
