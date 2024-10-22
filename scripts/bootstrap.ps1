@@ -517,10 +517,6 @@ if ($LogScript) {
 
 # Finish up
 if ($restartNeeded -and -Not $env:bootstrapped) {
-    if ($LogScript) {
-        $timeFilePath = Join-Path $env:USERPROFILE 'bootstrap_time.txt'
-        $timeTakenFormatted | Out-File -FilePath $timeFilePath -Encoding UTF8
-    }
     Write-Host "Restarting the computer to finish..." -ForegroundColor Yellow
     Wait-WithCancel -WaitTime 15 -Message "Bootstrap will run again after rebooting..." -ShowCountdown
     Restart-Computer
