@@ -26,8 +26,8 @@ for ($i = 0; $i -lt $args.Count; $i++) {
     }
 }
 
-# Start logging with --log argument
-if ($LogScript) {
+# Start logging on first run or with --log argument
+if ((-Not $env:bootstrapped) -or $LogScript) {
     Start-Transcript -Path "$env:USERPROFILE\bootstrap_log.txt" -Append
 }
 
