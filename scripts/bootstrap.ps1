@@ -1,19 +1,19 @@
 # Start timing the script
 $startTime = Get-Date
 
-# Ensure script is running with admin privileges
+# Ensure the script is run with administrative privileges
 $currentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
 $principal = New-Object Security.Principal.WindowsPrincipal($currentUser)
 $isAdmin = $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-
 if (-Not $isAdmin) {
-    Write-Error "You must run this script as an administrator."
+    Write-Error "This script needs to be run as Administrator."
     exit 1
 }
 
 # Parse command-line arguments
 $Rename = $null
 $SkipPackages = $false
+$LogScript = $false
 for ($i = 0; $i -lt $args.Count; $i++) {
     if ($args[$i] -eq "--rename" -and $i + 1 -lt $args.Count) {
         $Rename = $args[$i + 1]
@@ -26,9 +26,16 @@ for ($i = 0; $i -lt $args.Count; $i++) {
     }
 }
 
-# Start logging on first run or with --log argument
-if ((-Not $env:bootstrapped) -or $LogScript) {
-    Start-Transcript -Path "$env:USERPROFILE\bootstrap_log.txt" -Append
+# If first run log automatically
+# and don't skip packages as the script will fail
+if (-Not $env:bootstrapped) {
+    $LogScript = $true
+    $SkipPackages = $false
+}
+
+# Start logging with --log argument
+if ($LogScript) {
+    Start-Transcript -Path "$env:USERPROFILE\bootstrap_log.log" -Append
 }
 
 # Rename computer with --rename argument
@@ -281,16 +288,6 @@ $envValue = "$env:USERPROFILE\.config\git\win.config"
 Set-ItemProperty -Path "HKCU:\Environment" -Name $envName -Value $envValue
 [System.Environment]::SetEnvironmentVariable($envName, $envValue, [System.EnvironmentVariableTarget]::User)
 
-# Set icons for Adobe Creative Cloud Sync if it exists
-if (Test-Path "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync") {
-    Push-Location "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync"
-    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\cloud_fld_w10.ico" .
-    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\cloud_fld_w10_offline.ico" .
-    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\shared_fld_w10.ico" .
-    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\RO_shared_fld_w10.ico" .
-    Pop-Location
-}
-
 # Write default PowerShell $profile if it does not exist
 $profileDirectory = Join-Path ([System.Environment]::GetFolderPath('MyDocuments')) "PowerShell"
 $profilePath = Join-Path $profileDirectory "Microsoft.PowerShell_profile.ps1"
@@ -300,6 +297,16 @@ if (-Not (Test-Path $profileDirectory)) {
 if (-Not (Test-Path $profilePath)) {
     $profileUri = 'https://gist.githubusercontent.com/eggbean/81e7d1be5e7302c281ccc9b04134949e/raw/$profile'
     Invoke-WebRequest -Uri $profileUri -OutFile $profilePath
+}
+
+# Set icons for Adobe Creative Cloud Sync if it exists
+if (Test-Path "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync") {
+    Push-Location "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync"
+    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\cloud_fld_w10.ico" .
+    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\cloud_fld_w10_offline.ico" .
+    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\shared_fld_w10.ico" .
+    Copy-Item "$env:USERPROFILE\winfiles\icons\my_icons\RO_shared_fld_w10.ico" .
+    Pop-Location
 }
 
 # Set icons for various folders
@@ -539,15 +546,15 @@ $minutes = [math]::Floor(($timeTaken % 3600) / 60)
 $seconds = [math]::Floor($timeTaken % 60)
 $timeTakenFormatted = "{0}:{1:00}:{2:00}" -f $hours, $minutes, $seconds
 
-# Print execution time to terminal
-Write-Host "Time taken: $timeTakenFormatted"
-
 # Check if a restart is required
 $restartNeeded = (Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager" -Name PendingFileRenameOperations -ErrorAction SilentlyContinue)
 
+# Print execution time to terminal
+Write-Host "Time taken: $timeTakenFormatted"
+
 # Stop logging
 if ($LogScript) {
-    Start-Transcript -Path "$env:USERPROFILE\bootstrap_log.txt" -Append
+    Start-Transcript -Path "$env:USERPROFILE\bootstrap_log.log" -Append
 }
 
 # Finish up
