@@ -27,7 +27,7 @@ if (-NOT $initiallyInstalled) {
     icacls $env:SCOOP /grant "Users:(OI)(CI)F" /T | Out-Null
 
     # Install aria2c for multi-connection downloads
-    scoop install aria2 -u -g
+    scoop install aria2 -u
     scoop config aria2-warning-enabled false
 
     # Install buckets
@@ -108,13 +108,13 @@ $packages = @(
 )
 
 foreach ($package in $packages) {
-    scoop install $package -u -g
+    scoop install $package -u
 }
 
 # Reset shims in order of package list
 # if scoop was already installed
 if ($initiallyInstalled) {
-    scoop update * -g
+    scoop update *
     foreach ($package in $packages) {
         scoop reset $package
     }
@@ -184,5 +184,5 @@ $del_shims = @(
 )
 
 foreach ($shim in $del_shims) {
-    scoop shim rm $shim -g
+    scoop shim rm $shim
 }
