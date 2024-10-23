@@ -2,6 +2,7 @@
 
 ## Solution for managing a Windows Terminal configuration in git that can be used in different user accounts ##
 WT_DEFAULT_SHELL="${WT_DEFAULT_SHELL:-{0caa0dad-35be-5f56-a8ff-afceeeaa6101}}"
+WT_DEFAULT_SHELL_STRIPPED=$(echo "$WT_DEFAULT_SHELL" | sed 's/[{}]//g')
 WT_TARGET_FILE="$LOCALAPPDATA/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
 WT_CURRENT_FILE="Windows_Terminal/settings-current.json"
 WT_TEMPLATE_FILE="Windows_Terminal/settings-template.json"
@@ -30,7 +31,7 @@ bool() {
 
 # Replace the placeholders in the template and write to target
 if [[ ! -d $WT_TARGET_DIR ]]; then mkdir -p "$WT_TARGET_DIR"; fi
-sed -e "s/{{WT_DEFAULT_SHELL}}/$WT_DEFAULT_SHELL/" \
+sed -e "s/{{WT_DEFAULT_SHELL}}/{${WT_DEFAULT_SHELL_STRIPPED}}/" \
   -e "s/{{PENGWIN}}/$(bool "WLinux")/" \
   -e "s/{{UBUNTU}}/$(bool "Ubuntu")/" \
   -e "s/{{FEDORA}}/$(bool "fedoraremix")/" \
