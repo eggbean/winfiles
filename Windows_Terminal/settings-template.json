@@ -273,7 +273,7 @@
         "commandline": "{{PYTHON_PATH}}",
         "cursorShape": "filledBox",
         "guid": "{addc9f0b-57b1-4ca2-8fe9-2440de6857c3}",
-        "hidden": false,
+        "hidden": {{PYTHON}},
         "icon": "%USERPROFILE%\\winfiles\\icons\\my_icons\\python.ico",
         "name": "Python Shell",
         "startingDirectory": "%USERPROFILE%"
