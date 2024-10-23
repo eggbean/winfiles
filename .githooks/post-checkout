@@ -1,12 +1,14 @@
 #!/bin/bash
 
 ## Solution for managing a Windows Terminal configuration in git that can be used in different user accounts ##
+
+# Set variables
 WT_DEFAULT_SHELL="${WT_DEFAULT_SHELL:-{0caa0dad-35be-5f56-a8ff-afceeeaa6101}}"
-WT_DEFAULT_SHELL_STRIPPED=$(echo "$WT_DEFAULT_SHELL" | sed 's/[{}]//g')
+WT_DEFAULT_SHELL_STRIPPED="$(echo "$WT_DEFAULT_SHELL" | sed 's/[{}]//g')"
 WT_TARGET_FILE="$LOCALAPPDATA/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
-WT_CURRENT_FILE="Windows_Terminal/settings-current.json"
+WT_CURRENT_FILE="Windows_Terminal/settings-previous.json"
 WT_TEMPLATE_FILE="Windows_Terminal/settings-template.json"
-WT_TARGET_DIR=$(dirname "$WT_TARGET_FILE")
+WT_TARGET_DIR="$(dirname "$WT_TARGET_FILE")"
 
 # Get the current Windows Terminal configuration state and process it
 if [[ -f $WT_TARGET_FILE ]]; then
@@ -14,7 +16,8 @@ if [[ -f $WT_TARGET_FILE ]]; then
     jq -r 'to_entries | sort_by(.key) | from_entries | .actions |= sort_by(.command)' > "$WT_CURRENT_FILE"
 fi
 
-# Check if pwsh (PowerShell Core) is available in PATH
+# Check if pwsh (PowerShell Core) is available in $PATH
+# and replace the Windows PowerShell tab if it is
 if command -v pwsh &> /dev/null
 then
     core=false
@@ -25,24 +28,30 @@ else
 fi
 
 # Check which WSL distros are installed
-bool() {
+hidedistro() {
   if wsl.exe -l | tr -d '\0' | grep -iq "$1"; then echo "false"; else echo "true"; fi
+}
+
+# Check if python is installed
+hidepython() {
+  if python --version >/dev/null 2>&1; then echo "false"; else echo "true"; fi
 }
 
 # Replace the placeholders in the template and write to target
 if [[ ! -d $WT_TARGET_DIR ]]; then mkdir -p "$WT_TARGET_DIR"; fi
 sed -e "s/{{WT_DEFAULT_SHELL}}/{${WT_DEFAULT_SHELL_STRIPPED}}/" \
-  -e "s/{{PENGWIN}}/$(bool "WLinux")/" \
-  -e "s/{{UBUNTU}}/$(bool "Ubuntu")/" \
-  -e "s/{{FEDORA}}/$(bool "fedoraremix")/" \
-  -e "s/{{ORACLE}}/$(bool "Oracle")/" \
-  -e "s/{{NIXOS}}/$(bool "NixOS")/" \
-  -e "s/{{KALI}}/$(bool "kali-linux")/" \
   -e "s/{{POWERSHELL}}/$powershell/" \
   -e "s/{{POWERSHELLCORE}}/$core/" \
+  -e "s/{{PENGWIN}}/$(hidedistro "WLinux")/" \
+  -e "s/{{UBUNTU}}/$(hidedistro "Ubuntu")/" \
+  -e "s/{{FEDORA}}/$(hidedistro "fedoraremix")/" \
+  -e "s/{{ORACLE}}/$(hidedistro "Oracle")/" \
+  -e "s/{{NIXOS}}/$(hidedistro "NixOS")/" \
+  -e "s/{{KALI}}/$(hidedistro "kali-linux")/" \
+  -e "s/{{PYTHON}}/$(hidepython)/" \
   -e "s/{{PYTHON_PATH}}/$(where.exe python.exe | head -n 1 | sed 's/\\/\\\\\\\\/g')/" \
   "$WT_TEMPLATE_FILE" > "$WT_TARGET_FILE"
 
-## Other stuff ##
+## Other stuff to improve the graphical appearance of the repository ##
 find . -name 'desktop.ini' -exec attrib.exe +A +S +H {} \;
 find . -name '.*?' -not -path './Settings/*' -exec attrib.exe +H {} \;
