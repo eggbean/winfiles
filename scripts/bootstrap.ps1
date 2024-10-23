@@ -371,7 +371,7 @@ if (-Not $env:bootstrapped) {
     }
 }
 
-# Change Task Manager refresh rate to Low
+# Change Task Manager refresh rate to Low and hide when minimised
 if (-Not $env:bootstrapped) {
     $settingsFile = Join-Path $env:LOCALAPPDATA "Microsoft\Windows\TaskManager\settings.json"
     $tempFile = Join-Path $env:TEMP "taskmgr.json"
@@ -382,7 +382,7 @@ if (-Not $env:bootstrapped) {
         Start-Sleep -Seconds 1
     }
     Stop-Process -Name "Taskmgr" -Force
-    jq ".RefreshRate = 4000" $settingsFile | Set-Content $tempFile
+    jq '.RefreshRate = 4000 | .HideWhenMin = true' $settingsFile | Set-Content $tempFile
     Move-Item $tempFile $settingsFile -Force
 }
 
