@@ -52,6 +52,7 @@ if ($Rename) {
 }
 
 # Import modules
+Import-Module -Name "$PSScriptRoot\Set-FileTypeIcon.psm1"
 Import-Module -Name "$PSScriptRoot\Set-FolderIcon.psm1"
 Import-Module -Name "$PSScriptRoot\Set-StartMenuShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
@@ -126,34 +127,6 @@ if (-Not (Test-Path $dotfilesPath)) {
         exit 1
     }
     Pop-Location
-}
-
-# Set a scheduled task to set file associations at logon
-$taskName = "RunSetUserFTA"
-$task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
-if (-Not $task) {
-    # Use powershell.exe to invoke the executable in hidden window mode
-    $action = New-ScheduledTaskAction `
-        -Execute "powershell.exe" `
-        -Argument "-WindowStyle Hidden -File `"$env:USERPROFILE\winfiles\bin\SetUserFTA.exe`" `"$PSScriptRoot\fileassociations.txt`""
-
-    $trigger = New-ScheduledTaskTrigger -AtLogOn
-    $principal = New-ScheduledTaskPrincipal `
-        -UserId $env:USERNAME `
-        -LogonType Interactive `
-        -RunLevel Limited
-
-    $settings = New-ScheduledTaskSettingsSet `
-        -AllowStartIfOnBatteries `
-        -DontStopIfGoingOnBatteries
-
-    Register-ScheduledTask `
-        -TaskName $taskName `
-        -Action $action `
-        -Trigger $trigger `
-        -Principal $principal `
-        -Settings $settings `
-        -Force
 }
 
 # Create symlinks between $APPDATA and Linux dotfiles
@@ -299,6 +272,60 @@ if (-Not (Test-Path $profilePath)) {
     $profileUri = 'https://gist.githubusercontent.com/eggbean/81e7d1be5e7302c281ccc9b04134949e/raw/$profile'
     Invoke-WebRequest -Uri $profileUri -OutFile $profilePath
 }
+
+# Set a scheduled task to set file associations at logon
+$taskName = "RunSetUserFTA"
+$task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+if (-Not $task) {
+    # Use powershell.exe to invoke the executable in hidden window mode
+    $action = New-ScheduledTaskAction `
+        -Execute "powershell.exe" `
+        -Argument "-WindowStyle Hidden -File `"$env:USERPROFILE\winfiles\bin\SetUserFTA.exe`" `"$PSScriptRoot\fileassociations.txt`""
+
+    $trigger = New-ScheduledTaskTrigger -AtLogOn
+    $principal = New-ScheduledTaskPrincipal `
+        -UserId $env:USERNAME `
+        -LogonType Interactive `
+        -RunLevel Limited
+
+    $settings = New-ScheduledTaskSettingsSet `
+        -AllowStartIfOnBatteries `
+        -DontStopIfGoingOnBatteries
+
+    Register-ScheduledTask `
+        -TaskName $taskName `
+        -Action $action `
+        -Trigger $trigger `
+        -Principal $principal `
+        -Settings $settings `
+        -Force
+}
+
+# Set the filetype icons for a specific file extensions
+Set-FileTypeIcon -Extension ".bak"       -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".bind"      -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".btlic"     -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".config"    -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".gitignore" -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".hidden"    -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".inf"       -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".ini"       -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".inputrc"   -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".js"        -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".json"      -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".jsonc"     -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".log"       -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".md"        -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".notes"     -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".ps1"       -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".psd1"      -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".psm1"      -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".rst"       -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".srt"       -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".txt"       -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\shell32_16822.ico"
+Set-FileTypeIcon -Extension ".vim"       -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".xml"       -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
+Set-FileTypeIcon -Extension ".yml"       -IconPath "$env:USERPROFILE\winfiles\icons\filetypes\svg.ico"
 
 # Set icons for Adobe Creative Cloud Sync if it exists
 if (Test-Path "C:\Program Files (x86)\Adobe\Adobe Sync\CoreSync\sibres\CloudSync") {
