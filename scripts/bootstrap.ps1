@@ -54,6 +54,7 @@ if ($Rename) {
 # Import modules
 Import-Module -Name "$PSScriptRoot\Set-FileTypeIcon.psm1"
 Import-Module -Name "$PSScriptRoot\Set-FolderIcon.psm1"
+Import-Module -Name "$PSScriptRoot\Set-SoundScheme.psm1"
 Import-Module -Name "$PSScriptRoot\Set-StartMenuShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
@@ -394,6 +395,9 @@ if ($env:USERNAME -ne "jason" -and $env:USERNAME -ne "vagrant") {
     Set-StartMenuShortcut -Subdir "WinDirStat" -Name "WinDirStat" -Target "$env:ProgramFiles(x86)\WinDirStat\windirstat.exe"
     Set-StartMenuShortcut -Subdir "WinDirStat" -Name "Help (ENG)" -Target "$env:ProgramFiles(x86)\WinDirStat\windirstat.chm"
 }
+
+# Set custom sound scheme
+# temp placeholder
 
 # Install and register fonts
 & "$PSScriptRoot\install_fonts.ps1"
