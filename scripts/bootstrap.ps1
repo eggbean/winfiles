@@ -73,17 +73,8 @@ if (-Not $SkipPackages) {
     & "$PSScriptRoot\install_packages.ps1"
 }
 
-# Fix missing StartMenu Shortcuts if packages were installed using another account
-if ($env:USERNAME -ne "jason" -and $env:USERNAME -ne "vagrant") {
-    Set-StartMenuShortcut -Subdir "WinDirStat" -Name "WinDirStat" -Target "$env:ProgramFiles(x86)\WinDirStat\windirstat.exe"
-    Set-StartMenuShortcut -Subdir "WinDirStat" -Name "Help (ENG)" -Target "$env:ProgramFiles(x86)\WinDirStat\windirstat.chm"
-}
-
-# Add vim to $PATH
-& "$PSScriptRoot\add_vim_to_path.ps1"
-
-# Install scoop for multi-users and packages (if not already installed)
-if (-Not $env:bootstrapped) {
+# Install scoop for multi-users and packages
+if (-Not $SkipPackages) {
     & "$PSScriptRoot\install_scoop.ps1"
 }
 
@@ -189,6 +180,9 @@ if ($env:bootstrapped) {
         Unlock-Repository $repo
     }
 }
+
+# Add vim to $PATH
+& "$PSScriptRoot\add_vim_to_path.ps1"
 
 # Set environment variables
 Set-ItemProperty -Path "HKCU:\Environment" -Name "BROWSER"                  -Value "C:\Program Files\qutebrowser\qutebrowser.exe"
@@ -386,6 +380,12 @@ if ($chassisType -ge 3 -and $chassisType -le 7 -and $env:USERNAME -ne "vagrant")
 if (($chassisType -ge 8 -and $chassisType -le 10) -or $env:USERNAME -eq "vagrant") {
     Set-StartupShortcut -Name "MarbleScroll" `
                         -TargetPath "$env:USERPROFILE\winfiles\bin\MarbleScroll.exe"
+}
+
+# Fix missing StartMenu Shortcuts if packages were installed using another account
+if ($env:USERNAME -ne "jason" -and $env:USERNAME -ne "vagrant") {
+    Set-StartMenuShortcut -Subdir "WinDirStat" -Name "WinDirStat" -Target "$env:ProgramFiles(x86)\WinDirStat\windirstat.exe"
+    Set-StartMenuShortcut -Subdir "WinDirStat" -Name "Help (ENG)" -Target "$env:ProgramFiles(x86)\WinDirStat\windirstat.chm"
 }
 
 # Install and register fonts
