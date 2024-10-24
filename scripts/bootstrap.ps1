@@ -198,6 +198,13 @@ Set-ItemProperty -Path "HKCU:\Environment" -Name "RIPGREP_CONFIG_PATH"      -Val
 Set-ItemProperty -Path "HKCU:\Environment" -Name "VAGRANT_DEFAULT_PROVIDER" -Value "hyperv"
 Set-ItemProperty -Path "HKCU:\Environment" -Name "WGET2RC"                  -Value "$env:USERPROFILE\.config\wget\wget2rc"
 
+# Set LS_COLORS environment variable using dircolors from uutils-coreutils
+$dirColorsCommand = 'dircolors -c "$env:USERPROFILE\winfiles\scripts\dir_colors"'
+$dirColorsOutput = Invoke-Expression $dirColorsCommand
+$lsColorsValue = $dirColorsOutput -replace '^setenv\s+LS_COLORS\s+', ''
+$lsColorsValue = $lsColorsValue.Trim("'")
+Set-ItemProperty -Path "HKCU:\Environment" -Name "LS_COLORS" -Value $lsColorsValue
+
 # Make lowercase HOSTNAME environment variable as I prefer it sometimes
 if (-Not $env:HOSTNAME) {
     $hostname = $env:COMPUTERNAME.ToLower()
