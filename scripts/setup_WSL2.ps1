@@ -23,7 +23,12 @@ wsl --set-default-version 2 > $null 2>&1
 Write-Host "Checking for WSL kernel update..." -ForegroundColor Green
 Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile "$env:TEMP\wsl_update_x64.msi"
 Start-Process msiexec.exe -ArgumentList '/i', "$env:TEMP\wsl_update_x64.msi", '/quiet', '/norestart' -Wait
-wsl --update
+
+# Make a scheduled task to update WSL on next reboot
+$wslUpdateAction = New-ScheduledTaskAction -Execute "wsl" -Argument "--update"
+$trigger = New-ScheduledTaskTrigger -AtStartup
+$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopOnIdleEnd -DeleteExpiredTaskAfter 1
+Register-ScheduledTask -Action $wslUpdateAction -Trigger $trigger -Settings $settings -TaskName "WSL Update" -Description "Updates WSL on next reboot" -RunLevel Highest -User "NT AUTHORITY\SYSTEM"
 
 # Suggest user to install a Linux distribution from the Microsoft Store
 Write-Host "Installation complete! Please go to the Microsoft Store to install your preferred Linux distribution." -ForegroundColor Yellow
