@@ -22,7 +22,7 @@ wsl --set-default-version 2 > $null 2>&1
 # Install WSL kernel update
 Write-Host "Checking for WSL kernel update..." -ForegroundColor Green
 Invoke-WebRequest -Uri https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi -OutFile "$env:TEMP\wsl_update_x64.msi"
-Start-Process msiexec.exe -ArgumentList '/i', "$env:TEMP\wsl_update_x64.msi", '/quiet', '/norestart' -Wait
+Start-Process msiexec.exe -ArgumentList '/i', "$env:TEMP\wsl_update_x64.msi", '/passive', '/norestart' -Wait
 
 # Make a scheduled task to update WSL on next reboot
 $wslUpdateAction = New-ScheduledTaskAction -Execute "wsl" -Argument "--update"
