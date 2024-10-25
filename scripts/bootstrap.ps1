@@ -60,6 +60,7 @@ Import-Module -Name "$PSScriptRoot\Set-StartupShortcut.psm1"
 Import-Module -Name "$PSScriptRoot\Set-Symlink.psm1"
 Import-Module -Name "$PSScriptRoot\Unlock-Repository.psm1"
 Import-Module -Name "$PSScriptRoot\Wait-WithCancel.psm1"
+Import-Module -Name "$PSScriptRoot\Write-OutputWithIcon.psm1"
 
 # Exclude known false positives from Windows Defender scanning
 & "$PSScriptRoot\defender_whitelist.ps1"
