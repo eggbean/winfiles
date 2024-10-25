@@ -95,9 +95,9 @@ $owner = [System.Security.Principal.NTAccount] "$env:USERNAME"
 $acl.SetOwner($owner)
 try {
     Set-Acl $winfilesPath $acl
-    echo ":white_check_mark: Taken ownership of winfiles" | gum format -t emoji
+    Write-OutputWithIcon -Message "Taken ownership of winfiles" -IconType "success"
 } catch {
-    echo ":warning: Error taking ownership of winfiles: $_" | gum format -t emoji
+    Write-OutputWithIcon -Message "Error taking ownership of winfiles: $_" -IconType "error"
     exit 1
 }
 
