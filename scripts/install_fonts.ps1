@@ -32,32 +32,32 @@ function Install-Font {
 
     # If the font is already installed (registry and file), skip installation
     if (Test-FontInstalled -fontName $fontName) {
-        Write-Host "$fontName is already installed. Skipping installation."
+        Write-OutputWithIcon "$fontName is already installed. Skipping installation." -IconType "info"
         return
     }
 
     # If the font is not installed, copy it manually
     try {
         Copy-Item -Path $fontPath -Destination $fontDestination -Force
-        Write-Host "Installed $fontName by copying the file."
+        Write-OutputWithIcon "Installed $fontName by copying the file." -IconType "working"
     }
     catch {
-        Write-Host "Error copying ${fontName}: $($_.Exception.Message)"
+        Write-OutputWithIcon "Error copying ${fontName}: $($_.Exception.Message)" -IconType "error"
     }
 
     # Register the font in the registry
     $regFontName = if ($fontName -like "*.ttf") { "$fontName (TrueType)" } else { "$fontName (OpenType)" }
     New-ItemProperty -Path $registryPath -Name $regFontName -Value $fontName -PropertyType String -Force
-    Write-Host "$fontName has been registered in the system registry."
+    Write-OutputWithIcon "$fontName has been registered in the system registry." -IconType "success"
 
     # Flush the font cache
-    Write-Host "Flushing the font cache..."
+    Write-OutputWithIcon "Flushing the font cache..." -IconType "info"
     & rundll32.exe shell32.dll,SHChangeNotify 0x8000000 0
 }
 
 # Check if the source font folder exists
 if (-not (Test-Path $sourceFontFolder)) {
-    Write-Host "Source font folder does not exist: $sourceFontFolder"
+    Write-OutputWithIcon "Source font folder does not exist: $sourceFontFolder" -IconType "error"
     exit
 }
 
@@ -70,4 +70,4 @@ Get-ChildItem -Path $sourceFontFolder -Recurse -Include *.ttf, *.otf -File | For
     Install-Font -fontPath $fontFile -fontName $fontName
 }
 
-Write-Host "Font installation process completed."
+Write-OutputWithIcon "Font installation process completed." -IconType "success"
