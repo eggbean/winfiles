@@ -11,7 +11,7 @@ doskey props=GDProps.exe $*
 doskey take=mkdir $1 $T cd $1
 doskey qb="C:\Program Files\qutebrowser\qutebrowser.exe" $*
 doskey qutebrowser="C:\Program Files\qutebrowser\qutebrowser.exe" $*
-doskey copyq="C:\Program Files\CopyQ\copyq.exe" $*
+doskey copyq=copyq-wrapper.cmd $*
 doskey google=explorer "https://www.google.com/search?q=$*"
 doskey vihosts=sudo gvim C:\Windows\System32\Drivers\etc\hosts
 doskey startmenu=pushd %APPDATA%\Microsoft\Windows\Start Menu\Programs
