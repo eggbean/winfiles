@@ -277,20 +277,23 @@ if (-Not (Test-Path $profilePath)) {
 $taskName = "RunSetUserFTA"
 $task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
 if (-Not $task) {
-    # Use powershell.exe to invoke the executable in hidden window mode
     $action = New-ScheduledTaskAction `
-        -Execute "powershell.exe" `
-        -Argument "-WindowStyle Hidden -File `"$env:USERPROFILE\winfiles\bin\SetUserFTA.exe`" `"$PSScriptRoot\fileassociations.txt`""
+        -Execute "cmd.exe" `
+        -Argument "/c start /min `"$env:USERPROFILE\winfiles\bin\SetUserFTA.exe`" `"$PSScriptRoot\fileassociations.txt`""
 
     $trigger = New-ScheduledTaskTrigger -AtLogOn
+
     $principal = New-ScheduledTaskPrincipal `
-        -UserId $env:USERNAME `
+        -UserId "NT AUTHORITY\SELF" `
         -LogonType Interactive `
         -RunLevel Limited
 
     $settings = New-ScheduledTaskSettingsSet `
         -AllowStartIfOnBatteries `
-        -DontStopIfGoingOnBatteries
+        -DontStopIfGoingOnBatteries `
+        -StartWhenAvailable `
+        -RestartInterval (New-TimeSpan -Minutes 15) `
+        -RestartCount 3
 
     Register-ScheduledTask `
         -TaskName $taskName `
