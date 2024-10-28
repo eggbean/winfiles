@@ -66,6 +66,7 @@ $packages = @(
     'git-crypt'
     'glow'
     'grep'
+    'imagemagick-lean'
     'jq'
     'less'
     'lf'
