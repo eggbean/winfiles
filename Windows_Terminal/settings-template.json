@@ -169,6 +169,7 @@
   ],
   "profiles": {
     "defaults": {
+      "cursorShape": "filledBox",
       "scrollbarState": "hidden"
     },
     "list": [
