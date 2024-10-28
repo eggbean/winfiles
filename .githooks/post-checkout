@@ -42,6 +42,11 @@ hideaws() {
   if aws-shell.exe -h >/dev/null 2>&1; then echo "false"; else echo "true"; fi
 }
 
+# Check if the Google Cloud SDK is installed
+hidegcloud() {
+  if which gcloud >/dev/null 2>&1; then echo "false"; else echo "true"; fi
+}
+
 # Replace the placeholders in the template and write to target
 if [[ ! -d $WT_TARGET_DIR ]]; then mkdir -p "$WT_TARGET_DIR"; fi
 sed -e "s/{{WT_DEFAULT_SHELL}}/{${WT_DEFAULT_SHELL_STRIPPED}}/" \
@@ -57,6 +62,7 @@ sed -e "s/{{WT_DEFAULT_SHELL}}/{${WT_DEFAULT_SHELL_STRIPPED}}/" \
   -e "s/{{PYTHON_PATH}}/$(where.exe python.exe | head -n 1 | sed 's/\\/\\\\\\\\/g')/" \
   -e "s/{{AWS}}/$(hideaws)/" \
   -e "s/{{AWS_PATH}}/$(where.exe aws-shell.exe | head -n 1 | sed 's/\\/\\\\\\\\/g')/" \
+  -e "s/{{GCLOUD}}/$(hidegcloud)/" \
   "$WT_TEMPLATE_FILE" > "$WT_TARGET_FILE"
 
 ## Other stuff to improve the graphical appearance of the repository ##

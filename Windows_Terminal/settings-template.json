@@ -299,6 +299,14 @@
         "name": "AWS Shell"
       },
       {
+        "closeOnExit": "graceful",
+        "commandline": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoExit -ExecutionPolicy Bypass -File \"%LOCALAPPDATA%\\Google\\Cloud SDK\\google-cloud-sdk\\platform\\PowerShell\\GoogleCloud\\BootstrapCloudToolsForPowerShell.ps1\"",
+        "hidden": {{GCLOUD}},
+        "icon": "%USERPROFILE%\\winfiles\\icons\\WSL\\gcloud.png",
+        "name": "Google Cloud PowerShell",
+        "startingDirectory": "%USERPROFILE%"
+      },
+      {
         "colorScheme": "Argonaut",
         "font": {
           "face": "Cascadia Code"
