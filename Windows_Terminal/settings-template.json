@@ -8,13 +8,16 @@
       "keys": "ctrl+shift+f"
     },
     {
-      "command": "paste"
+      "command": "paste",
+      "id": "User.paste"
     },
     {
-      "command": "scrollDownPage"
+      "command": "scrollDownPage",
+      "id": "User.scrollDownPage"
     },
     {
-      "command": "scrollUpPage"
+      "command": "scrollUpPage",
+      "id": "User.scrollUpPage"
     },
     {
       "command": "toggleFocusMode",
@@ -133,7 +136,8 @@
       "command": {
         "action": "copy",
         "singleLine": false
-      }
+      },
+      "id": "User.copy.644BA8F2"
     },
     {
       "command": {
@@ -249,13 +253,14 @@
           "face": "CaskaydiaCove Nerd Font Mono",
           "size": 11
         },
-        "guid": "{bd3678cb-99b6-41c8-aa3d-98e6e4ada214}",
+        "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
         "hidden": {{UBUNTU}},
         "icon": "%USERPROFILE%\\winfiles\\icons\\WSL\\ubuntu.png",
         "intenseTextStyle": "all",
         "name": "Ubuntu",
         "opacity": 100,
         "scrollbarState": "hidden",
+        "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc",
         "startingDirectory": "~",
         "useAcrylic": true
       },
@@ -266,6 +271,7 @@
         "hidden": false,
         "icon": "%ProgramFiles%\\Git\\mingw64\\share\\git\\git-for-windows.ico",
         "name": "Git Bash",
+        "source": "Git",
         "startingDirectory": "%USERPROFILE%"
       },
       {
