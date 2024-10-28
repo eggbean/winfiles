@@ -52,6 +52,7 @@ if ($env:USERNAME -eq "jason" -or $env:USERNAME -eq "vagrant") {
     winget install --source winget -e --id Discord.Discord --no-upgrade
     winget install --source winget -e --id GnuPG.Gpg4win
     winget install --source winget -e --id GoLang.Go
+    winget install --source winget -e --id Google.CloudSDK
     winget install --source winget -e --id Google.GoogleDrive
     winget install --source winget -e --id Hashicorp.Vagrant
     winget install --source winget -e --id LocalSend.LocalSend
