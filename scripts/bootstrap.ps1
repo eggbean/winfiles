@@ -414,6 +414,14 @@ if (-Not $env:bootstrapped) {
     }
 }
 
+# Install AWS Shell and Pushbullet CLI on my main account
+if (-Not $env:bootstrapped) {
+    if ($env:USERNAME -eq "jason") {
+        pip install aws-shell
+        pip install pushbullet-cli
+    }
+}
+
 # Change Task Manager refresh rate to Low and hide when minimised
 if (-Not $env:bootstrapped) {
     $settingsFile = Join-Path $env:LOCALAPPDATA "Microsoft\Windows\TaskManager\settings.json"
