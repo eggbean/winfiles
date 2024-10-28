@@ -6,7 +6,7 @@
 WT_DEFAULT_SHELL="${WT_DEFAULT_SHELL:-{0caa0dad-35be-5f56-a8ff-afceeeaa6101}}"
 WT_DEFAULT_SHELL_STRIPPED="$(echo "$WT_DEFAULT_SHELL" | sed 's/[{}]//g')"
 WT_TARGET_FILE="$LOCALAPPDATA/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
-WT_CURRENT_FILE="Windows_Terminal/settings-previous.json"
+WT_CURRENT_FILE="Windows_Terminal/settings.json"
 WT_TEMPLATE_FILE="Windows_Terminal/settings-template.json"
 WT_TARGET_DIR="$(dirname "$WT_TARGET_FILE")"
 
@@ -37,6 +37,11 @@ hidepython() {
   if python --version >/dev/null 2>&1; then echo "false"; else echo "true"; fi
 }
 
+# Check if aws-shell is installed
+hideaws() {
+  if aws-shell.exe -h >/dev/null 2>&1; then echo "false"; else echo "true"; fi
+}
+
 # Replace the placeholders in the template and write to target
 if [[ ! -d $WT_TARGET_DIR ]]; then mkdir -p "$WT_TARGET_DIR"; fi
 sed -e "s/{{WT_DEFAULT_SHELL}}/{${WT_DEFAULT_SHELL_STRIPPED}}/" \
@@ -50,6 +55,8 @@ sed -e "s/{{WT_DEFAULT_SHELL}}/{${WT_DEFAULT_SHELL_STRIPPED}}/" \
   -e "s/{{KALI}}/$(hidedistro "kali-linux")/" \
   -e "s/{{PYTHON}}/$(hidepython)/" \
   -e "s/{{PYTHON_PATH}}/$(where.exe python.exe | head -n 1 | sed 's/\\/\\\\\\\\/g')/" \
+  -e "s/{{AWS}}/$(hideaws)/" \
+  -e "s/{{AWS_PATH}}/$(where.exe aws-shell.exe | head -n 1 | sed 's/\\/\\\\\\\\/g')/" \
   "$WT_TEMPLATE_FILE" > "$WT_TARGET_FILE"
 
 ## Other stuff to improve the graphical appearance of the repository ##

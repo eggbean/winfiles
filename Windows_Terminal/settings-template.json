@@ -292,6 +292,13 @@
         "source": "Windows.Terminal.Azure"
       },
       {
+        "closeOnExit": "graceful",
+        "commandline": "{{AWS_PATH}}",
+        "hidden": {{AWS}},
+        "icon": "%USERPROFILE%\\winfiles\\icons\\WSL\\aws-shell.png",
+        "name": "AWS Shell"
+      },
+      {
         "colorScheme": "Argonaut",
         "font": {
           "face": "Cascadia Code"
