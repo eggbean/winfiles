@@ -32,9 +32,9 @@ hidedistro() {
   if wsl.exe -l | tr -d '\0' | grep -iq "$1"; then echo "false"; else echo "true"; fi
 }
 
-# Check if python is installed
-hidepython() {
-  if python --version >/dev/null 2>&1; then echo "false"; else echo "true"; fi
+# Check if the Google Cloud SDK is installed
+hidegcloud() {
+  if which gcloud >/dev/null 2>&1; then echo "false"; else echo "true"; fi
 }
 
 # Check if aws-shell is installed
@@ -42,9 +42,23 @@ hideaws() {
   if aws-shell.exe -h >/dev/null 2>&1; then echo "false"; else echo "true"; fi
 }
 
-# Check if the Google Cloud SDK is installed
-hidegcloud() {
-  if which gcloud >/dev/null 2>&1; then echo "false"; else echo "true"; fi
+# Check if python is installed
+hidepython() {
+  if python --version >/dev/null 2>&1; then echo "false"; else echo "true"; fi
+}
+
+# Get aws-shell path if installed
+awspath() {
+  if aws-shell.exe -h >/dev/null 2>&1; then
+    echo "$(where.exe aws-shell.exe | head -n 1 | sed 's/\\/\\\\\\\\/g')"
+  fi
+}
+
+# Get python path if installed
+pythonpath() {
+  if python --version >/dev/null 2>&1; then
+    echo "$(where.exe python.exe | head -n 1 | sed 's/\\/\\\\\\\\/g')"
+  fi
 }
 
 # Replace the placeholders in the template and write to target
@@ -58,11 +72,11 @@ sed -e "s/{{WT_DEFAULT_SHELL}}/{${WT_DEFAULT_SHELL_STRIPPED}}/" \
   -e "s/{{ORACLE}}/$(hidedistro "Oracle")/" \
   -e "s/{{NIXOS}}/$(hidedistro "NixOS")/" \
   -e "s/{{KALI}}/$(hidedistro "kali-linux")/" \
-  -e "s/{{PYTHON}}/$(hidepython)/" \
-  -e "s/{{PYTHON_PATH}}/$(where.exe python.exe | head -n 1 | sed 's/\\/\\\\\\\\/g')/" \
-  -e "s/{{AWS}}/$(hideaws)/" \
-  -e "s/{{AWS_PATH}}/$(where.exe aws-shell.exe | head -n 1 | sed 's/\\/\\\\\\\\/g')/" \
   -e "s/{{GCLOUD}}/$(hidegcloud)/" \
+  -e "s/{{AWS}}/$(hideaws)/" \
+  -e "s/{{AWS_PATH}}/$(awspath)/" \
+  -e "s/{{PYTHON}}/$(hidepython)/" \
+  -e "s/{{PYTHON_PATH}}/$(pythonpath)/" \
   "$WT_TEMPLATE_FILE" > "$WT_TARGET_FILE"
 
 ## Other stuff to improve the graphical appearance of the repository ##
