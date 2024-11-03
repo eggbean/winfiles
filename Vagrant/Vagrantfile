@@ -2,14 +2,19 @@
 Vagrant.configure("2") do |config|
   config.vm.define "win11", primary: true do |win11|
     win11.vm.box = "gusztavvargadr/windows-11"
-    win11.vm.hostname = "win11"
     win11.vm.box_version = "2302.0.2409"
+    win11.vm.hostname = "Win11"
     win11.vm.network "forwarded_port", guest: 3389, host: 53389
     win11.vm.boot_timeout = 600
 
+    # Detect keyboard layout and time zone from host (presently only works for Windows hosts)
+    language = `powershell -Command "Get-WinUserLanguageList | Select-Object -ExpandProperty LanguageTag"`.strip
+    time_zone = `powershell -Command "tzutil /g"`.strip
+
     # Provisioning with shell scripts
     win11.vm.provision "shell", path: "scripts/fix_winget.ps1", privileged: true
-    win11.vm.provision "shell", path: "scripts/keyboard.ps1", privileged: false
+    # Pass time_zone and language as arguments
+    win11.vm.provision "shell", path: "scripts/regional_settings.ps1", args: [time_zone, language], privileged: true
   end
 
   # Provider-specific configurations
