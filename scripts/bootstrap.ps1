@@ -174,8 +174,7 @@ Write-Output y | & "$env:USERPROFILE\winfiles\bin\dcli" logout | Out-Null
 
 # Decrypt repositories if locked
 if ($env:bootstrapped) {
-    Get-Process | Where-Object { $_.Name -like "*gpg*" } | Stop-Process -Force
-    Remove-Item "$env:APPDATA\gnupg\*.lock" -Force -ErrorAction SilentlyContinue
+    Start-Job -ScriptBlock { & gpg-agent --daemon } | Out-Null
     $repos = @("$env:USERPROFILE\winfiles", "$env:USERPROFILE\.dotfiles")
     Start-Sleep -Seconds 2
     foreach ($repo in $repos) {
