@@ -192,6 +192,7 @@
         "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
         "cursorShape": "filledBox",
         "font": {
+          "face": "CaskaydiaCove Nerd Font Mono",
           "size": 11
         },
         "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -203,6 +204,7 @@
         "colorScheme": "Campbell Powershell",
         "cursorShape": "filledBox",
         "font": {
+          "face": "CaskaydiaCove Nerd Font Mono",
           "size": 11
         },
         "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
