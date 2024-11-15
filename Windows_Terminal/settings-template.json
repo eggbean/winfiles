@@ -154,6 +154,44 @@
       },
       "id": "User.openSettings.6CD791B",
       "keys": "ctrl+shift+comma"
+    },
+    {
+      "command": {
+        "action": "scrollToMark",
+        "direction": "previous"
+      },
+      "keys": "ctrl+up"
+    },
+    {
+      "command": {
+        "action": "scrollToMark",
+        "direction": "next"
+      },
+      "keys": "ctrl+down"
+    },
+    {
+      "command": {
+        "action": "selectOutput",
+        "direction": "prev"
+      }
+    },
+    {
+      "command": {
+        "action": "selectOutput",
+        "direction": "next"
+      }
+    },
+    {
+      "command": {
+        "action": "selectCommand",
+        "direction": "prev"
+      }
+    },
+    {
+      "command": {
+        "action": "selectCommand",
+        "direction": "next"
+      }
     }
   ],
   "alwaysShowTabs": false,
@@ -169,8 +207,10 @@
   ],
   "profiles": {
     "defaults": {
+      "autoMarkPrompts": true,
       "cursorShape": "filledBox",
-      "scrollbarState": "hidden"
+      "scrollbarState": "visible",
+      "showMarksOnScrollbar": true
     },
     "list": [
       {
