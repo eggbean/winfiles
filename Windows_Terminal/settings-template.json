@@ -224,6 +224,7 @@
         "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
         "hidden": false,
         "name": "Command Prompt",
+        "scrollbarState": "visible",
         "startingDirectory": null
       },
       {
@@ -237,7 +238,8 @@
         },
         "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
         "hidden": {{POWERSHELL}},
-        "name": "Windows PowerShell"
+        "name": "Windows PowerShell",
+        "scrollbarState": "visible"
       },
       {
         "closeOnExit": "graceful",
@@ -250,6 +252,7 @@
         "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
         "hidden": {{POWERSHELLCORE}},
         "name": "PowerShell",
+        "scrollbarState": "visible",
         "source": "Windows.Terminal.PowershellCore"
       },
       {
@@ -275,7 +278,7 @@
         "intenseTextStyle": "all",
         "name": "Pengwin",
         "opacity": 100,
-        "scrollbarState": "hidden",
+        "scrollbarState": "visible",
         "source": "Windows.Terminal.Wsl",
         "startingDirectory": "~",
         "useAcrylic": true
@@ -302,7 +305,7 @@
         "intenseTextStyle": "all",
         "name": "Ubuntu",
         "opacity": 100,
-        "scrollbarState": "hidden",
+        "scrollbarState": "visible",
         "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc",
         "startingDirectory": "~",
         "useAcrylic": true
@@ -360,7 +363,7 @@
         "intenseTextStyle": "all",
         "name": "Fedora",
         "opacity": 100,
-        "scrollbarState": "hidden",
+        "scrollbarState": "visible",
         "startingDirectory": "~",
         "useAcrylic": true
       },
