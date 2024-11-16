@@ -1,4 +1,4 @@
-# Fix winget --source winget on Vagrant boxes
+# Fix winget --source winget on Vagrant boxes from gusztavvargadr
 # [ELEVATED]
 try {
     # Download UI.Xaml

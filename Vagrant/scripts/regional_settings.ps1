@@ -1,3 +1,4 @@
+# Set time zone and language
 param (
     [string]$time_zone,
     [string]$language
