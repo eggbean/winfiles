@@ -209,6 +209,7 @@
     "defaults": {
       "autoMarkPrompts": true,
       "cursorShape": "filledBox",
+      "experimental.rightClickContextMenu": true,
       "scrollbarState": "visible",
       "showMarksOnScrollbar": true
     },
