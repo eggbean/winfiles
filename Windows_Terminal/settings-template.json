@@ -198,6 +198,7 @@
   "copyFormatting": "none",
   "copyOnSelect": true,
   "defaultProfile": "{{WT_DEFAULT_SHELL}}",
+  "environment": "COLORTERM": "truecolor",
   "initialCols": 90,
   "initialRows": 42,
   "newTabMenu": [
